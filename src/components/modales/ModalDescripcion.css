@@ -1,0 +1,106 @@
+.contenedor-descripcion{
+    background: rgba(0,0,0, .4);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;   
+}
+.contenido-descripcion{
+    background-color: white;
+    width: 95%;
+    max-width: 120rem;
+    margin: auto;
+    border-radius: 1rem;
+    padding: 3rem 2rem;
+    margin: 3rem auto;
+    position: relative;
+}
+
+.contenido-descripcion .btn-close{
+    position: absolute;
+   right: 0;
+   margin-right: 1rem;
+   border-radius: 50%;
+   border: solid rgb(66, 35, 35) 1px;
+   padding: 0.3rem; 
+   cursor: pointer;
+   transition: 300ms ease-in-out all; 
+   transform: translateY(-2rem);    
+}
+/* Descripcion producto */
+.detalles{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.detalles .img-descripcion{
+   width: 30rem;
+   margin-left: 1rem;
+   border-radius: 0.5rem;
+}
+.caracteristicas-producto h1{
+    text-align: start;
+    color: #588157;
+    margin-top: 0;
+}
+.caracteristicas-producto p:nth-child(2){
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: gray;   
+}
+.caracteristicas-producto span:nth-child(1){
+    color: black;
+    font-weight: normal; 
+    font-size: 1.6rem;   
+}
+.caracteristicas-producto p:nth-child(4){
+    text-align: justify;  
+    line-height: 1.3;
+}
+.caracteristicas-producto p:nth-child(3), p:nth-child(5), p:nth-child(7), p:nth-child(8){
+    font-weight: 700;
+    color: rgb(105, 102, 102);
+    line-height: 1;
+}
+.caracteristicas-producto input[type='number']{
+    padding: 0.5rem 1rem;
+    outline: none;
+    border: none;
+    background-color: #b2d6b1;
+    border-radius: 1rem;
+    margin-top: -1rem;
+    font-size: 1.7rem;
+    font-weight: 700;
+}
+.caracteristicas-producto input[type='submit']{
+  background: #13505b;
+  padding: 1rem;
+  border: none;
+  border-radius: 1rem;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: 500ms ease-in-out all;
+  cursor: pointer;
+}
+.caracteristicas-producto input[type='submit']:hover{
+  background: #6a8f96;
+  color: black;
+  transform: scale(1.2,1.2);
+}
+@media(min-width:769px){
+    .detalles{
+        padding: 0 3rem 3rem;
+        display: flex;
+        flex-direction: row;
+    }
+    .detalles .img-descripcion{
+        width: 60rem;
+    }
+    .caracteristicas-producto h1{
+        margin-top: 2rem;
+    }
+}

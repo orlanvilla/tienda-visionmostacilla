@@ -1,0 +1,32 @@
+.contenedor-footer{
+    background: #354f52;
+    padding: 0.5rem;
+}
+.contenido-footer{    
+    width: 90%;
+    max-width: 110rem;
+    margin: auto;
+}
+.contenido-footer p:nth-child(1){
+    
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+}
+.redes-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+.redes img{
+    width: 4rem;
+    margin-left: 2rem;
+}
+
+.contenido-footer p{
+    text-align: center;
+    color: white;
+}

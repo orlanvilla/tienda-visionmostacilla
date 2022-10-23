@@ -1,0 +1,140 @@
+.contenedor-header{
+    padding: .5rem 0;    
+}
+.contenido-header{
+    width: 90%;
+    max-width: 120rem;
+    margin: 0 auto;     
+    border-bottom: solid 1px  black;
+    padding: 1rem 0;
+}
+.logo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 22rem; 
+    margin-top: 1rem;   
+}
+.logo img{
+    width: 15rem;   
+}
+.logo h2{
+    font-family: 'Kaushan Script', cursive;
+    text-align: center;
+}
+.logo span{
+    color: #06d6a0;
+    font-size: 3rem;    
+}
+.seccion-navproductos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.navegador{    
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    transform: translateY(-27rem);
+    background-color: #354f52;
+    padding: 3rem 4rem; 
+    border-radius: 0.5rem; 
+    left: 0;
+    cursor: pointer;
+    /* z-index: 1; */
+
+    background-image: url(../../img/icon-burguer.png);
+    background-position: top 1rem left 1rem;
+    background-size: 3rem;
+    background-repeat: no-repeat;
+
+    clip-path: circle(28% at top left);   
+    transition-property: clip-path;
+    transition-duration: 1.5s;
+    transition-timing-function: ease;
+    transition-delay: 0.3s;
+   
+
+}
+.navegador:hover {
+    clip-path: circle(150% at top left);
+    background-color: #354f52;
+    transition-duration: 1.5s;
+    background-image: none;
+   
+   
+}
+
+.navegador a{
+    text-decoration: none;
+    font-size: 2rem;
+    margin-top: 2rem;
+    letter-spacing: .2rem;
+    font-weight: 700;
+    color: white;
+    font-family: 'Shadows Into Light', cursive;
+    transition-duration: .5s;
+}
+.navegador a:hover{
+    color: yellow;
+    transform: scale(1.2,1.2);
+}
+.productos-aleatorio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+.productos-aleatorio img{
+    width: 55rem;
+    height: 30rem;
+}
+@media(min-width: 769px){
+    .contenido-header{       
+        display: grid;
+        grid-template-columns: 30% 70%;    
+    }
+    .logo img{
+        width: 25rem;  
+    }
+    .navegador{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;         
+        position: unset;
+        transform: translateY(0);
+        background-color: transparent;
+        background-image: none;
+        padding: 0;
+        clip-path: none; 
+        /* z-index: 0;  */
+    }
+    .navegador:hover{
+        clip-path: none;
+        transition-property: none;
+        background-color: transparent;
+    }
+    .navegador a{        
+        font-size: 2rem;        
+        color: black;  
+        margin-top: 0;          
+    }
+    .navegador a:hover{
+        color: #386641;
+        transform: scale(1.2,1.2);
+    }
+  
+
+    .icono-movil{   
+        visibility: hidden;   
+    }
+    .logo{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 35rem; 
+       
+    }
+}

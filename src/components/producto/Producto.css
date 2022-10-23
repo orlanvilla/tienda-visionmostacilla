@@ -1,0 +1,40 @@
+.contenedor-producto{ 
+    position: relative; 
+}
+.contenido-producto{
+    margin: 1rem 2rem;
+}
+.contenido-producto:hover{
+    background: rgba(0,0,0, .1);
+    cursor: pointer;
+    
+}
+.imagen-producto img{
+    width: 20rem;
+    height: 23rem;
+    margin: auto;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+}
+.titulo{
+    text-align: center;
+    font-weight: 700;
+    background-color: #6a994e;
+    padding: 1rem; 
+    cursor: pointer;
+    color: white;
+}
+
+
+.subtitulo{
+    margin-top: -1rem;
+    font-size: 1.5rem;
+}
+.precio{
+    margin-top: -1.5rem;
+    font-weight: 700;
+    text-align: end;
+}
