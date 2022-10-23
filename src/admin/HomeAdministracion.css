@@ -1,0 +1,71 @@
+.contenedor-administracion{
+    background-color: #cad2c5;
+    width: 100%;
+    height: 100vh;
+    display: flex;    
+}
+
+.menu-administracion{
+    position: relative;
+    background-color: #2f3e46;
+    width: 300px;
+    height: 100vh;    
+}
+.logo-container{
+    position: absolute; 
+    display: flex;
+    left: 6rem;  
+    top: 3rem;
+
+}
+.logo-container img{
+    width: 180px;
+
+}
+.btn-menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    height: 100vh;
+    
+}
+.btn-menu button{
+    width: 22rem;
+    padding: 1rem;
+    background: #52796f;
+    border: none;
+    color: white;    
+    font-weight: 700;
+    border-radius: 0.8rem;
+    box-shadow: rgba(252, 249, 249, 0.1) 0px 4px 12px;
+    cursor: pointer;
+    transition: 400ms ease-in-out all;
+}
+.btn-menu button:hover{
+    transform: scale(1.1,1.1);
+    background: #fff;
+    color: #52796f;
+}
+.btn-saliradmin{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 2rem;
+}
+.btn-menu button:nth-child(4){
+    background: #fff;
+    color: #52796f;      
+}
+/* Contenido administracion */
+
+.contenido-administracion{
+    width: 100%;}
+
+.titulo-administracion{
+    text-align: center;
+    width: 100%;
+    height: fit-content;
+    border-bottom: 1px solid black;
+    background-color: transparent;    
+}
