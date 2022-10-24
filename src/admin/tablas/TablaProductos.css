@@ -78,3 +78,11 @@ table{
     transition-duration: .3s;
  }
 
+ .tabla-ingresos .cuerpo button{
+    width: 56px;
+    height: 29.5px;
+    padding:0;
+ }
+ .tabla-ingresos .cuerpo button img{
+    margin:2px 0 0 0;
+ }

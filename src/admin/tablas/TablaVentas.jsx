@@ -1,5 +1,8 @@
 
 import './TablaVentas.css'
+import icon_eye from '../../img/eye.svg'
+import icon_trash from '../../img/trash.svg'
+import icon_pencil from '../../img/pencil-square.svg'
 
 const TablaVentas = () => {   
     
@@ -29,9 +32,15 @@ const TablaVentas = () => {
                         <td>$ 20.000</td>
                         <td>50</td>
                         <td>
-                            <button>Modificar</button>
-                            <button>Eliminar</button>
-                            <button>Ver</button>
+                            <button>
+                              <img src={icon_pencil} alt="logo" />
+                            </button>
+                            <button>
+                              <img src={icon_trash} alt="logo" />
+                            </button>
+                            <button>
+                              <img src={icon_eye} alt="logo" />
+                            </button>
                           
                         </td>
                     </tr>
