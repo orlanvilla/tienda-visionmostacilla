@@ -1,17 +1,26 @@
-
+import { useContext } from 'react'
+import { AppContext } from '../../context/AppContext'
 import './TablaProductos.css'
 import icon_eye from '../../img/eye.svg'
 import icon_trash from '../../img/trash.svg'
 import icon_pencil from '../../img/pencil-square.svg'
+import ModalRegistroProducto from '../modales/ModalRegistroProducto'
 
 const TablaProductos = () => {   
+  const {modal, setModal}=useContext(AppContext);
+
+  const handleAbrirModal=()=>{
+    setModal(true)
+  }
     
   return (
     <div className='contenido-tablaingresos'>
+    {modal&& <ModalRegistroProducto/>}
       <div className='input-nuevoingreso'>
         <input
           type="submit"
           value="Nuevo Producto"
+          onClick={handleAbrirModal}
           
         />
         </div>
