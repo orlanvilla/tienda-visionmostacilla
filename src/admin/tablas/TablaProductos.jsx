@@ -27,7 +27,7 @@ const TablaProductos = () => {
                 </thead>
                 <tbody className='cuerpo'>   
                    
-                        <tr>                
+                      <tr>                
                         <td>Colibrí mediano</td>
                         <td>$ 20.000</td>
                         <td>50</td>
@@ -42,7 +42,55 @@ const TablaProductos = () => {
                               <img src={icon_eye} alt="logo" />
                             </button>
                         </td>
-                    </tr>
+                      </tr>
+                      <tr>                
+                        <td>Colibrí mediano</td>
+                        <td>$ 20.000</td>
+                        <td>50</td>
+                        <td>
+                            <button>
+                              <img src={icon_pencil} alt="logo" />
+                            </button>
+                            <button>
+                              <img src={icon_trash} alt="logo" />
+                            </button>
+                            <button>
+                              <img src={icon_eye} alt="logo" />
+                            </button>
+                        </td>
+                      </tr>
+                      <tr>                
+                        <td>Colibrí mediano</td>
+                        <td>$ 20.000</td>
+                        <td>50</td>
+                        <td>
+                            <button>
+                              <img src={icon_pencil} alt="logo" />
+                            </button>
+                            <button>
+                              <img src={icon_trash} alt="logo" />
+                            </button>
+                            <button>
+                              <img src={icon_eye} alt="logo" />
+                            </button>
+                        </td>
+                      </tr>
+                      <tr>                
+                        <td>Colibrí mediano</td>
+                        <td>$ 20.000</td>
+                        <td>50</td>
+                        <td>
+                            <button>
+                              <img src={icon_pencil} alt="logo" />
+                            </button>
+                            <button>
+                              <img src={icon_trash} alt="logo" />
+                            </button>
+                            <button>
+                              <img src={icon_eye} alt="logo" />
+                            </button>
+                        </td>
+                      </tr>
 
                 </tbody>
             </table>           

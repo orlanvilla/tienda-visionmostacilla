@@ -5,7 +5,7 @@ export const PeticioneApi = () => {
 
     let production = 'https://api-vision-mostacilla.herokuapp.com/api/';
 
-    const { } = useContext(AppContext);
+    const {  } = useContext(AppContext);
 
     //Funcion para registrar un nuevo producto
     const registrarProducto = async (dataproducto) => {
