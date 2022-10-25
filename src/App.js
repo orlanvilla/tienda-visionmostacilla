@@ -12,6 +12,7 @@ function App() {
     <Routes>
       {/* <Route exact path='/home' element={<Home/>}/> */}
       <Route exact path='/home' element={<HomeAdministracion/>}/>
+      <Route exact path='/' element={<Home/>}/>
     </Routes>
   </BrowserRouter>
   );
