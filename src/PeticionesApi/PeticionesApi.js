@@ -18,7 +18,7 @@ export const PeticioneApi = () => {
                 },
                 body: JSON.stringify(dataproducto)
             });
-            if (respuesta.status === 201) {
+            if (respuesta.status === 200) {
                 alert('Producto creado con exito...');
             } 
         } catch (error) {
