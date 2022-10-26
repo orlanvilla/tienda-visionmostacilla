@@ -5,10 +5,10 @@ export const PeticionesApi = () => {
 
     let production = 'https://api-vision-mostacilla.herokuapp.com/api/';
 
-    //const { } = useContext(AppContext);
+    const { setProducto,setProductos} = useContext(AppContext);
 
     //Funcion para registrar un nuevo producto
-   const registrarProducto = async (dataproducto) => {
+   const registrarProducto = async (dataproducto,data) => {
         try {
             const res = await fetch("https://api.cloudinary.com/v1_1/djqui0rqr/image/upload", {
                 method:"POST",

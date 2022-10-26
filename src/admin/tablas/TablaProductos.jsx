@@ -26,6 +26,7 @@ const TablaProductos = () => {
     
   return (
     <div className='contenido-tablaingresos-productos'>
+    {modal1&& <ModalDescripcion/>}  
     {modal&& <ModalRegistroProducto/>}
       <div className='input-nuevoingreso-productos'>
         <input

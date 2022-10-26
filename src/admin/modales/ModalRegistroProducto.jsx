@@ -7,7 +7,9 @@ import { PeticionesApi } from '../../PeticionesApi/PeticionesApi'
 //funion
 const ModalRegistroProducto = () => {
     const {setModal}=useContext(AppContext);
-    const {registrarProducto}=PeticionesApi();
+    const {registrarProducto,cargarProductos}=PeticionesApi();
+    const [data, setData] = useState(new FormData())
+
     const [dataProducto, setDataProducto] = useState({
         nombre:"",
         imagen:"",
