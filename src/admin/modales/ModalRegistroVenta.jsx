@@ -1,14 +1,13 @@
 import { useContext, useState } from 'react'
 import { AppContext } from '../../context/AppContext'
-import './ModalRegistroProducto.css'
+import './ModalRegistroVenta.css'
 import icono_cerrar from '../../img/close.svg'
 import { PeticionesApi } from '../../PeticionesApi/PeticionesApi'
  
-
-const ModalRegistroProducto = () => {
+const ModalRegistroEmpleado = () => {
     const {setModal}=useContext(AppContext);
-    const {registrarProducto}=PeticionesApi();
-    const [dataProducto, setDataProducto] = useState({
+    const {registrarProducto}=PeticionesApi();//*
+    const [dataEmpleado, setDataEmpleado] = useState({
         nombre:"",
         imagen:"",
         descripcion:"",
@@ -16,27 +15,25 @@ const ModalRegistroProducto = () => {
         precio:""
     });
     const onchange=(e)=>{
-        setDataProducto({
-            ...dataProducto, 
+        setDataEmpleado({
+            ...dataEmpleado, 
             [e.target.name]:e.target.value
         }
     )}
-    const guardarProducto=async()=>{
-        await registrarProducto(dataProducto)
+    const guardarEmpleado=async()=>{
+        await registrarProducto(dataEmpleado)
     }
-  
-
 
 
   return (
-    <div className="contenedor-registro-producto">
-        <div className="formulario-registro-producto">
+    <div className="contenedor-registro-empleado">
+        <div className="formulario-registro-empleado">
             <img
                 alt='icono-cerrar'
                 src={icono_cerrar}
                 onClick={()=>setModal(false)}
             />
-             <h2>Nuevo Producto</h2>
+             <h2>Nueva Venta</h2>
 
              <label>Nombre</label>
              <input
@@ -69,11 +66,11 @@ const ModalRegistroProducto = () => {
              <input
                 type="submit"
                 value="Guardar"
-                onClick={guardarProducto}
+                onClick={guardarEmpleado}
              />
         </div>    
     </div>
   )
 }
 
-export default ModalRegistroProducto
+export default ModalRegistroEmpleado

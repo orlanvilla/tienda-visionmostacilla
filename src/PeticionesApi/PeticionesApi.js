@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 
-export const PeticioneApi = () => {
+export const PeticionesApi = () => {
 
     let production = 'https://api-vision-mostacilla.herokuapp.com/api/';
 
-    const { } = useContext(AppContext);
+    //const { } = useContext(AppContext);
 
     //Funcion para registrar un nuevo producto
-    const registrarProducto = async (dataproducto) => {
+   const registrarProducto = async (dataproducto) => {
         try {
             //fetch es para consumir una api
             const respuesta = await fetch(production + '/productos', { // produccion es la url de la api

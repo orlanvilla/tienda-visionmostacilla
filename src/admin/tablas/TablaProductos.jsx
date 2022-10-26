@@ -14,9 +14,9 @@ const TablaProductos = () => {
   }
     
   return (
-    <div className='contenido-tablaingresos'>
+    <div className='contenido-tablaingresos-productos'>
     {modal&& <ModalRegistroProducto/>}
-      <div className='input-nuevoingreso'>
+      <div className='input-nuevoingreso-productos'>
         <input
           type="submit"
           value="Nuevo Producto"
@@ -24,7 +24,7 @@ const TablaProductos = () => {
           
         />
         </div>
-      <div  className='tabla-ingresos'>
+      <div  className='tabla-ingresos-productos'>
             <table>
                 <thead>
                     <tr>           

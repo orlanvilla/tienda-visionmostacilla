@@ -2,7 +2,7 @@ import TablaVentas from "./tablas/TablaVentas"
 
 const Ventas = () => {
   return (
-    <div>
+    <div className="contenedor-productos">
       <h2>Administrar Ventas</h2>
       <TablaVentas/>
     </div>

@@ -1,4 +1,4 @@
-.contenedor-registro-producto{
+.contenedor-registro-empleado{
     background-color: rgba(0, 0, 0, .7);
     position: fixed;
     left: 0;
@@ -7,7 +7,7 @@
     bottom: 0;
     z-index: 1000;
 }
-.formulario-registro-producto{
+.formulario-registro-empleado{
     background-color: #cad2c5;
     width: 80rem;
     max-width: 95%;
@@ -20,27 +20,27 @@
     gap: 1rem;
     position: relative;
 }
-.formulario-registro-producto img{
+.formulario-registro-empleado img{
     position: absolute;
     right: 4rem;
     cursor: pointer; 
     transition: 400ms ease-in-out all;   
 }
-.formulario-registro-producto img:hover{
+.formulario-registro-empleado img:hover{
     transform: scale(1.2,1.2);   
 }
-.formulario-registro-producto h2{
+.formulario-registro-empleado h2{
     text-align: center;
 }
-.formulario-registro-producto label{
+.formulario-registro-empleado label{
     font-size: 1.8rem;    
-}.formulario-registro-producto input{   
+}.formulario-registro-empleado input{   
     font-size: 2rem;
     padding: 0.7rem 2rem;
     border-radius: 1rem;
     border: none;
 }
-.formulario-registro-producto input:last-child{
+.formulario-registro-empleado input:last-child{
     background-color: #354f52;
     color: white;
     text-transform: uppercase;
@@ -50,7 +50,7 @@
     margin: 2.5rem 0;
     transition: 400ms ease-in-out all;
 }
-.formulario-registro-producto input:last-child:hover{
+.formulario-registro-empleado input:last-child:hover{
     background-color: #cad2c5;
     color: #354f52;
     text-transform: uppercase;
@@ -58,7 +58,7 @@
     border: solid 1px #354f52;
     transform: scale(1.0,1,1.0,1);    
 }
-.formulario-registro-producto textarea{
+.formulario-registro-empleado textarea{
     border-radius: 1rem;
     border: none;
     resize: none;
