@@ -4,7 +4,7 @@ import './ModalRegistroProducto.css'
 import icono_cerrar from '../../img/close.svg'
 import { PeticionesApi } from '../../PeticionesApi/PeticionesApi'
  
-
+//funion
 const ModalRegistroProducto = () => {
     const {setModal}=useContext(AppContext);
     const {registrarProducto}=PeticionesApi();
