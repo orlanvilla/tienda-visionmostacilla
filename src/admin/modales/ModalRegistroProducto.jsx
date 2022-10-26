@@ -2,11 +2,11 @@ import { useContext, useState } from 'react'
 import { AppContext } from '../../context/AppContext'
 import './ModalRegistroProducto.css'
 import icono_cerrar from '../../img/close.svg'
-import { PeticioneApi } from '../../peticionesApi/PeticionesApi'
+import { PeticionesApi } from '../../peticionesApi/PeticionesApi'
 
 const ModalRegistroProducto = () => {
     const {setModal}=useContext(AppContext);
-    const {registrarProducto}=PeticioneApi();
+    const {registrarProducto}=PeticionesApi();
     const [dataProducto, setDataProducto] = useState({
         nombre:"",
         imagen:"",

@@ -1,11 +1,10 @@
-import { useContext } from "react";
-import { AppContext } from "../context/AppContext";
 
-export const PeticioneApi = () => {
+
+export const PeticionesApi = () => {
 
     let production = 'https://api-vision-mostacilla.herokuapp.com/api/';
 
-    const { } = useContext(AppContext);
+   
 
     //Funcion para registrar un nuevo producto
     const registrarProducto = async (dataproducto) => {
@@ -26,8 +25,6 @@ export const PeticioneApi = () => {
             console.log(error)
         }
     }
-
-
     return {
         registrarProducto
     }
