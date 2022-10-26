@@ -16,17 +16,27 @@ const ModalRegistroProducto = () => {
         precio:""
     });
     const onchange=(e)=>{
+        //Manejo de los inputs-------------------
         setDataProducto({
             ...dataProducto, 
             [e.target.name]:e.target.value
-        }
-    )}
+        })
+       
+   }
+   const onChange =(e)=>{
+     //--- Escuchador especial para el input de la imagen
+     const files = e.target.files;
+     const data1 = new FormData();
+     data1.append("file", files[0])
+     data1.append("upload_preset", "Images")
+     setData(data1)
+   }
+   
     const guardarProducto=async()=>{
-        await registrarProducto(dataProducto)
+        await registrarProducto(dataProducto,data)
+        await cargarProductos()
     }
   
-
-
 
   return (
     <div className="contenedor-registro-producto">
@@ -46,9 +56,9 @@ const ModalRegistroProducto = () => {
              />
              <label>Imagen</label>
              <input
-                type="text"
+                type="file"
                 name='imagen'
-                onChange={onchange}
+                onChange={onChange}
              />
              <label>Descripción</label>
             <textarea 
