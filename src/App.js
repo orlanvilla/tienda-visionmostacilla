@@ -13,8 +13,8 @@ function App() {
     <Routes>
       {/* <Route exact path='/home' element={<Home/>}/> */}
       <Route exact path='/home' element={<HomeAdministracion/>}/>
-      <Route exact path='/productos' element={<Home/>}/>
-      <Route exact path='/' element={<Formulario/>}/>
+      <Route exact path='/' element={<Home/>}/>
+  
     </Routes>
   </BrowserRouter>
   );

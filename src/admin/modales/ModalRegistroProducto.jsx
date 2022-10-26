@@ -2,11 +2,13 @@ import { useContext, useState } from 'react'
 import { AppContext } from '../../context/AppContext'
 import './ModalRegistroProducto.css'
 import icono_cerrar from '../../img/close.svg'
-import { PeticioneApi } from '../../peticionesApi/PeticionesApi'
+import { PeticionesApi } from '../../PeticionesApi/PeticionesApi'
 
 const ModalRegistroProducto = () => {
     const {setModal}=useContext(AppContext);
-    const {registrarProducto}=PeticioneApi();
+    const {registrarProducto,cargarProductos}=PeticionesApi();
+    //Creamos un variable para la infromaxion de la imagen
+    const [data, setData] = useState(new FormData())
     const [dataProducto, setDataProducto] = useState({
         nombre:"",
         imagen:"",
@@ -15,17 +17,27 @@ const ModalRegistroProducto = () => {
         precio:""
     });
     const onchange=(e)=>{
+        //Manejo de los inputs-------------------
         setDataProducto({
             ...dataProducto, 
             [e.target.name]:e.target.value
-        }
-    )}
+        })
+       
+   }
+   const onChange =(e)=>{
+     //--- Escuchador especial para el input de la imagen
+     const files = e.target.files;
+     const data1 = new FormData();
+     data1.append("file", files[0])
+     data1.append("upload_preset", "Images")
+     setData(data1)
+   }
+   
     const guardarProducto=async()=>{
-        await registrarProducto(dataProducto)
+        await registrarProducto(dataProducto,data)
+        await cargarProductos()
     }
   
-
-
 
   return (
     <div className="contenedor-registro-producto">
@@ -45,9 +57,9 @@ const ModalRegistroProducto = () => {
              />
              <label>Imagen</label>
              <input
-                type="text"
+                type="file"
                 name='imagen'
-                onChange={onchange}
+                onChange={onChange}
              />
              <label>Descripción</label>
             <textarea 
