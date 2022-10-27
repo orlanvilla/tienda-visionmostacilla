@@ -63,10 +63,48 @@ table{
     border-radius: 1rem;
     transition-duration: .5s;
 }
-.input-nuevoingreso-productos input:hover{
+.input-nuevoingreso-productos input:hover
+{
     transform: scale(1.1 ,1.1);
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
  }
+.tabla-ingresos-productos .contenedor-elementos-cantidad{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    height: 5.25rem;
+}
+.tabla-ingresos-productos .contenedor-elementos-cantidad .botones-cantidad{
+    display: flex;
+    gap: 0.2rem;
+}
+.tabla-ingresos-productos .contenedor-elementos-cantidad button{
+    width: min-content;
+    height:min-content;
+    padding: 0;
+    border-radius: 50%;
+    border: none;
+}  
+.tabla-ingresos-productos .contenedor-elementos-cantidad button img{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 17px;
+    height: 17px;
+}  
+.tabla-ingresos-productos .contenedor-elementos-cantidad button img:hover{
+    transform: scale(1.1 ,1.1);
+    background-color: rgba(145, 145, 145, 0.25);
+}
+.tabla-ingresos-productos .contenedor-elementos-cantidad button img:hover:active{
+    background-color: transparent;
+}
+
+
+
  .tabla-ingresos-productos img{
     width: 2rem;
     margin-left: 2rem;
@@ -78,11 +116,11 @@ table{
     transition-duration: .3s;
  }
 
- .tabla-ingresos-productos .cuerpo button{
+ .tabla-ingresos-productos .cuerpo .contenedor-elementos-Accion button{
     width: 56px;
     height: 29.5px;
     padding:0;
  }
- .tabla-ingresos-productos .cuerpo button img{
+ .tabla-ingresos-productos .cuerpo .contenedor-elementos-Accion button img{
     margin:2px 0 0 0;
  }
