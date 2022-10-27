@@ -5,12 +5,13 @@ import btn_close from '../../img/close.svg'
 import colibri_multicolor from '../../img/colibri-multicolor.jpeg'
 
 const ModalDescripcion = () => {
-  const {setModal}=useContext(AppContext);
+  const {setModal1,producto}=useContext(AppContext);
   
   const handleCerrar=(e)=>{
     e.preventDefault()
-    setModal(false);      
+    setModal1(false);      
   }
+
   return (
     <div className="contenedor-descripcion">
         
@@ -27,22 +28,23 @@ const ModalDescripcion = () => {
               <img
                 className='img-descripcion'
                 alt='img_descripcion'
-                src={colibri_multicolor}
+                src={producto.imagen}
+                style={{'width':'400px','height':'500px'}}
               />
             </section>
             <section className='caracteristicas-producto'>
-            <h1>Colibrí Multicolor</h1>
+            <h1>{producto.nombre}</h1>
             <p>Categoría: <span>Colibrí llavero</span></p>
             <p>Detalle del Producto</p>
               <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vestibulum erat imperdiet, blandit tellus at, porta purus. 
+                 {producto.descripcion}
               </p>
               <p>Cantidad: </p>
               <input
                 type='number'
               />
-              <p>Precio unitario: <span>$ 100000</span></p>
-              <p>Precio Total: <span>$ 123232312</span></p>
+              <p>Precio unitario: <span>{producto.precio}</span></p>
+            
 
               <input
                 type="submit"

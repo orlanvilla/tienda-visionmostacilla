@@ -2,7 +2,7 @@ import TablaEmpleados from "./tablas/TablaEmpleados"
 
 const Empleados = () => {
   return (
-    <div>
+    <div className="contenedor-productos">
       <h2>Administrar Empleados</h2>
       <TablaEmpleados/>
     </div>

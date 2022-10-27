@@ -1,22 +1,34 @@
-import { useContext } from 'react'
+import { useContext,useEffect } from 'react'
 import { AppContext } from '../../context/AppContext'
 import './TablaProductos.css'
 import icon_eye from '../../img/eye.svg'
 import icon_trash from '../../img/trash.svg'
 import icon_pencil from '../../img/pencil-square.svg'
 import ModalRegistroProducto from '../modales/ModalRegistroProducto'
+import { PeticionesApi } from '../../PeticionesApi/PeticionesApi'
+import ModalDescripcion from '../../components/modales/ModalDescripcion'
 
 const TablaProductos = () => {   
-  const {modal, setModal}=useContext(AppContext);
+  const {modal, setModal,modal1, setModal1,productos}=useContext(AppContext);
+  const {cargarProductos,buscarProducto} = PeticionesApi();
 
+  useEffect(() => {
+     cargarProductos()
+  }, [])
+  
   const handleAbrirModal=()=>{
     setModal(true)
   }
+  const handleAbrirProducto=async(id)=>{
+    await buscarProducto(id)
+    setModal1(true)
+  }
     
   return (
-    <div className='contenido-tablaingresos'>
+    <div className='contenido-tablaingresos-productos'>
+    {modal1&& <ModalDescripcion/>}  
     {modal&& <ModalRegistroProducto/>}
-      <div className='input-nuevoingreso'>
+      <div className='input-nuevoingreso-productos'>
         <input
           type="submit"
           value="Nuevo Producto"
@@ -24,7 +36,7 @@ const TablaProductos = () => {
           
         />
         </div>
-      <div  className='tabla-ingresos'>
+      <div  className='tabla-ingresos-productos'>
             <table>
                 <thead>
                     <tr>           
@@ -36,22 +48,25 @@ const TablaProductos = () => {
                 </thead>
                 <tbody className='cuerpo'>   
                    
+                     
+                      {productos.map(producto => (
                         <tr>                
-                        <td>Colibrí mediano</td>
-                        <td>$ 20.000</td>
-                        <td>50</td>
-                        <td>
-                            <button>
-                              <img src={icon_pencil} alt="logo" />
-                            </button>
-                            <button>
-                              <img src={icon_trash} alt="logo" />
-                            </button>
-                            <button>
-                              <img src={icon_eye} alt="logo" />
-                            </button>
-                        </td>
-                    </tr>
+                          <td>{producto.nombre}</td>
+                          <td>{producto.precio}</td>
+                          <td>50</td>
+                          <td>
+                              <button>
+                                <img src={icon_pencil} alt="logo" />
+                              </button>
+                              <button>
+                                <img src={icon_trash} alt="logo" />
+                              </button>
+                              <button>
+                                <img src={icon_eye} alt="logo" onClick={()=>handleAbrirProducto(producto._id)}/>
+                              </button>
+                          </td>
+                        </tr>
+                      ))}
 
                 </tbody>
             </table>           

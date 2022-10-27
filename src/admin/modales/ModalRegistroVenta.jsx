@@ -1,16 +1,13 @@
 import { useContext, useState } from 'react'
 import { AppContext } from '../../context/AppContext'
-import './ModalRegistroProducto.css'
+import './ModalRegistroVenta.css'
 import icono_cerrar from '../../img/close.svg'
 import { PeticionesApi } from '../../PeticionesApi/PeticionesApi'
  
-//funion
-const ModalRegistroProducto = () => {
+const ModalRegistroEmpleado = () => {
     const {setModal}=useContext(AppContext);
-    const {registrarProducto,cargarProductos}=PeticionesApi();
-    const [data, setData] = useState(new FormData())
-
-    const [dataProducto, setDataProducto] = useState({
+    const {registrarProducto}=PeticionesApi();//*
+    const [dataEmpleado, setDataEmpleado] = useState({
         nombre:"",
         imagen:"",
         descripcion:"",
@@ -18,37 +15,25 @@ const ModalRegistroProducto = () => {
         precio:""
     });
     const onchange=(e)=>{
-        //Manejo de los inputs-------------------
-        setDataProducto({
-            ...dataProducto, 
+        setDataEmpleado({
+            ...dataEmpleado, 
             [e.target.name]:e.target.value
-        })
-       
-   }
-   const onChange =(e)=>{
-     //--- Escuchador especial para el input de la imagen
-     const files = e.target.files;
-     const data1 = new FormData();
-     data1.append("file", files[0])
-     data1.append("upload_preset", "Images")
-     setData(data1)
-   }
-   
-    const guardarProducto=async()=>{
-        await registrarProducto(dataProducto,data)
-        await cargarProductos()
+        }
+    )}
+    const guardarEmpleado=async()=>{
+        await registrarProducto(dataEmpleado)
     }
-  
+
 
   return (
-    <div className="contenedor-registro-producto">
-        <div className="formulario-registro-producto">
+    <div className="contenedor-registro-empleado">
+        <div className="formulario-registro-empleado">
             <img
                 alt='icono-cerrar'
                 src={icono_cerrar}
                 onClick={()=>setModal(false)}
             />
-             <h2>Nuevo Producto</h2>
+             <h2>Nueva Venta</h2>
 
              <label>Nombre</label>
              <input
@@ -58,9 +43,9 @@ const ModalRegistroProducto = () => {
              />
              <label>Imagen</label>
              <input
-                type="file"
+                type="text"
                 name='imagen'
-                onChange={onChange}
+                onChange={onchange}
              />
              <label>Descripción</label>
             <textarea 
@@ -81,11 +66,11 @@ const ModalRegistroProducto = () => {
              <input
                 type="submit"
                 value="Guardar"
-                onClick={guardarProducto}
+                onClick={guardarEmpleado}
              />
         </div>    
     </div>
   )
 }
 
-export default ModalRegistroProducto
+export default ModalRegistroEmpleado

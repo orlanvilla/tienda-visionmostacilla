@@ -1,0 +1,66 @@
+.contenedor-registro-empleado{
+    background-color: rgba(0, 0, 0, .7);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+}
+.formulario-registro-empleado{
+    background-color: #cad2c5;
+    width: 80rem;
+    max-width: 95%;
+    margin: auto;
+    padding: 2rem 4rem;
+    margin-top: 4rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+}
+.formulario-registro-empleado img{
+    position: absolute;
+    right: 4rem;
+    cursor: pointer; 
+    transition: 400ms ease-in-out all;   
+}
+.formulario-registro-empleado img:hover{
+    transform: scale(1.2,1.2);   
+}
+.formulario-registro-empleado h2{
+    text-align: center;
+}
+.formulario-registro-empleado label{
+    font-size: 1.8rem;    
+}.formulario-registro-empleado input{   
+    font-size: 2rem;
+    padding: 0.7rem 2rem;
+    border-radius: 1rem;
+    border: none;
+}
+.formulario-registro-empleado input:last-child{
+    background-color: #354f52;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 2rem;
+    cursor: pointer;
+    margin: 2.5rem 0;
+    transition: 400ms ease-in-out all;
+}
+.formulario-registro-empleado input:last-child:hover{
+    background-color: #cad2c5;
+    color: #354f52;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: solid 1px #354f52;
+    transform: scale(1.0,1,1.0,1);    
+}
+.formulario-registro-empleado textarea{
+    border-radius: 1rem;
+    border: none;
+    resize: none;
+    height: 8rem;   
+}
