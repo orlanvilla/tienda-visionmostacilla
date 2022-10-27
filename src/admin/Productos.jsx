@@ -1,5 +1,5 @@
 import TablaProductos from "./tablas/TablaProductos"
-
+import './Productos.css'
 const Productos = () => {
   return (
     <div className="contenedor-productos">

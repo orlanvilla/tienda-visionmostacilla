@@ -3,15 +3,24 @@
 }
 .contenido-producto{
     margin: 1rem 2rem;
+    padding: 1.5rem 1rem 0 1rem;
+    background-color: white;
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 300ms ease-in-out all;
+    gap: 1rem;
 }
 .contenido-producto:hover{
-    background: rgba(0,0,0, .1);
-    cursor: pointer;
-    
-}
+    transform: scale(1.05,1.05);
+     
+} 
 .imagen-producto img{
     width: 20rem;
-    height: 23rem;
+    height: 20rem;
     margin: auto;   
     display: flex;
     justify-content: center;
@@ -24,17 +33,19 @@
     font-weight: 700;
     background-color: #6a994e;
     padding: 1rem; 
+    width: 20rem;
     cursor: pointer;
     color: white;
+    text-transform: capitalize;
 }
-
-
 .subtitulo{
     margin-top: -1rem;
     font-size: 1.5rem;
+    text-transform: capitalize;
 }
 .precio{
     margin-top: -1.5rem;
     font-weight: 700;
+    width: 85%;
     text-align: end;
 }

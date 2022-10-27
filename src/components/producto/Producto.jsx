@@ -28,10 +28,10 @@ const Producto = (props) => {
                 <div className='titulo'>
                     <label>{nombre}</label>
                 </div> 
-                <div className='subtitulo'>
+                {/* <div className='subtitulo'>
                     <p>{descripcion}</p>
                     
-                </div> 
+                </div>  */}
                 <div className='precio'>
                     <p>{precio}</p>
                     

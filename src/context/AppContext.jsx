@@ -7,6 +7,7 @@ export const AppContext=createContext();
   const [modal1, setModal1] = useState(false);
   const [mensaje, setMensaje] = useState(false);
   const [producto,setProducto] =useState({});
+  const [logueado, setLogueado] = useState(false);
   
   const [productos,setProductos] =useState([]);
   
@@ -16,7 +17,8 @@ export const AppContext=createContext();
         modal, setModal,
         modal1, setModal1,
         producto,setProducto,
-        productos,setProductos
+        productos,setProductos,
+        logueado, setLogueado
         
     }}    
     >{children}</AppContext.Provider>

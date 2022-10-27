@@ -1,16 +1,26 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { AppContext } from '../context/AppContext';
+import { useNavigate } from 'react-router-dom';
 import './HomeAdministracion.css' 
 import logo_tienda from '../img/logo.png'
 import Productos from './Productos';
 import Ventas from './Ventas';
 import Empleados from './Empleados';
+
 const HomeAdministracion = () => {
 
     const [vista, setVista] = useState(<Productos/>);
+    const {setLogueado}=useContext(AppContext)
+    const navigate=useNavigate();
 
     const mostrarVistaProductos=()=>setVista(<Productos/>)   
     const mostrarVistaVentas=()=>setVista(<Ventas/>)
     const mostrarVistaEmpleados=()=>setVista(<Empleados/>)
+
+    const cerrarSesion=()=>{
+        setLogueado(false)
+        navigate("/home")
+    }
 
   return (
     <div className="contenedor-administracion">   
@@ -26,7 +36,10 @@ const HomeAdministracion = () => {
                 <button onClick={mostrarVistaProductos}>Productos</button>
                 <button onClick={mostrarVistaVentas}>Ventas</button>
                 <button onClick={mostrarVistaEmpleados}>Empleados</button>
-                <button className='btn-saliradmin'>Salir</button>
+                <button 
+                className='btn-saliradmin'
+                onClick={cerrarSesion}
+                >Salir</button>
             </section>           
 
         </div>
