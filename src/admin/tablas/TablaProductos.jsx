@@ -92,7 +92,8 @@ const TablaProductos = () => {
                                 <img src={icon_plus} alt="logo sumar" />
                             </button>
                           </td>
-                          <td className='contenedor-elementos-Accion'>
+                          <td>
+                            <div className='accion'>
                               <button>
                                 <img src={icon_pencil} alt="logo editar" onClick={()=>handleEditarProducto(producto._id)}/>
                               </button>
@@ -102,6 +103,7 @@ const TablaProductos = () => {
                               <button>
                                 <img src={icon_eye} alt="logo visualizacion" onClick={()=>handleAbrirProducto(producto._id)}/>
                               </button>
+                            </div>
                           </td>
                           {
                             producto.cantidad === 0 &&

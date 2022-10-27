@@ -111,14 +111,18 @@ table{
     transform: scale(1.2,1.2);
     transition-duration: .3s;
  }
-
- .tabla-ingresos-productos .cuerpo .contenedor-elementos-Accion button{
-    width: 56px;
-    height: 29.5px;
+ .accion{/*clase para las distintas tablas de manera global*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+ }
+ .accion button{/*clase para las distintas tablas de manera global*/
     padding:0;
     background-color: transparent;
     border: none;
  }
- .tabla-ingresos-productos .cuerpo .contenedor-elementos-Accion button img{
-    margin:2px 0 0 0;
+ .accion button img{/*clase para las distintas tablas de manera global*/
+    margin: 0;
  }
+
