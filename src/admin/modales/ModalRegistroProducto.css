@@ -20,13 +20,13 @@
     gap: 1rem;
     position: relative;
 }
-.formulario-registro-producto img{
+.formulario-registro-producto .cerrar{
     position: absolute;
     right: 4rem;
     cursor: pointer; 
     transition: 400ms ease-in-out all;   
 }
-.formulario-registro-producto img:hover{
+.formulario-registro-producto .cerrar:hover{
     transform: scale(1.2,1.2);   
 }
 .formulario-registro-producto h2{
