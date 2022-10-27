@@ -72,6 +72,8 @@ const TablaProductos = () => {
                         <th>Precio</th>
                         <th>Cantidad</th>                                      
                         <th>Acción</th>
+                        <th>Destacado</th>
+                        
                     </tr>
                 </thead>
                 <tbody className='cuerpo'>   
@@ -82,7 +84,7 @@ const TablaProductos = () => {
                           <td>{producto.nombre}</td>
                           <td>{producto.precio}</td>
                           <td className='contenedor-elementos-cantidad'>
-                              <span>50</span>
+                              <span>{producto.cantidad}</span>
                               <div className='botones-cantidad'>
                                 <button>
                                 <img src={icon_dash} alt="logo restar" />
@@ -95,10 +97,10 @@ const TablaProductos = () => {
                           </td>
                           <td className='contenedor-elementos-Accion'>
                               <button>
-                                <img src={icon_pencil} alt="logo editar" />
+                                <img src={icon_pencil} alt="logo editar" onClick={()=>handleEditarProducto(producto._id)}/>
                               </button>
                               <button>
-                                <img src={icon_trash} alt="logo eliminar" />
+                                <img src={icon_trash} alt="logo eliminar" onClick={()=>handleEliminarProducto(producto._id)}/>
                               </button>
                               <button>
                                 <img src={icon_eye} alt="logo visualizacion" onClick={()=>handleAbrirProducto(producto._id)}/>
