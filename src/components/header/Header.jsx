@@ -21,7 +21,6 @@ const Header = () => {
                             <a href='#'>Promociones</a>
                             <a href='#'>Nuevos</a>
                             <a href='#'>Mas vendido</a>
-                            <a href='#'>Mas vendido</a>                         
                         </nav>
        
                     <section className='productos-aleatorio'>

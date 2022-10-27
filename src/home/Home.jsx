@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import Categorias from "../components/categorias/Categorias"
 import Footer from "../components/footer/Footer"
 import Head from "../components/head/Head"
 import Header from "../components/header/Header"
@@ -12,13 +13,14 @@ const Home = () => {
     cargarProductos();
   },[])
   return (
-    <>
+    <div>
         <Head/>
         <Header/>
+        <Categorias/>
         <SeccionProductos/>
         <Footer/>
         
-    </>
+    </div>
   )
 }
 
