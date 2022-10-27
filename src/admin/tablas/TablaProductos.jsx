@@ -84,16 +84,13 @@ const TablaProductos = () => {
                           <td>{producto.nombre}</td>
                           <td>{producto.precio}</td>
                           <td className='contenedor-elementos-cantidad'>
-                              <span>{producto.cantidad}</span>
-                              <div className='botones-cantidad'>
-                                <button>
+                            <button>
                                 <img src={icon_dash} alt="logo restar" />
-                                </button>
-                                <button>
+                            </button>
+                            <span>{producto.cantidad}</span>
+                            <button>
                                 <img src={icon_plus} alt="logo sumar" />
-                                </button>
-                              </div>
-  
+                            </button>
                           </td>
                           <td className='contenedor-elementos-Accion'>
                               <button>

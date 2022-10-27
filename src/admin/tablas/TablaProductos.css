@@ -72,12 +72,8 @@ table{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.8rem;
+    gap: 1.5rem;
     height: 5.25rem;
-}
-.tabla-ingresos-productos .contenedor-elementos-cantidad .botones-cantidad{
-    display: flex;
-    gap: 0.2rem;
 }
 .tabla-ingresos-productos .contenedor-elementos-cantidad button{
     width: min-content;
@@ -85,6 +81,7 @@ table{
     padding: 0;
     border-radius: 50%;
     border: none;
+    background-color: transparent;
 }  
 .tabla-ingresos-productos .contenedor-elementos-cantidad button img{
     margin: 0;
@@ -94,6 +91,7 @@ table{
     border-radius: 50%;
     width: 17px;
     height: 17px;
+    background-color: transparent;
 }  
 .tabla-ingresos-productos .contenedor-elementos-cantidad button img:hover{
     transform: scale(1.1 ,1.1);
@@ -102,8 +100,6 @@ table{
 .tabla-ingresos-productos .contenedor-elementos-cantidad button img:hover:active{
     background-color: transparent;
 }
-
-
 
  .tabla-ingresos-productos img{
     width: 2rem;
@@ -120,6 +116,8 @@ table{
     width: 56px;
     height: 29.5px;
     padding:0;
+    background-color: transparent;
+    border: none;
  }
  .tabla-ingresos-productos .cuerpo .contenedor-elementos-Accion button img{
     margin:2px 0 0 0;
