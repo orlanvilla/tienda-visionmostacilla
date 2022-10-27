@@ -4,8 +4,9 @@ import { AppContext } from "../context/AppContext";
 export const PeticionesApi = () => {
 
     let production = 'https://api-vision-mostacilla.herokuapp.com/api/';
+   // let development = 'http://192.168.1.14:9000/api/'
 
-    const { setProducto,setProductos} = useContext(AppContext);
+    const { setProducto,setProductos,productos} = useContext(AppContext);
 
     //Funcion para registrar un nuevo producto
    const registrarProducto = async (dataproducto,data) => {
@@ -15,9 +16,13 @@ export const PeticionesApi = () => {
                 body:data
             })
             if(res.status === 200){
+                
+              //Esto con el fin de completar el objeto producto con la propiedad imagen   ------
               const file = await res.json();
               dataproducto.imagen = file.secure_url;
-                //Si la imagen se guarda correctamente entonces procedemos a guardar la toda la informacion del producto
+              //--------------------------------------------------------------------------------
+
+                //Si la imagen se guarda correctamente entonces procedemos a guardar la toda la informacion del producto en la  BD
                 //----------------------------------------------------------------------
                 const respuesta = await fetch(production + '/productos', {
                     method: 'POST', 
@@ -26,11 +31,12 @@ export const PeticionesApi = () => {
                     },
                     body: JSON.stringify(dataproducto)
                 });
+
                 if (respuesta.status === 200) {
                     alert('Producto creado con exito...');
                 } 
                 //-----------------------------------------------------------------------
-              //console.log('data: ',dataproducto)
+             
             }else{
                 console.log('Error con el servidor')
             }
@@ -39,6 +45,7 @@ export const PeticionesApi = () => {
             console.log(error)
         }
     }
+
     //Funcion para buscar un producto
     const buscarProducto = async(id)=>{
         try {
@@ -54,10 +61,12 @@ export const PeticionesApi = () => {
             console.log("Algo salio mal con cargar el producto")
         }
     }
+
     //Funcion para cargar todos los productos
-    const cargarProductos = async(id)=>{
+    const cargarProductos = async()=>{
         try {
             const respuesta = await fetch(production + '/productos');
+            
             if (respuesta.status === 200) {
                 const resp = await respuesta.json();
                 await setProductos(resp);
@@ -69,11 +78,70 @@ export const PeticionesApi = () => {
         }
     }
 
-
+    //Funcion para eliminar un producto
+    const eliminarProducto = async(id)=>{
+        try{
+            const respuesta = await fetch(production + '/productos/' + id, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            if (respuesta.status === 200) {
+                alert('Producto eliminado con exito...');
+            }
+        }catch(e){
+            console.log('No se pudo eliminar el product')
+        }
+    }
+    //Funcion para editar producto
+    const editarProducto = async(id,data)=>{
+        try {
+            const respuesta = await fetch(production + '/productos/' + id, {
+                method: 'PUT', 
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            if (respuesta.status === 200) {
+                alert('Producto editado con exito...');
+            }
+        }catch(e){
+            console.log('No se pudo editProducto')
+        }
+            
+    }
+    
+    //Destacar producto
+    const destacarProducto = async(id)=>{
+     
+        const producto = productos.find(p => p._id === id)
+        producto.cantidad = producto.cantidad === 1 ? 0:1
+        try {
+            const respuesta = await fetch(production + '/productos/' + id, {
+                method: 'PUT', 
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(producto)
+            })
+            if (respuesta.status === 200) {
+                console.log(respuesta)
+                alert('Producto destacado con exito...');
+            }
+        }catch(e){
+            console.log('No se pudo destacar')
+        }
+           
+    }
     return {
         registrarProducto,
         buscarProducto,
-        cargarProductos
+        cargarProductos,
+        eliminarProducto,
+        editarProducto,
+        destacarProducto
     }
 
 }

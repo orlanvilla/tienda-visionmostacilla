@@ -1,4 +1,4 @@
-import { useRef, useEffect} from 'react'
+import { useRef, useEffect,useContext} from 'react'
 import './Slider.css'
 import colibri_grande from '../../img/colibri-grande.jpeg'
 import colibri_blanco from '../../img/colibri-blanco.jpeg'
@@ -6,9 +6,12 @@ import colibri_multicolor from '../../img/colibri-multicolor.jpeg'
 import collar_colibri from '../../img/collar-colibri.jpeg'
 import menor  from '../../img/left.svg'
 import  mayor  from '../../img/rigth.svg'
+import { AppContext } from '../../context/AppContext'
 
 
 const Slider = () => {
+
+    const {productos} = useContext(AppContext);
     const slideShow=useRef(null);
     const intervaloSlideShow=useRef(null);
 
@@ -93,38 +96,22 @@ const Slider = () => {
   return (
     <div className='contenedor-principal'>
         <div className='contenedor-slideshow' ref={slideShow}>
-                <div className='slide'>
-                    <a href='#'>
-                        <img src={colibri_grande} alt='colibri-grande'/>                
-                    </a>
-                    <div className='texto-slide'>
-                    {/* <p>30% de descuento, solo por hoy</p> */}
-                    </div>
-                </div>
-                <div className='slide'>
-                    <a href='#'>
-                        <img src={colibri_blanco} alt='colibri-grande'/>                
-                    </a>
-                    <div className='texto-slide'>
-                    {/* <p>30% de descuento, solo por hoy</p> */}
-                    </div>
-                </div>
-                <div className='slide'>
-                    <a href='#'>
-                        <img src={colibri_multicolor} alt='colibri-grande'/>                
-                    </a>
-                    <div className='texto-slide'>
-                    {/* <p>30% de descuento, solo por hoy</p> */}
-                    </div>
-                </div>
-                <div className='slide'>
-                    <a href='#'>
-                        <img src={collar_colibri} alt='colibri-grande'/>                
-                    </a>
-                    <div className='texto-slide'>
-                    {/* <p>30% de descuento, solo por hoy</p> */}
-                    </div>
-                </div>
+            
+                {
+                    productos.map(producto=> (
+                        <div className='slide'>
+                            <a href='#'>
+                                <img src={producto.imagen} alt='colibri-grande'/>                
+                            </a>
+                            <div className='texto-slide'>
+                            {/* <p>30% de descuento, solo por hoy</p> */}
+                            </div>
+                        </div>
+                    ))
+                }
+              
+              
+              
         </div>
        
         <div className='controles'>

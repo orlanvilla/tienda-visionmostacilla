@@ -7,6 +7,7 @@ export const AppContext=createContext();
   const [modal1, setModal1] = useState(false);
   const [mensaje, setMensaje] = useState(false);
   const [producto,setProducto] =useState({});
+  
   const [productos,setProductos] =useState([]);
   
   return (

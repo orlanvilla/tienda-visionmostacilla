@@ -4,7 +4,10 @@ import collar_colibri from '../../img/collar-colibri.jpeg'
 import ModalDescripcion from '../modales/ModalDescripcion'
 import { AppContext } from '../../context/AppContext'
 
-const Producto = () => {
+const Producto = (props) => {
+
+    const {nombre,descripcion,precio,imagen} = props
+   
    const {modal, setModal}=useContext(AppContext)
 
     const handleAbrir=()=>{
@@ -18,19 +21,19 @@ const Producto = () => {
                 
                 <div className='imagen-producto'>
                     <img                   
-                        src={collar_colibri}
+                        src={imagen}
                         alt='img-producto'
                     />
                 </div>
                 <div className='titulo'>
-                    <label>Collar Colibrí</label>
+                    <label>{nombre}</label>
                 </div> 
                 <div className='subtitulo'>
-                    <p>Collar en mostacilla checha + colibrí</p>
+                    <p>{descripcion}</p>
                     
                 </div> 
                 <div className='precio'>
-                    <p>$ 120.000</p>
+                    <p>{precio}</p>
                     
                 </div>           
             </div> 
