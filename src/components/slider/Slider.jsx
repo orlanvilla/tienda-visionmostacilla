@@ -11,7 +11,7 @@ import { AppContext } from '../../context/AppContext'
 
 const Slider = () => {
 
-    const {productos} = useContext(AppContext);
+    const {productosDestacados} = useContext(AppContext);
     const slideShow=useRef(null);
     const intervaloSlideShow=useRef(null);
 
@@ -98,7 +98,7 @@ const Slider = () => {
         <div className='contenedor-slideshow' ref={slideShow}>
             
                 {
-                    productos.map(producto=> (
+                    productosDestacados.map(producto=> (
                         <div className='slide'>
                             <a href='#'>
                                 <img src={producto.imagen} alt='colibri-grande'/>                

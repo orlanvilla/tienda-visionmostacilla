@@ -17,8 +17,8 @@ const ModalRegistroProducto = () => {
         descripcion:producto.descripcion? producto.descripcion:"",
         caracteristicas:producto.cantidad? producto.caracteristicas:"",
         precio:producto.precio? producto.precio:"",
-        cantidad:producto.cantidad? producto.cantidad:0,
-        destacado:producto.destacado? producto.destacado:""
+        cantidad:producto.cantidad? producto.cantidad:"",
+        destacado:producto.destacado? producto.destacado:false,
     });
     const onchange=(e)=>{
         //Manejo de los inputs-------------------
@@ -57,6 +57,7 @@ const ModalRegistroProducto = () => {
             await registrarProducto(dataProducto,data)
         }
         await cargarProductos()
+        setProducto({})
     }
     
     const cerrarModalRegistroProducto=(e)=>{
@@ -120,9 +121,9 @@ const ModalRegistroProducto = () => {
                <label>Cantidad</label>
              <input
                 type="number"
-                name='destacado'
+                name='cantidad'
                 onChange={onchange}
-                defaultValue={dataProducto.destacado}
+                defaultValue={dataProducto.cantidad}
              />
              <input
                 type="submit"

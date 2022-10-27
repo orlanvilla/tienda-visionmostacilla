@@ -6,11 +6,12 @@ export const PeticionesApi = () => {
     let production = 'https://api-vision-mostacilla.herokuapp.com/api/';
    // let development = 'http://192.168.1.14:9000/api/'
 
-    const { setProducto,setProductos,productos} = useContext(AppContext);
+    const { setProducto,setProductos,productos,setProductosDestacados} = useContext(AppContext);
 
     //Funcion para registrar un nuevo producto
-   const registrarProducto = async (dataproducto,data) => {
-        try {
+    const registrarProducto = async (dataproducto,data) => {
+
+       try {
             const res = await fetch("https://api.cloudinary.com/v1_1/djqui0rqr/image/upload", {
                 method:"POST",
                 body:data
@@ -45,7 +46,6 @@ export const PeticionesApi = () => {
             console.log(error)
         }
     }
-
     //Funcion para buscar un producto
     const buscarProducto = async(id)=>{
         try {
@@ -61,15 +61,17 @@ export const PeticionesApi = () => {
             console.log("Algo salio mal con cargar el producto")
         }
     }
-
-    //Funcion para cargar todos los productos
+    //Funcion para cargar todos los productos y productos destacados
     const cargarProductos = async()=>{
         try {
             const respuesta = await fetch(production + '/productos');
             
             if (respuesta.status === 200) {
                 const resp = await respuesta.json();
+                //filtramos productos destacados 
+                const prodDes = resp.filter(p => p.destacado === true)
                 await setProductos(resp);
+                await setProductosDestacados(prodDes)
             } else {
                 setProductos([]);
             }
@@ -77,7 +79,6 @@ export const PeticionesApi = () => {
             console.log("Algo salio mal con cargar los productos")
         }
     }
-
     //Funcion para eliminar un producto
     const eliminarProducto = async(id)=>{
         try{
@@ -112,12 +113,11 @@ export const PeticionesApi = () => {
         }
             
     }
-    
     //Destacar producto
     const destacarProducto = async(id)=>{
      
-        const producto = productos.find(p => p._id === id)
-        producto.cantidad = producto.cantidad === 1 ? 0:1
+        const producto = await productos.find(p => p._id === id)
+        producto.destacado = producto.destacado? false:true
         try {
             const respuesta = await fetch(production + '/productos/' + id, {
                 method: 'PUT', 
@@ -126,22 +126,56 @@ export const PeticionesApi = () => {
                 },
                 body: JSON.stringify(producto)
             })
-            if (respuesta.status === 200) {
-                console.log(respuesta)
-                alert('Producto destacado con exito...');
-            }
+           
         }catch(e){
             console.log('No se pudo destacar')
         }
            
     }
+    //Sumar existencia a producto
+    const sumarCantidadProducto = async(id)=>{
+        const producto = await productos.find(p => p._id === id)
+        producto.cantidad = producto.cantidad + 1
+        try {
+            const respuesta = await fetch(production + '/productos/' + id, {
+                method: 'PUT', 
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(producto)
+            })
+           
+        }catch(e){
+            console.log('No se pudo destacar')
+        }
+    }
+    //Restar existencia a producto
+    const restarCantidadProducto = async(id)=>{
+        const producto = await productos.find(p => p._id === id)
+        producto.cantidad = producto.cantidad - 1
+        try {
+            const respuesta = await fetch(production + '/productos/' + id, {
+                method: 'PUT', 
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(producto)
+            })
+           
+        }catch(e){
+            console.log('No se pudo destacar')
+        }
+    }
+
     return {
         registrarProducto,
         buscarProducto,
         cargarProductos,
         eliminarProducto,
         editarProducto,
-        destacarProducto
+        destacarProducto,
+        sumarCantidadProducto,
+        restarCantidadProducto
     }
 
 }

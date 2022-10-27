@@ -18,7 +18,7 @@ import iconEstrellaTrue from '../../img/star-solid.svg'
 const TablaProductos = () => {   
 
   const {modal, setModal,modal1, setModal1,productos,producto}=useContext(AppContext);
-  const {cargarProductos,buscarProducto,eliminarProducto,destacarProducto} = PeticionesApi();
+  const {cargarProductos,buscarProducto,eliminarProducto,destacarProducto,sumarCantidadProducto,restarCantidadProducto} = PeticionesApi();
  
 
   useEffect(() => {
@@ -46,12 +46,21 @@ const TablaProductos = () => {
   }
   //Cambiar estado de destacado
   const handleDestacar = async(id) =>{
-   
     await destacarProducto(id)
     await cargarProductos()
+  }
+  //Sumar existencia a producto
+  const handleSumar = async(id) =>{
+    await sumarCantidadProducto(id);
+    await cargarProductos()
+  }
+  //Restar existencia a producto
+  const handleRestar = async(id) =>{
+    await restarCantidadProducto(id);
+    await cargarProductos()
+  }
+  
 
-
-  }    
   return (
     <div className='contenido-tablaingresos-productos'>
     {modal1&& <ModalVistaProducto/>}  
@@ -71,25 +80,21 @@ const TablaProductos = () => {
                         <th width="37%">Nombre</th>
                         <th>Precio</th>
                         <th>Cantidad</th>                                      
-                        <th>Acción</th>
-                        <th>Destacado</th>
-                        
+                        <th>Acción</th>  
                     </tr>
                 </thead>
                 <tbody className='cuerpo'>   
-                   
-                     
                       {productos.map(producto => (
                         <tr>                
                           <td>{producto.nombre}</td>
                           <td>{producto.precio}</td>
                           <td className='contenedor-elementos-cantidad'>
                             <button>
-                                <img src={icon_dash} alt="logo restar" />
+                                <img src={icon_dash} alt="logo restar" onClick={()=>handleRestar(producto._id)}/>
                             </button>
                             <span>{producto.cantidad}</span>
                             <button>
-                                <img src={icon_plus} alt="logo sumar" />
+                                <img src={icon_plus} alt="logo sumar" onClick={()=>handleSumar(producto._id)}/>
                             </button>
                           </td>
                           <td className='contenedor-elementos-Accion'>
@@ -102,20 +107,20 @@ const TablaProductos = () => {
                               <button>
                                 <img src={icon_eye} alt="logo visualizacion" onClick={()=>handleAbrirProducto(producto._id)}/>
                               </button>
-                          </td>
-                          {
-                            producto.cantidad === 0 &&
-                          <td>
-                            <img src={iconEstrellaFalse} alt="" onClick={()=>handleDestacar(producto._id)}/>
-                          </td>
-                          }
+                              {
+                                !producto.destacado &&
+                           
+                                <img src={iconEstrellaFalse} alt="" onClick={()=>handleDestacar(producto._id)}/>
+                           
+                              }
 
-                          {
-                            producto.cantidad === 1 &&
-                          <td>
-                            <img src={iconEstrellaTrue} alt="" onClick={()=>handleDestacar(producto._id)}/>
+                              {
+                                producto.destacado &&
+                              
+                                <img src={iconEstrellaTrue} alt="" onClick={()=>handleDestacar(producto._id)}/>
+                             
+                              }
                           </td>
-                          }
                         </tr>
                       ))}
 

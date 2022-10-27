@@ -16,7 +16,8 @@ const SeccionProductos = () => {
               <Producto nombre={producto.nombre} 
                         descripcion={producto.descripcion} 
                         precio={producto.precio} 
-                        imagen={producto.imagen}/>
+                        imagen={producto.imagen}
+                        id={producto._id}/>
             ))
           }
           

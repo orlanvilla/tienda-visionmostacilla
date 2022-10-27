@@ -3,19 +3,23 @@ import './Producto.css'
 import collar_colibri from '../../img/collar-colibri.jpeg'
 import ModalDescripcion from '../modales/ModalDescripcion'
 import { AppContext } from '../../context/AppContext'
+import { PeticionesApi } from '../../PeticionesApi/PeticionesApi'
 
 const Producto = (props) => {
 
-    const {nombre,descripcion,precio,imagen} = props
+    const {buscarProducto} = PeticionesApi();
+    const {id,nombre,descripcion,precio,imagen} = props
    
-   const {modal, setModal}=useContext(AppContext)
+   const {modal2, setModal2}=useContext(AppContext)
 
-    const handleAbrir=()=>{
-        setModal(true)
+    const handleAbrir=async()=>{
+        await buscarProducto(id)
+        setModal2(true)
         return 
     }
-  return (
-    <>   
+    return (
+        <>   
+        {modal2 && <ModalDescripcion/>}      
         <div className='contenedor-producto'>
             <div className='contenido-producto' onClick={handleAbrir}>  
                 
@@ -33,11 +37,10 @@ const Producto = (props) => {
                     
                 </div>  */}
                 <div className='precio'>
-                    <p>{precio}</p>
+                    <p>$ {precio}</p>
                     
                 </div>           
             </div> 
-            {modal && <ModalDescripcion/>}      
         </div>   
     </>
   )

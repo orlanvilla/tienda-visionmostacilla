@@ -25,7 +25,7 @@ function App() {
     :
     <BrowserRouter>
         <Routes>      
-          <Route exact path='/home' element={<Home/>}/> 
+        <Route exact path='/admin' element={<HomeAdministracion/>}/>   
           {/* siempre que le escriban algo en la url entraria a la tienda  */}
           <Route exact path='*' element={<Home/>}/>  
         </Routes>

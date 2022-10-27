@@ -5,11 +5,11 @@ import btn_close from '../../img/close.svg'
 import colibri_multicolor from '../../img/colibri-multicolor.jpeg'
 
 const ModalDescripcion = () => {
-  const {setModal1,producto}=useContext(AppContext);
+  const {setModal2,producto}=useContext(AppContext);
   
   const handleCerrar=(e)=>{
     e.preventDefault()
-    setModal1(false);      
+    setModal2(false);      
   }
 
   return (
@@ -40,15 +40,14 @@ const ModalDescripcion = () => {
                  {producto.descripcion}
               </p>
               <p>Cantidad: </p>
-              <input
-                type='number'
-              />
+              <input type="number" defaultValue={1}/>
+            
               <p>Precio unitario: <span>{producto.precio}</span></p>
             
 
               <input
                 type="submit"
-                value="Comprar"
+                value="Agregar al carrito"
               />
 
             </section>
