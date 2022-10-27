@@ -39,7 +39,8 @@ const TablaVentas = () => {
                         <td>$ 20.000</td>
                         <td>50</td>
                         <td>
-                            <button>
+                          <div className="accion">
+                          <button>
                               <img src={icon_pencil} alt="logo" />
                             </button>
                             <button>
@@ -48,7 +49,7 @@ const TablaVentas = () => {
                             <button>
                               <img src={icon_eye} alt="logo" />
                             </button>
-                          
+                          </div>                         
                         </td>
                     </tr>
 

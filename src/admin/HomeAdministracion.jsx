@@ -6,6 +6,7 @@ import logo_tienda from '../img/logo.png'
 import Productos from './Productos';
 import Ventas from './Ventas';
 import Empleados from './Empleados';
+import Categorias from './Categorias';
 
 const HomeAdministracion = () => {
 
@@ -16,6 +17,7 @@ const HomeAdministracion = () => {
     const mostrarVistaProductos=()=>setVista(<Productos/>)   
     const mostrarVistaVentas=()=>setVista(<Ventas/>)
     const mostrarVistaEmpleados=()=>setVista(<Empleados/>)
+    const mostrarVistaCategorias=()=>setVista(<Categorias/>)
 
     const cerrarSesion=()=>{
         setLogueado(false)
@@ -36,6 +38,7 @@ const HomeAdministracion = () => {
                 <button onClick={mostrarVistaProductos}>Productos</button>
                 <button onClick={mostrarVistaVentas}>Ventas</button>
                 <button onClick={mostrarVistaEmpleados}>Empleados</button>
+                <button onClick={mostrarVistaCategorias}>Categorias</button>
                 <button 
                 className='btn-saliradmin'
                 onClick={cerrarSesion}

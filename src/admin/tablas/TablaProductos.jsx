@@ -97,29 +97,26 @@ const TablaProductos = () => {
                                 <img src={icon_plus} alt="logo sumar" onClick={()=>handleSumar(producto._id)}/>
                             </button>
                           </td>
-                          <td className='contenedor-elementos-Accion'>
-                              <button>
-                                <img src={icon_pencil} alt="logo editar" onClick={()=>handleEditarProducto(producto._id)}/>
-                              </button>
-                              <button>
-                                <img src={icon_trash} alt="logo eliminar" onClick={()=>handleEliminarProducto(producto._id)}/>
-                              </button>
-                              <button>
-                                <img src={icon_eye} alt="logo visualizacion" onClick={()=>handleAbrirProducto(producto._id)}/>
-                              </button>
-                              {
-                                !producto.destacado &&
-                           
-                                <img src={iconEstrellaFalse} alt="" onClick={()=>handleDestacar(producto._id)}/>
-                           
-                              }
-
-                              {
-                                producto.destacado &&
-                              
-                                <img src={iconEstrellaTrue} alt="" onClick={()=>handleDestacar(producto._id)}/>
-                             
-                              }
+                          <td>
+                            <div className='accion'>
+                                <button>
+                                  <img src={icon_pencil} alt="logo editar" onClick={()=>handleEditarProducto(producto._id)}/>
+                                </button>
+                                <button>
+                                  <img src={icon_trash} alt="logo eliminar" onClick={()=>handleEliminarProducto(producto._id)}/>
+                                </button>
+                                <button>
+                                  <img src={icon_eye} alt="logo visualizacion" onClick={()=>handleAbrirProducto(producto._id)}/>
+                                </button>
+                                {
+                                  !producto.destacado &&
+                                  <img src={iconEstrellaFalse} alt="" onClick={()=>handleDestacar(producto._id)}/>
+                                }
+                                {
+                                  producto.destacado &&
+                                  <img src={iconEstrellaTrue} alt="" onClick={()=>handleDestacar(producto._id)}/>
+                                }
+                            </div>
                           </td>
                         </tr>
                       ))}

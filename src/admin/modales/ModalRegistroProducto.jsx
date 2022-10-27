@@ -74,58 +74,73 @@ const ModalRegistroProducto = () => {
                 src={icono_cerrar}
                 onClick={cerrarModalRegistroProducto}
             />
-             <h2>Nuevo Producto</h2>
 
-             <label>Nombre</label>
-             <input
-                type="text"
-                name='nombre'
-                onChange={onchange}
-                defaultValue={dataProducto.nombre}
-             />
-             <label>Imagen</label>
-        
-                <input
-                    type="file"
-                    name='imagen'
-                    onChange={onChange}
-                    id="imgDer"
-                 
+             <h2>Nuevo Producto</h2>
+             <div className='child'>
+                <div className="child_name">
+                    <label>Nombre</label>
+                    <input
+                        type="text"
+                        name='nombre'
+                        onChange={onchange}
+                        defaultValue={dataProducto.nombre}
+                    />
+                </div>
+                <div className="child_image">
+                    <label>Imagen</label>           
+                    <input
+                        type="file"
+                        name='imagen'
+                        onChange={onChange}
+                        id="imgDer"
+                    
+                    />
+                    {imagenTemporal && 
+                        <img src="" style={{'width':'100px','height':'100px'}} alt="imagen"  id="imgPreview"/>
+                    }
+                    {producto.imagen &&                   
+                        <img style={{'width':'100px','height':'100px'}} src={dataProducto.imagen} alt="Imagen producto" />
+                    }
+                </div>
+            </div>
+            <div className='child-2'>
+                <label>Descripción</label>
+                <textarea 
+                    name='descripcion'
+                    onChange={onchange}
+                    defaultValue={dataProducto.descripcion}
                 />
-                {imagenTemporal && 
-                    <img src="" style={{'width':'100px','height':'100px'}} alt="imagen"  id="imgPreview"/>
-                }
-                {producto.imagen &&                   
-                    <img style={{'width':'100px','height':'100px'}} src={dataProducto.imagen} alt="Imagen producto" />
-                }
-         
-             <label>Descripción</label>
-            <textarea 
-                name='descripcion'
-                onChange={onchange}
-                defaultValue={dataProducto.descripcion}
-            />
-             <label>Características</label>
-            <textarea
-                name='caracteristicas'
-                onChange={onchange}
-                defaultValue={dataProducto.caracteristicas}
-            />
-            <label>Precio</label>
+            </div>        
+            <div className='child-2'>
+                <label>Características</label>
+                <textarea
+                    name='caracteristicas'
+                    onChange={onchange}
+                    defaultValue={dataProducto.caracteristicas}
+                />
+            </div>
+            <div className="child">
+                <div className="child_precio">
+                    <label>Precio</label>
+                    <input
+                        type="number"
+                        name='precio'
+                        onChange={onchange}
+                        defaultValue={dataProducto.precio}
+                    />
+                </div>
+                <div className="child_cantidad">
+                    <label>Cantidad</label>
+                    <input
+                        type="number"
+                        name='destacado'
+                        onChange={onchange}
+                        defaultValue={dataProducto.destacado}
+                    />
+                </div>
+            </div>
              <input
-                type="number"
-                name='precio'
-                onChange={onchange}
-                defaultValue={dataProducto.precio}
-             />
-               <label>Cantidad</label>
-             <input
-                type="number"
-                name='cantidad'
-                onChange={onchange}
-                defaultValue={dataProducto.cantidad}
-             />
-             <input
+                className='guardar-producto'
                 type="submit"
                 value="Guardar"
                 onClick={guardarProducto}
