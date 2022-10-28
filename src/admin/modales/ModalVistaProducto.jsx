@@ -2,7 +2,6 @@ import { useContext } from 'react'
 import { AppContext } from '../../context/AppContext'
 import './ModalVistaProducto.css'
 import btn_close from '../../img/close.svg'
-import colibri_multicolor from '../../img/colibri-multicolor.jpeg'
 
 const ModalVistaProductos = () => {
   const {setModal1,producto}=useContext(AppContext);
@@ -42,8 +41,7 @@ const ModalVistaProductos = () => {
                   </p>
                   <p>Cantidad: {producto.cantidad}</p>
                  
-                  <p>Precio unitario: <span>{producto.precio}</span></p>
-                
+                  <p>Precio unitario: <span>{producto.precio}</span></p>               
               </div>
             </section>
             

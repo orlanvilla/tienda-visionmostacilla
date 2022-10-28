@@ -43,8 +43,7 @@ const HomeAdministracion = () => {
                 className='btn-saliradmin'
                 onClick={cerrarSesion}
                 >Salir</button>
-            </section>           
-
+            </section>    
         </div>
             <div className='contenido-administracion'>
                 <div className='titulo-administracion'>
