@@ -15,6 +15,7 @@ import iconEstrellaFalse from '../../img/star-regular.svg'
 import iconEstrellaTrue from '../../img/star-solid.svg'
 
 
+
 const TablaProductos = () => {   
 
   const {modal, setModal,modal1, setModal1,productos,producto}=useContext(AppContext);
@@ -66,18 +67,28 @@ const TablaProductos = () => {
     {modal1&& <ModalVistaProducto/>}  
     {modal&& <ModalRegistroProducto/>}
       <div className='input-nuevoingreso-productos'>
-        <input
-          type="submit"
-          value="Nuevo Producto"
-          onClick={handleAbrirModal}
-          
-        />
+            <input
+              type="text"
+              placeholder="buscar"              
+            />
+            <select>
+              <option>--Seleccionar--</option>
+              <option>Colibrí</option>
+              <option>Aretes</option>
+            </select>
+            <input
+              type="submit"
+              value="Nuevo Producto"
+              onClick={handleAbrirModal}
+              
+            />
         </div>
       <div  className='tabla-ingresos-productos'>
             <table>
                 <thead>
                     <tr>           
-                        <th width="37%">Nombre</th>
+                        <th width="35%">Producto</th>
+                        <th>Categoría</th>
                         <th>Precio</th>
                         <th>Cantidad</th>                                      
                         <th>Acción</th>  
@@ -86,7 +97,8 @@ const TablaProductos = () => {
                 <tbody className='cuerpo'>   
                       {productos.map(producto => (
                         <tr>                
-                          <td>{producto.nombre}</td>
+                          <td>{producto.nombre}</td>                          
+                          <td>{producto.categoria}</td>                          
                           <td>{producto.precio}</td>
                           <td className='contenedor-elementos-cantidad'>
                             <button>

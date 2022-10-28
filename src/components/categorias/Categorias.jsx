@@ -6,12 +6,20 @@ import icono_pulseras from '../../img/categoria/pulseras.png'
 import icono_aretes from '../../img/categoria/aretes.png'
 import icono_gallos from '../../img/categoria/gallos.png'
 import icono_tortugas from '../../img/categoria/tortugas.png'
+import icono_todos from '../../img/categoria/todos.png'
 
 const Categorias = () => {
   return (
     <div className="contenedor-categorias">
         <h3>Categorías</h3>
         <div className='categorias'>
+            <div className='categoria-individual' >
+                <img
+                    alt='icono-categoria'
+                    src={icono_todos}
+                />
+                <p>Todos</p>
+            </div>
             <div className='categoria-individual' >
                 <img
                     alt='icono-categoria'
