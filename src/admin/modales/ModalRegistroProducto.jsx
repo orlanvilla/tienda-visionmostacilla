@@ -1,15 +1,16 @@
-import { useContext, useState } from 'react'
+import { useContext, useState,useRef } from 'react'
 import { AppContext } from '../../context/AppContext'
 import './ModalRegistroProducto.css'
 import icono_cerrar from '../../img/close.svg'
 import { PeticionesApi } from '../../PeticionesApi/PeticionesApi'
- 
-//funion
+
 const ModalRegistroProducto = () => {
-    const {setModal,producto,setProducto}=useContext(AppContext);
+    const {setModal,producto,setProducto,categorias}=useContext(AppContext);
     const {registrarProducto,cargarProductos,editarProducto}=PeticionesApi();
     const [data, setData] = useState(new FormData())
     const [imagenTemporal, setImagenTemporal] = useState(false);
+
+    const categoria = useRef(null)
 
     const [dataProducto, setDataProducto] = useState({
         nombre:producto.nombre? producto.nombre:"",
@@ -19,6 +20,7 @@ const ModalRegistroProducto = () => {
         precio:producto.precio? producto.precio:"",
         cantidad:producto.cantidad? producto.cantidad:"",
         destacado:producto.destacado? producto.destacado:false,
+        categoria:producto.categoria? producto.categoria:""
     });
     const onchange=(e)=>{
         //Manejo de los inputs-------------------
@@ -49,12 +51,14 @@ const ModalRegistroProducto = () => {
    }
    
     const guardarProducto=async()=>{
-
+        dataProducto.categoria = categoria.current.value
         //Validamos si vamos a tener una operacion de registro o actualizacion
         if(producto.nombre){
            await editarProducto(producto._id,dataProducto)
+           setModal(false)
+           setProducto({})
         }else{
-            await registrarProducto(dataProducto,data)
+           await registrarProducto(dataProducto,data)
         }
         await cargarProductos()
         setProducto({})
@@ -75,7 +79,7 @@ const ModalRegistroProducto = () => {
                 onClick={cerrarModalRegistroProducto}
             />
 
-             <h2>Nuevo Producto</h2>
+             <h2>{producto.nombre? "Editar Producto": "Nuevo Producto"}</h2>
              <div className='child'>
                 <div className="child_name">
                     <label>Nombre</label>
@@ -133,16 +137,28 @@ const ModalRegistroProducto = () => {
                     <label>Cantidad</label>
                     <input
                         type="number"
-                        name='destacado'
+                        name='cantidad'
                         onChange={onchange}
-                        defaultValue={dataProducto.destacado}
+                        defaultValue={dataProducto.cantidad}
                     />
                 </div>
             </div>
+            <label>Categoria</label>
+                    <select
+                        ref={categoria}                      
+                     >
+                        <option>--Seleccionar--</option>
+                        {categorias.map(cat=>(
+                            <option    
+                               value={cat.nombre}
+                               selected={dataProducto.categoria===cat.nombre? true:false}                            
+                            >{cat.nombre}</option>
+                        ))} 
+                    </select>
              <input
                 className='guardar-producto'
                 type="submit"
-                value="Guardar"
+                value={producto.nombre?"Editar":"Guardar"}
                 onClick={guardarProducto}
              />
         </div>    

@@ -8,6 +8,7 @@
 .contenedor-productos h3{
     text-align: center;
     font-family: 'Kaushan Script', cursive;
+    font-size: 3rem;
 }
 .contenido-productos{
     display: grid;

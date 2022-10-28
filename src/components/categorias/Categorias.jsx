@@ -6,62 +6,42 @@ import icono_pulseras from '../../img/categoria/pulseras.png'
 import icono_aretes from '../../img/categoria/aretes.png'
 import icono_gallos from '../../img/categoria/gallos.png'
 import icono_tortugas from '../../img/categoria/tortugas.png'
+import { useContext } from 'react'
+import { AppContext } from '../../context/AppContext'
+import { PeticionesApi } from '../../PeticionesApi/PeticionesApi'
+
 
 const Categorias = () => {
+    
+    const {categorias,categoria,productos,setProductos} = useContext(AppContext)
+    const {buscarCategoria,filtrarProductos,cargarProductos} = PeticionesApi();
+
+    const handleEscogerCategoria = async(id) => { 
+        await buscarCategoria(id)
+        await filtrarProductos(id)
+        //Filtramos productos por categoria
+        //console.log('Categoria: ',categoria)
+        //console.log('Productos: ',productos)
+        //const filtroProductos = productos.filter(p => p.categoria === categoria.nombre)
+        //setProductos(filtroProductos)
+    }
+
   return (
     <div className="contenedor-categorias">
         <h3>Categorías</h3>
         <div className='categorias'>
-            <div className='categoria-individual' >
-                <img
-                    alt='icono-categoria'
-                    src={icono_colibri}
-                />
-                <p>Colibrí</p>
-            </div>
-            <div className='categoria-individual' >
-                <img
-                    alt='icono-categoria'
-                    src={icono_guacamayo}
-                />
-                <p>Guacamayos</p>
-            </div>
-            <div className='categoria-individual' >
-                <img
-                    alt='icono-categoria'
-                    src={icono_aretes}
-                />
-                <p>Aretes</p>
-            </div>
-            <div className='categoria-individual' >
-                <img
-                    alt='icono-categoria'
-                    src={icono_gallos}
-                />
-                <p>Gallos</p>
-            </div>
-            <div className='categoria-individual' >
-                <img
-                    alt='icono-categoria'
-                    src={icono_tortugas}
-                />
-                <p>Tortugas</p>
-            </div>
-            <div className='categoria-individual' >
-                <img
-                    alt='icono-categoria'
-                    src={icono_pulseras}
-                />
-                <p>pulseras</p>
-            </div>
-            <div className='categoria-individual' >
-                <img
-                    alt='icono-categoria'
-                    src={icono_collares}
-                />
-                <p>Collares</p>
-            </div>
-            
+            {
+                categorias.map(categoria => (
+                    <div className='categoria-individual' onClick={()=>handleEscogerCategoria(categoria._id)}>
+                        <img
+                            alt='icono-categoria'
+                            src={categoria.imagen}
+                        />
+                        <p>{categoria.nombre}</p>
+                    </div>
+                ))
+            }
+             
         </div>
       
     </div>

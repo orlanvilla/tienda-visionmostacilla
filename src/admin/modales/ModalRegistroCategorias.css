@@ -20,13 +20,13 @@
     gap: 1rem;
     position: relative;
 }
-.formulario-registro-categoria img{
+.formulario-registro-categoria .cerrar{
     position: absolute;
     right: 4rem;
     cursor: pointer; 
     transition: 400ms ease-in-out all;   
 }
-.formulario-registro-categoria img:hover{
+.formulario-registro-categoria .cerrar:hover{
     transform: scale(1.2,1.2);   
 }
 .formulario-registro-categoria h2{

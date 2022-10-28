@@ -11,6 +11,10 @@ export const AppContext=createContext();
   const [logueado, setLogueado] = useState(false);
   const [productos,setProductos] =useState([]);
   const [productosDestacados,setProductosDestacados] =useState([]);
+  const [productosFiltrados,setProductosFiltrados] =useState([]);
+  
+  const [categorias,setCategorias] = useState([]);
+  const [categoria,setCategoria] = useState({});
   
   
   return (
@@ -22,7 +26,10 @@ export const AppContext=createContext();
         producto,setProducto,
         productos,setProductos,
         logueado, setLogueado,
-        productosDestacados,setProductosDestacados
+        productosDestacados,setProductosDestacados,
+        categorias,setCategorias,
+        categoria,setCategoria,
+        productosFiltrados,setProductosFiltrados
         
     }}    
     >{children}</AppContext.Provider>

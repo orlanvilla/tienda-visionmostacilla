@@ -4,15 +4,27 @@ import './SeccionProductos.css'
 import { AppContext } from '../../context/AppContext'
 import { useContext } from 'react'
 
+
 const SeccionProductos = () => {
 
-  const { productos } = useContext(AppContext)
+  const { productosFiltrados,categoria,setCategoria,productos,setProductosFiltrados } = useContext(AppContext)
+ 
+
+  const handleMostrarTodos = (e) => {
+    setProductosFiltrados(productos)
+    e.preventDefault()
+    setCategoria({})
+  }
+
+
+
   return (
     <div className='contenedor-productos'>
-     <h3>Todos los productos</h3>
+     <h3>{categoria.nombre ? categoria.nombre : 'Todos los productos'}</h3>
+     <button onClick={handleMostrarTodos}>Mostrar Todos</button>
       <div className='contenido-productos'>
           {
-            productos.map(producto => (
+            productosFiltrados.map(producto => (
               <Producto nombre={producto.nombre} 
                         descripcion={producto.descripcion} 
                         precio={producto.precio} 

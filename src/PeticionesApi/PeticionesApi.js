@@ -6,8 +6,9 @@ export const PeticionesApi = () => {
     let production = 'https://api-vision-mostacilla.herokuapp.com/api/';
    // let development = 'http://192.168.1.14:9000/api/'
 
-    const { setProducto,setProductos,productos,setProductosDestacados} = useContext(AppContext);
+    const { setProducto,setProductos,productos,setProductosDestacados,setCategorias,setCategoria,categorias,categoria,setProductosFiltrados} = useContext(AppContext);
 
+    // ***********   SECCION DE PRODUCTOS ****************
     //Funcion para registrar un nuevo producto
     const registrarProducto = async (dataproducto,data) => {
 
@@ -72,6 +73,7 @@ export const PeticionesApi = () => {
                 const prodDes = resp.filter(p => p.destacado === true)
                 await setProductos(resp);
                 await setProductosDestacados(prodDes)
+                await setProductosFiltrados(resp)
             } else {
                 setProductos([]);
             }
@@ -97,6 +99,7 @@ export const PeticionesApi = () => {
     }
     //Funcion para editar producto
     const editarProducto = async(id,data)=>{
+       
         try {
             const respuesta = await fetch(production + '/productos/' + id, {
                 method: 'PUT', 
@@ -109,7 +112,7 @@ export const PeticionesApi = () => {
                 alert('Producto editado con exito...');
             }
         }catch(e){
-            console.log('No se pudo editProducto')
+            console.log('No se pudo editProducto',e)
         }
             
     }
@@ -167,6 +170,112 @@ export const PeticionesApi = () => {
         }
     }
 
+    //************** SECCION DE CATEGORIAS ********************/
+    const registrarCategoria = async (dataCategoria,data)=>{
+        try {
+            const res = await fetch("https://api.cloudinary.com/v1_1/djqui0rqr/image/upload", {
+                method:"POST",
+                body:data
+            })
+            if(res.status === 200){
+                
+                //Esto con el fin de completar el objeto producto con la propiedad imagen   ------
+                const file = await res.json();
+                dataCategoria.imagen = file.secure_url;
+
+                const respuesta = await fetch(production + '/categorias',{
+                method: 'POST', 
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dataCategoria)
+                })
+                if (respuesta.status === 200) {
+                    alert('Categoria creado con exito...');
+                } 
+
+            }
+        }catch(e){
+            console.log('Error al registrar categoria')
+        }   
+    }
+    //Funcion para cargar todos las categorias
+    const cargarCategorias = async()=>{
+        try {
+            const respuesta = await fetch(production + '/categorias');
+            
+            if (respuesta.status === 200) {
+                const resp = await respuesta.json();
+                await setCategorias(resp);
+                
+            } else {
+                setCategorias([]);
+            }
+        } catch (error) {
+            console.log("Algo salio mal con cargar las categorias")
+        }
+    }
+    //Funcion para eliminar un categoria
+    const eliminarCategoria = async(id)=>{
+        try{
+            const respuesta = await fetch(production + '/categoria/' + id, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            if (respuesta.status === 200) {
+                alert('Categoria eliminado con exito...');
+            }
+        }catch(e){
+            console.log('No se pudo eliminar la categoria')
+        }
+    }
+    //Funcion para buscar una categoria
+    const buscarCategoria = async(id)=>{
+        /*try {
+            const respuesta = await fetch(production + '/categorias/' + id);
+            if (respuesta.status === 200) {
+                const resp = await respuesta.json();
+                setCategoria(resp);
+            } else {
+                setCategoria({});
+            }
+        } catch (error) {
+            console.log("Algo salio mal con cargar categoria")
+        }*/
+        const cate = categorias.find(c => c._id === id)
+        setCategoria(cate);
+    }
+    //Funcion para editar categoria
+    const editarCategoria = async(id,data)=>{
+        try {
+            const respuesta = await fetch(production + '/categorias/' + id, {
+                method: 'PUT', 
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            if (respuesta.status === 200) {
+                alert('Categoria editado con exito...');
+            }
+        }catch(e){
+            console.log('No se pudo editar categoria')
+        }
+            
+    }
+
+    //Filtrar prodcutos por categoria
+    const filtrarProductos = async(id)=>{
+        //console.log('Categoria: ',categoria)
+        //console.log('Productos: ',productos)
+        const cate = categorias.find(c => c._id === id)
+
+        const filtroProductos = productos.filter(p => p.categoria === cate.nombre)
+        setProductosFiltrados(filtroProductos)
+
+    }           
     return {
         registrarProducto,
         buscarProducto,
@@ -175,7 +284,13 @@ export const PeticionesApi = () => {
         editarProducto,
         destacarProducto,
         sumarCantidadProducto,
-        restarCantidadProducto
+        restarCantidadProducto,
+        registrarCategoria,
+        cargarCategorias,
+        eliminarCategoria,
+        buscarCategoria,
+        editarCategoria,
+        filtrarProductos
     }
 
 }

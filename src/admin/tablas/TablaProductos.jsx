@@ -18,11 +18,12 @@ import iconEstrellaTrue from '../../img/star-solid.svg'
 const TablaProductos = () => {   
 
   const {modal, setModal,modal1, setModal1,productos,producto}=useContext(AppContext);
-  const {cargarProductos,buscarProducto,eliminarProducto,destacarProducto,sumarCantidadProducto,restarCantidadProducto} = PeticionesApi();
+  const {cargarProductos,buscarProducto,eliminarProducto,destacarProducto,sumarCantidadProducto,restarCantidadProducto,cargarCategorias} = PeticionesApi();
  
 
   useEffect(() => {
      cargarProductos()
+     cargarCategorias()
   }, [])
   //funcion para abrir modal de registro de nuevo producto
   const handleAbrirModal=()=>{

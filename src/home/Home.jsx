@@ -8,9 +8,10 @@ import { PeticionesApi } from "../PeticionesApi/PeticionesApi"
 
 const Home = () => {
 
-  const {cargarProductos} = PeticionesApi();
+  const {cargarProductos,cargarCategorias} = PeticionesApi();
   useEffect(()=>{
     cargarProductos();
+    cargarCategorias()
   },[])
   return (
     <div>
