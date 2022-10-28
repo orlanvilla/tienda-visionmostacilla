@@ -83,12 +83,13 @@
     cursor: pointer;
     margin: 2rem 0;
     transition: 400ms ease-in-out all;
+    border:none;
 }
 .guardar-producto:hover{
-    background-color: #cad2c5;
+    background-color: white;
     color: #354f52;
     text-transform: uppercase;
     font-weight: 700;
-    border: solid 1px #354f52;
-    transform: scale(1.0,1,1.0,1);    
+   /* border: solid 1px #354f52;*/
+    transform: scale(1.0,1,1.0,1); 
 }
