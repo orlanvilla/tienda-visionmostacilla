@@ -115,11 +115,11 @@ table{
     height: 17px;
     background-color: transparent;
 }  
-.tabla-ingresos-productos .contenedor-elementos-cantidad button img:hover{
+.tabla-ingresos-productos .contenedor-elementos-cantidad > button:hover{
     transform: scale(1.1 ,1.1);
     background-color: rgba(145, 145, 145, 0.25);
 }
-.tabla-ingresos-productos .contenedor-elementos-cantidad button img:hover:active{
+.tabla-ingresos-productos .contenedor-elementos-cantidad > button:hover:active{
     background-color: transparent;
 }
 
