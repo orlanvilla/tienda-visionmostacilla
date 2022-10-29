@@ -15,12 +15,11 @@
     width: 80rem;
     max-width: 95%;
     padding: 2rem 9rem;
-    margin-top: 1rem;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;  
     position: relative;
-    gap: 1.4rem;
+    gap: 1.1rem;
 }
 .formulario-registro-producto .cerrar{
     position: absolute;
@@ -33,7 +32,7 @@
 }
 .formulario-registro-producto h2{
     text-align: center;
-    margin-top: 0;
+    margin: 0;
 }
 
 .formulario-registro-producto .child{
@@ -60,7 +59,10 @@
 .formulario-registro-producto label{
     font-size: 1.8rem; 
     margin-bottom: 0.3rem;    
-}.formulario-registro-producto input{   
+}
+.formulario-registro-producto input,
+.formulario-registro-producto select
+{   
     font-size: 2rem;
     padding: 0.5rem 2rem;
     border-radius: 1rem;
@@ -74,22 +76,24 @@
 }
 
 /*boton guardar */ 
-.guardar-producto{
+.formulario-registro-producto .guardar-producto{
     background-color: #354f52;
     color: white;
     text-transform: uppercase;
     font-weight: 700;
-    padding: 2rem;
     cursor: pointer;
-    margin: 2rem 0;
     transition: 400ms ease-in-out all;
-    border:none;
+    border: 1px solid transparent;
+    margin: 0.8rem 0;
 }
-.guardar-producto:hover{
-    background-color: white;
+.formulario-registro-producto .guardar-producto:hover{
+    background-color:  #cad2c5;
     color: #354f52;
     text-transform: uppercase;
     font-weight: 700;
-   /* border: solid 1px #354f52;*/
     transform: scale(1.0,1,1.0,1); 
+    border: 1px solid  #354f52;
+}
+.formulario-registro-producto label{
+    margin: 0.8rem 0;
 }

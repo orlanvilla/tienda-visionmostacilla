@@ -33,16 +33,13 @@ const ModalVistaProductos = () => {
             </section>
             <section className='caracteristicas-producto'>
               <h1 style={{'textTransform':'capitalize'}} className='titulo-pr'>{producto.nombre}</h1>
-              <div>
-                <p>Categoría: <span>{producto.categoria}</span></p>
-                <p>Detalle del Producto</p>
-                  <p>
-                    {producto.descripcion}
-                  </p>
-                  <p>Cantidad: {producto.cantidad}</p>
-                 
-                  <p>Precio unitario: <span>{producto.precio}</span></p>               
-              </div>
+              <p className='price'>Precio: <span>${producto.precio}</span></p>  
+              <p>Categoría: <span>$ {producto.categoria}</span></p>
+              <p>Detalle del Producto</p>
+              <p>
+                <span>{producto.descripcion}</span>
+              </p>
+              <p>Cantidad: <span>{producto.cantidad}</span></p>                             
             </section>
             
           </div>
