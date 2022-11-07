@@ -21,10 +21,8 @@
 }
 .datos-head img{
     width: 3rem;
-    height: 3rem;
-    
+    height: 3rem;    
 }
-
 .buscar-head{    
     display: flex;
     justify-content: space-evenly;
@@ -50,6 +48,7 @@
     justify-content: end;
     gap: 1rem;
     transform: translateY(-8rem);  
+    position: relative;
 }
 .carrito-ingresar img, .admin{
     width: 3rem;
@@ -82,7 +81,21 @@
     }
     .datos-head{
         display: flex;
-        justify-content: center;
-       
+        justify-content: center;       
     }
+}
+.cantidad{
+    background: rgb(255, 0, 0);
+    color: rgb(255, 255, 255);
+    border-radius: 50%;
+    padding: 0.3rem;
+    width: 2.1rem;
+    height: 2.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    position: absolute;
+    transform: translateX(-4.5rem);
+    bottom: 0;
 }

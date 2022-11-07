@@ -9,7 +9,7 @@ import ModalCarrito from '../modales/ModalCarrito';
 
 const Head = () => {
     const [modalSesion, setModalSesion] = useState(false);
-    const {modal, setModal}=useContext(AppContext)
+    const {modal, setModal, listaCompras}=useContext(AppContext)
     
     const handleAbrirAdmin=(e)=>{
         e.preventDefault();
@@ -43,6 +43,7 @@ const Head = () => {
                     alt="icono-comprar"
                     onClick={handleCarritoComprar}
                 />
+                {listaCompras.length>0 ? <p className='cantidad'>{listaCompras.length}</p>: null}                
                 <FaUserAlt 
                 className='admin'
                 onClick={handleAbrirAdmin}

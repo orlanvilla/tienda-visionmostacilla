@@ -8,6 +8,8 @@ import TablaProductosCarrito from '../tablasCliente/TablaProductosCarrito'
 
 const ModalCarrito = () => {
   const {setModal}=useContext(AppContext);
+
+ 
   return (
     <div className='contenedor-modal'>
       <div className='lista-modal'>
