@@ -54,6 +54,9 @@ const TablaProductosCarrito = () => {
   return (
     <div className='contenedor-lista-carrito'>    
       <div  className='tabla-carrito'>
+        <div className='titulo-car'>
+          <h3>CARRITO DE COMPRAS</h3>
+        </div>
         <div className='tabla'>
             <table>
                   <thead>
@@ -78,10 +81,12 @@ const TablaProductosCarrito = () => {
                               <p>{productoIndividual.nombre}</p>
                             </td>
                             <td>{productoIndividual.precioUnidad}</td>
-                            <td className='cantidad-car'>                             
-                              <img src={img_menos} alt="menos" onClick={()=>restarCantidadProducto(productoIndividual.id)}/>
-                              <span>{productoIndividual.cantidad}</span>
-                              <img src={img_mas} alt="mas" onClick={()=>sumarCantidadProducto(productoIndividual.id)} />
+                            <td >
+                              <div className='cantidad-car'>
+                                <img src={img_menos} alt="menos" />
+                                <span>{productoIndividual.cantidad}</span>
+                                <img src={img_mas} alt="mas" />
+                              </div>                             
                             </td>  
                             <td>{productoIndividual.subtotal}</td>
                             <td >
@@ -100,6 +105,10 @@ const TablaProductosCarrito = () => {
                 <h3>total:<span> {totalCompra} </span></h3>
         </div> 
           <div className='input-pagar'>
+              <input 
+                type="submit"
+                value="Seguir comprando" 
+              />
               <input
                 type="submit"
                 value="Pagar"
