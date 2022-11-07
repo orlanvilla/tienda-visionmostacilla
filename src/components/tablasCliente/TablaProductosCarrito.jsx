@@ -33,6 +33,9 @@ const TablaProductosCarrito = () => {
   return (
     <div className='contenedor-lista-carrito'>    
       <div  className='tabla-carrito'>
+        <div className='titulo-car'>
+          <h3>CARRITO DE COMPRAS</h3>
+        </div>
         <div className='tabla'>
             <table>
                   <thead>
@@ -81,6 +84,10 @@ const TablaProductosCarrito = () => {
                 <h3>total:<span> {totalCompra} </span></h3>
         </div> 
           <div className='input-pagar'>
+              <input 
+                type="submit"
+                value="Seguir comprando" 
+              />
               <input
                 type="submit"
                 value="Pagar"
