@@ -6,7 +6,7 @@ import icon_plus from '../../img/plus-circle.svg'
 import icon_dash from '../../img/dash-circle.svg'
 
 const ModalDescripcion = () => {
-  const {setModal2, producto, setListaCompras, listaCompras}=useContext(AppContext);
+  const {setModal2, producto, setListaCompras, listaCompras, setModal}=useContext(AppContext);
   const [cantidad, setCantidad] = useState(1);
   const [informacionIndividualProducto, setInformacionIndividualProducto] = useState({
     id:producto._id,
@@ -23,11 +23,23 @@ const ModalDescripcion = () => {
     setModal2(false);      
   }
   const handleAgregarProducto=()=>{
-    informacionIndividualProducto.cantidad=cantidad
-    let subtotalProducto=informacionIndividualProducto.precioUnidad*cantidad
-    informacionIndividualProducto.subtotal=subtotalProducto
-    listaCompras.push(informacionIndividualProducto)
-    setListaCompras(listaCompras)
+    const productoAux=listaCompras.find(p=>p.id===producto._id)
+    if(productoAux===undefined){
+      informacionIndividualProducto.cantidad=cantidad
+      let subtotalProducto=informacionIndividualProducto.precioUnidad*cantidad
+      informacionIndividualProducto.subtotal=subtotalProducto
+      listaCompras.push(informacionIndividualProducto)
+      setListaCompras(listaCompras)
+      setModal2(false)
+      setModal(true)
+    }else{
+      productoAux.cantidad+=cantidad
+      productoAux.subtotal+=productoAux.precioUnidad * cantidad
+      setModal2(false)
+      setModal(true)
+    }
+
+   
   }
   const sumarCantidadProducto=()=>{
     setCantidad(cantidad+1)
@@ -63,6 +75,7 @@ const ModalDescripcion = () => {
               <section className='caracteristicas-producto-dscrip'>
                 <h1>{producto.nombre}</h1>
                 <p className='price-2'>Precio: <span>${producto.precio}</span></p>
+                <p>Unidades existentes: <span>{producto.cantidad}</span></p>
                 <p>Categoría: <span>Colibrí llavero</span></p>
                 <p>Detalle del Producto</p>
                 <p>
@@ -70,7 +83,7 @@ const ModalDescripcion = () => {
                     {producto.descripcion}
                   </span>
                 </p>
-                <p>Cantidad: </p>
+                <p>Cantidad a comprar: </p>
                 <div className='botones-cantidad'>
                   <button
                   onClick={restarCantidadProducto}

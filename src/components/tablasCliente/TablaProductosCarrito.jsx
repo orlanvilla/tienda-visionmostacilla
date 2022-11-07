@@ -8,9 +8,9 @@ import img_mas from '../../img/plus-circle.svg'
 
 const TablaProductosCarrito = () => {   
   const{listaCompras, setListaCompras}=useContext(AppContext)
-  const [totalCompra, setTotalCompra] = useState(0);
+  const [totalCompra, setTotalCompra] = useState(0);  
+  const [cambio, setCambio] = useState(false);
 
-  
   const calcularTotal=()=>{
     let valor=0
     listaCompras.forEach(producto=>{
@@ -21,12 +21,33 @@ const TablaProductosCarrito = () => {
 
   useEffect(() => {
     calcularTotal();
-  }, [listaCompras]);
+  }, [listaCompras, cambio]);
 
   const eliminarProductoCarrito=(id)=>{
      const listaFiltrada=listaCompras.filter(producto=>producto.id !== id)     
      setListaCompras(listaFiltrada)
      //calcularTotal();
+     return listaFiltrada
+  }
+
+  const sumarCantidadProducto=(id)=>{
+      const productoEditar=listaCompras.find(producto=>producto.id===id)
+     productoEditar.cantidad+=1    
+     productoEditar.subtotal=productoEditar.precioUnidad * productoEditar.cantidad  
+     setCambio(!cambio)
+  }
+
+
+  const restarCantidadProducto=(id)=>{
+
+    const productoEditar=listaCompras.find(producto=>producto.id===id)
+    productoEditar.cantidad-=1 
+    if(productoEditar.cantidad===0){
+      eliminarProductoCarrito(id)
+      return
+    }       
+    productoEditar.subtotal=productoEditar.precioUnidad * productoEditar.cantidad  
+    setCambio(!cambio) 
   }
 
  
@@ -58,9 +79,9 @@ const TablaProductosCarrito = () => {
                             </td>
                             <td>{productoIndividual.precioUnidad}</td>
                             <td className='cantidad-car'>                             
-                              <img src={img_menos} alt="menos" />
+                              <img src={img_menos} alt="menos" onClick={()=>restarCantidadProducto(productoIndividual.id)}/>
                               <span>{productoIndividual.cantidad}</span>
-                              <img src={img_mas} alt="mas" />
+                              <img src={img_mas} alt="mas" onClick={()=>sumarCantidadProducto(productoIndividual.id)} />
                             </td>  
                             <td>{productoIndividual.subtotal}</td>
                             <td >
