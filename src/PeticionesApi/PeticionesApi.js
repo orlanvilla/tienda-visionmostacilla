@@ -262,8 +262,7 @@ export const PeticionesApi = () => {
             }
         }catch(e){
             console.log('No se pudo editar categoria')
-        }
-            
+        }            
     }
 
     //Filtrar prodictos por categoria

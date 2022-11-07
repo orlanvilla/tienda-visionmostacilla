@@ -139,3 +139,17 @@
        
     }
 }
+.icono-watsap{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin-right: 3rem;
+    margin-bottom: 3rem;
+}
+.icono-watsap img{
+    width: 6rem;  
+    cursor: pointer;  
+}
+.icono-watsap img{
+    width: 6rem;    
+}

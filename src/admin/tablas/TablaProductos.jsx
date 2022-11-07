@@ -105,7 +105,8 @@ const TablaProductos = () => {
             />
         </div>
       <div  className='tabla-ingresos-productos'>
-            <table>
+      <div className='tabla'>      
+            <table >
                 <thead>
                     <tr>           
                         <th width="35%">Producto</th>
@@ -115,6 +116,8 @@ const TablaProductos = () => {
                         <th>Acción</th>  
                     </tr>
                 </thead>
+
+               
                 <tbody className='cuerpo'>   
                       {productosFiltrados.map(producto => (
                         <tr>                
@@ -154,8 +157,9 @@ const TablaProductos = () => {
                         </tr>
                       ))}
 
-                </tbody>
-            </table>           
+                </tbody>              
+            </table> 
+           </div>          
         </div>
     </div>
   )

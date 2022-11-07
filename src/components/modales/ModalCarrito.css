@@ -1,0 +1,29 @@
+.contenedor-modal{
+    background-color: rgba(0, 0, 0, .7);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 20;    
+}
+.lista-modal{
+    background-color: white;
+    width: 90%;
+    max-width: 120rem;
+    margin:auto;
+    padding: 2rem 1.5rem;
+    margin-top: 2rem;
+    border-radius: 1rem;
+    position: relative;
+    height: 95%;
+}
+.lista-modal .icono-cerrar{
+    position: absolute;
+    right: 2rem;
+    cursor: pointer;
+    transition: 300ms ease-in-out all;
+}
+.lista-modal img:hover{
+    transform: scale(1.1,1.1);
+}

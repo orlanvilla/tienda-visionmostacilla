@@ -1,0 +1,68 @@
+.contenedor-lista-carrito{
+  margin-top: 4rem;  
+  overflow: visible;
+  
+}
+table{
+    width: 100%;  
+    border-collapse: collapse;
+}
+.tabla-carrito thead th{
+    background-color: rgb(2, 62, 55);
+    padding: 1rem;
+    border-bottom: solid 5px #0F362D;
+    color: white;   
+}
+.tabla-carrito tbody td{   
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 1rem;
+     
+}
+.tabla-carrito tr{
+     border-bottom: solid 1px gray;      
+}
+.tabla-carrito tr:nth-child(even){
+    background-color:rgba(132, 131, 130, 0.2);
+}
+tbody td:nth-child(1){
+    display: flex;
+    align-items: center;
+    margin-left: 2rem;
+    gap: 2rem;
+}
+.tabla h3{
+    display: flex;
+    justify-content: end;
+    margin-right: 2rem;    
+}
+.tabla span{
+    font-weight: 900;
+    
+}
+.tabla tbody td:nth-child(5) img{
+   width: 2.3rem;
+   cursor: pointer;
+}
+.input-pagar{    
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}   
+.input-pagar input{ 
+    margin: 0 2rem 0.5rem;
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 1px solid transparent;
+    cursor: pointer;
+    background-color: #06d6a0;
+    color: #000000;
+    border-radius: 1rem;
+    transition: 300ms ease-in-out all;
+}
+.input-pagar input:hover{
+    border: 1px solid  #000000;
+    background-color: #CAD2C5;
+}

@@ -1,6 +1,7 @@
 import './Header.css' 
 import logo_tienda from '../../img/logo.png'
 import Slider from '../slider/Slider'
+import icono_watsap from '../../img/whatsap.png'
 
 const Header = () => {
 
@@ -27,6 +28,13 @@ const Header = () => {
                         <Slider/>
                         
                     </section>
+             </section>
+             <section className='icono-watsap'>
+                <img
+                    alt='icono-watsap'
+                    src={icono_watsap}
+                />
+
              </section>
         </div>      
     </div>

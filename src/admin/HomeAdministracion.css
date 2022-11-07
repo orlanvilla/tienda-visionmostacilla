@@ -4,9 +4,8 @@
     height: 100vh;
     grid-template-columns: 30rem auto; 
 }
-
 .menu-administracion{
-    position: relative;
+    position: fixed;
     background-color: #2f3e46;
     width: 30rem;
     height: 100vh;    
@@ -51,18 +50,19 @@
 }
 .btn-saliradmin{
     position: absolute;
-    bottom: 0;
+    bottom: 3rem;
     margin-bottom: 2rem;
 }
 .btn-menu button:nth-child(5){
     background: #fff;
-    color: #52796f;      
+    color: #52796f; 
+        
 }
 /* Contenido administracion */
 
 .contenido-administracion{
-    width: 100%;}
-
+    width: 100%;   
+}
 .titulo-administracion{
     text-align: center;
     width: 100%;
