@@ -40,10 +40,8 @@ const Categorias = () => {
                         <p>{categoria.nombre}</p>
                     </div>
                 ))
-            }
-             
+            }   
         </div>
-      
     </div>
   )
 }
