@@ -3,6 +3,8 @@ import { useContext, useState, useEffect } from 'react'
 import { AppContext } from '../../context/AppContext'
 import img_producto from '../../img/colibri-grande.jpeg'
 import img_eliminar from '../../img/trash.svg'
+import img_menos from '../../img/dash-circle.svg'
+import img_mas from '../../img/plus-circle.svg'
 
 const TablaProductosCarrito = () => {   
   const{listaCompras, setListaCompras}=useContext(AppContext)
@@ -55,7 +57,11 @@ const TablaProductosCarrito = () => {
                               <p>{productoIndividual.nombre}</p>
                             </td>
                             <td>{productoIndividual.precioUnidad}</td>
-                            <td>{productoIndividual.cantidad}</td>
+                            <td className='cantidad-car'>                             
+                              <img src={img_menos} alt="menos" />
+                              <span>{productoIndividual.cantidad}</span>
+                              <img src={img_mas} alt="mas" />
+                            </td>  
                             <td>{productoIndividual.subtotal}</td>
                             <td >
                               <img

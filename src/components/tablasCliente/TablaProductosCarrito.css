@@ -66,3 +66,10 @@ tbody td:nth-child(1){
     border: 1px solid  #000000;
     background-color: #CAD2C5;
 }
+
+.cantidad-car > img:nth-child(1){
+    margin-right: 1rem;
+}
+.cantidad-car > img:nth-child(2){
+    margin-left: 1rem;
+}
