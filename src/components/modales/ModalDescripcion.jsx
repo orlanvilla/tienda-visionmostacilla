@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { AppContext } from '../../context/AppContext'
 import './ModalDescripcion.css'
 import btn_close from '../../img/close.svg'
@@ -6,13 +6,41 @@ import icon_plus from '../../img/plus-circle.svg'
 import icon_dash from '../../img/dash-circle.svg'
 
 const ModalDescripcion = () => {
-  const {setModal2,producto}=useContext(AppContext);
+  const {setModal2, producto, setListaCompras, listaCompras}=useContext(AppContext);
+  const [cantidad, setCantidad] = useState(1);
+  const [informacionIndividualProducto, setInformacionIndividualProducto] = useState({
+    id:producto._id,
+    imagen:producto.imagen,
+    nombre:producto.nombre,
+    precioUnidad:producto.precio,
+    cantidad:0,
+    subtotal:0
+    
+  });
   
   const handleCerrar=(e)=>{
     e.preventDefault()
     setModal2(false);      
   }
+  const handleAgregarProducto=()=>{
+    informacionIndividualProducto.cantidad=cantidad
+    let subtotalProducto=informacionIndividualProducto.precioUnidad*cantidad
+    informacionIndividualProducto.subtotal=subtotalProducto
+    listaCompras.push(informacionIndividualProducto)
+    setListaCompras(listaCompras)
+  }
+  const sumarCantidadProducto=()=>{
+    setCantidad(cantidad+1)
+  }
+  const restarCantidadProducto=()=>{
+    if(cantidad>1){
+      setCantidad(cantidad-1)
+    }else{
+      alert("La cantidad minima debe ser una unidad")
+    }    
+  }
 
+  
   return (
     <div className="contenedor-descripcion">
         
@@ -44,11 +72,17 @@ const ModalDescripcion = () => {
                 </p>
                 <p>Cantidad: </p>
                 <div className='botones-cantidad'>
-                  <button>
-                      <img src={icon_dash} alt="logo restar" />
+                  <button
+                  onClick={restarCantidadProducto}
+                  >
+                      <img src={icon_dash} alt="logo restar" 
+                        
+                      />
                   </button>
-                  <input type="text" defaultValue={1} value='2' disabled/>
-                  <button>
+                  <input type="text" value={cantidad} disabled/>
+                  <button
+                   onClick={sumarCantidadProducto}
+                  >
                       <img src={icon_plus} alt="logo sumar" />
                   </button>
                 </div>            
@@ -56,6 +90,7 @@ const ModalDescripcion = () => {
                   className='input-car'
                   type="submit"
                   value="Agregar al carrito"
+                  onClick={handleAgregarProducto}
                 />
 
               </section>
