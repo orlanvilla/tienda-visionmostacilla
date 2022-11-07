@@ -23,6 +23,7 @@ const TablaEmpleados = () => {
         />
         </div>
       <div  className='tabla-ingresos'>
+        <div className='tabla'>
             <table>
                 <thead>
                     <tr>           
@@ -54,7 +55,8 @@ const TablaEmpleados = () => {
                     </tr>
 
                 </tbody>
-            </table>           
+            </table>
+            </div>           
         </div>
     </div>
   )

@@ -3,6 +3,7 @@
     max-width: 110rem;
     margin: auto;
     padding: 1rem 3rem; 
+  
        
 }
 .contenedor-productos h3{
@@ -50,6 +51,7 @@
     .contenido-productos{
         display: grid;
         grid-template-columns: repeat(4, 1fr);
+        margin-bottom: 8.1rem;
     }
 }
 

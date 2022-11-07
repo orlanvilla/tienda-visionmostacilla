@@ -1,12 +1,16 @@
+
+
 .contenedor-footer{
     background: #354f52;
-    padding: 0.5rem;      
+    padding: 0.5rem;   
+    
+    margin-top: auto;
+   
 }
 .contenido-footer{    
     width: 90%;
     max-width: 110rem;
-    margin: auto;
-    
+    margin: auto;    
 }
 .contenido-footer p:nth-child(1){
     
