@@ -1,4 +1,4 @@
-import { useContext,useEffect,useState } from 'react'
+import { useContext,useEffect,useState, useRef } from 'react'
 import { AppContext } from '../../context/AppContext'
 import './TablaProductos.css'
 import icon_eye from '../../img/eye.svg'
@@ -18,14 +18,17 @@ import iconEstrellaTrue from '../../img/star-solid.svg'
 
 const TablaProductos = () => {   
 
-  const {modal, setModal,modal1, setModal1,productos,producto}=useContext(AppContext);
-  const {cargarProductos,buscarProducto,eliminarProducto,destacarProducto,sumarCantidadProducto,restarCantidadProducto,cargarCategorias} = PeticionesApi();
+  const {modal, setModal,modal1, setModal1,setProductos, productos,producto, productosFiltrados, categorias}=useContext(AppContext);
+  const {cargarProductos,buscarProducto,eliminarProducto,destacarProducto,sumarCantidadProducto,restarCantidadProducto,cargarCategorias, filtrarProductosNombre,  filtrarProductosCategoria} = PeticionesApi();
  
+  const busqueda=useRef(null);
+  const categoria=useRef(null);
 
   useEffect(() => {
      cargarProductos()
      cargarCategorias()
   }, [])
+
   //funcion para abrir modal de registro de nuevo producto
   const handleAbrirModal=()=>{
     setModal(true)
@@ -61,7 +64,16 @@ const TablaProductos = () => {
     await restarCantidadProducto(id);
     await cargarProductos()
   }
-  
+  const onchangeBusqueda=async()=>{
+    //obtenemos el valor del input con useRef
+    let caracter=busqueda.current.value;
+    await filtrarProductosNombre(caracter)     
+  }
+
+  const onchangeBusquedaCategoria=async()=>{
+    filtrarProductosCategoria(categoria.current.value);
+  }
+
 
   return (
     <div className='contenido-tablaingresos-productos'>
@@ -70,12 +82,20 @@ const TablaProductos = () => {
       <div className='input-nuevoingreso-productos'>
             <input
               type="text"
-              placeholder="buscar"              
+              placeholder="buscar"   
+              ref={busqueda}
+              onChange={onchangeBusqueda}           
             />
-            <select>
-              <option>--Seleccionar--</option>
-              <option>Colibrí</option>
-              <option>Aretes</option>
+            <select
+                ref={categoria}    
+                onChange={onchangeBusquedaCategoria}                  
+                >
+                <option>Todas las categorías</option>
+                {categorias.map(cat=>(
+                    <option    
+                        value={cat.nombre}
+                    >{cat.nombre}</option>
+                ))} 
             </select>
             <input
               type="submit"
@@ -96,7 +116,7 @@ const TablaProductos = () => {
                     </tr>
                 </thead>
                 <tbody className='cuerpo'>   
-                      {productos.map(producto => (
+                      {productosFiltrados.map(producto => (
                         <tr>                
                           <td>{producto.nombre}</td>                          
                           <td>{producto.categoria}</td>                          

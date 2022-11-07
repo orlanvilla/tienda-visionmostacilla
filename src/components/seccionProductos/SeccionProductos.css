@@ -10,6 +10,25 @@
     font-family: 'Kaushan Script', cursive;
     font-size: 3rem;
 }
+.contenedor-productos > button{
+    margin: 0 2rem 0.5rem;
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 1px solid transparent;
+    cursor: pointer;
+    background-color: #06d6a0;
+    color: #000000;
+    border-radius: 1rem;
+}
+.contenedor-productos > button:hover{
+    border: 1px solid  #000000;
+    background-color: #CAD2C5;
+}
+
+.contenedor-productos > button:active{
+    background-color: #06d6a0;
+}
 .contenido-productos{
     display: grid;
     grid-template-columns: 1fr;

@@ -266,7 +266,7 @@ export const PeticionesApi = () => {
             
     }
 
-    //Filtrar prodcutos por categoria
+    //Filtrar prodictos por categoria
     const filtrarProductos = async(id)=>{
         //console.log('Categoria: ',categoria)
         //console.log('Productos: ',productos)
@@ -274,8 +274,36 @@ export const PeticionesApi = () => {
 
         const filtroProductos = productos.filter(p => p.categoria === cate.nombre)
         setProductosFiltrados(filtroProductos)
+    }
+    
+     //Filtrar productos por nombre
+    const filtrarProductosNombre = async(caracter)=>{
+        const filtroProductos = productos.filter(p =>{
+            if(p.nombre.toLowerCase().includes(caracter.toLowerCase())){
+                return p
+            }else{
+              return null
+            }
+        })
+        if(caracter===""){
+          await cargarProductos()
+        }else{
+        
+            setProductosFiltrados(filtroProductos)
+          
+        } 
+    }  
+    //Filtrar por Categoria
+    const filtrarProductosCategoria=(categoria)=>{
+        const filtroProductosCategoria = productos.filter(p =>p.categoria===categoria)
+        setProductosFiltrados(filtroProductosCategoria)
 
-    }           
+        if(categoria==="Todas las categorías"){
+            setProductosFiltrados(productos)
+        }
+    }
+    
+    
     return {
         registrarProducto,
         buscarProducto,
@@ -290,7 +318,9 @@ export const PeticionesApi = () => {
         eliminarCategoria,
         buscarCategoria,
         editarCategoria,
-        filtrarProductos
+        filtrarProductos,
+        filtrarProductosNombre,
+        filtrarProductosCategoria
     }
 
 }

@@ -100,10 +100,10 @@ const ModalRegistroProducto = () => {
                     
                     />
                     {imagenTemporal && 
-                        <img src="" style={{'width':'100px','height':'100px'}} alt="imagen"  id="imgPreview"/>
+                        <img src="" style={{'width':'8rem','height':'8rem'}} alt="imagen"  id="imgPreview"/>
                     }
                     {producto.imagen &&                   
-                        <img style={{'width':'100px','height':'100px'}} src={dataProducto.imagen} alt="Imagen producto" />
+                        <img style={{'width':'8rem','height':'8rem'}} src={dataProducto.imagen} alt="Imagen producto" />
                     }
                 </div>
             </div>
@@ -143,7 +143,8 @@ const ModalRegistroProducto = () => {
                     />
                 </div>
             </div>
-            <label>Categoria</label>
+            <div className='child-2'>
+                <label>Categoria</label>
                     <select
                         ref={categoria}                      
                      >
@@ -155,6 +156,7 @@ const ModalRegistroProducto = () => {
                             >{cat.nombre}</option>
                         ))} 
                     </select>
+            </div>
              <input
                 className='guardar-producto'
                 type="submit"
