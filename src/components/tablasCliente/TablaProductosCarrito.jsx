@@ -57,10 +57,12 @@ const TablaProductosCarrito = () => {
                               <p>{productoIndividual.nombre}</p>
                             </td>
                             <td>{productoIndividual.precioUnidad}</td>
-                            <td className='cantidad-car'>                             
-                              <img src={img_menos} alt="menos" />
-                              <span>{productoIndividual.cantidad}</span>
-                              <img src={img_mas} alt="mas" />
+                            <td >
+                              <div className='cantidad-car'>
+                                <img src={img_menos} alt="menos" />
+                                <span>{productoIndividual.cantidad}</span>
+                                <img src={img_mas} alt="mas" />
+                              </div>                             
                             </td>  
                             <td>{productoIndividual.subtotal}</td>
                             <td >
