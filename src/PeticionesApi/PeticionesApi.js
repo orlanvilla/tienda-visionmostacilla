@@ -6,7 +6,7 @@ export const PeticionesApi = () => {
     let production = 'https://api-vision-mostacilla.herokuapp.com/api/';
    // let development = 'http://192.168.1.14:9000/api/'
 
-    const { setProducto,setProductos,productos,setProductosDestacados,setCategorias,setCategoria,categorias,categoria,setProductosFiltrados} = useContext(AppContext);
+    const { setProducto,setProductos,productos,setProductosDestacados,setCategorias,setCategoria,categorias,categoria,setProductosFiltrados, cantidadProductos, setCantidadProductos} = useContext(AppContext);
 
     // ***********   SECCION DE PRODUCTOS ****************
     //Funcion para registrar un nuevo producto
@@ -301,8 +301,7 @@ export const PeticionesApi = () => {
             setProductosFiltrados(productos)
         }
     }
-    
-    
+       
     return {
         registrarProducto,
         buscarProducto,
@@ -320,6 +319,7 @@ export const PeticionesApi = () => {
         filtrarProductos,
         filtrarProductosNombre,
         filtrarProductosCategoria
+      
     }
 
 }

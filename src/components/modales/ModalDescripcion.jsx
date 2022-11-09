@@ -103,7 +103,10 @@ const ModalDescripcion = () => {
                       <img src={icon_plus} alt="logo sumar" />
                   </button>
                   :
-                  null
+                  <button>
+                      <img src={icon_plus} alt="logo sumar" style={{background:'red'}} />
+                  </button>
+                    
                   }
                  
                   <p>Total calculado: <span>{totalProductoUnitario}</span></p>

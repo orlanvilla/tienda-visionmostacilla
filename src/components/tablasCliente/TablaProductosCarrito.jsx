@@ -1,15 +1,26 @@
 import './TablaProductosCarrito.css'
 import { useContext, useState, useEffect } from 'react'
 import { AppContext } from '../../context/AppContext'
+import { useNavigate } from 'react-router-dom'
 import img_eliminar from '../../img/trash.svg'
 import img_menos from '../../img/dash-white.svg'
 import img_mas from '../../img/plus-lg-white.svg'
+import Pagos from '../../pagos/Pagos'
 
 const TablaProductosCarrito = () => {   
-  const{listaCompras, setListaCompras, setModal}=useContext(AppContext)
+
+  const navigate=useNavigate();
+
+  const{listaCompras, setListaCompras, setModal, setCantidadProductos}=useContext(AppContext)
   const [totalCompra, setTotalCompra] = useState(0);  
   const [cambio, setCambio] = useState(false);
- 
+  const iterarProductosCantidad=()=>{
+    let suma = 0
+    listaCompras.forEach(p=>{    
+      suma+=p.cantidad  
+    })
+    setCantidadProductos(suma) 
+  }
 
   const calcularTotal=()=>{
     let valor=0
@@ -17,6 +28,7 @@ const TablaProductosCarrito = () => {
         valor += producto.subtotal
     })
     setTotalCompra(valor)
+    iterarProductosCantidad()
   }
   useEffect(() => {
     calcularTotal();
@@ -25,15 +37,13 @@ const TablaProductosCarrito = () => {
   const eliminarProductoCarrito=(id)=>{
      const listaFiltrada=listaCompras.filter(producto=>producto.id !== id)     
      setListaCompras(listaFiltrada)
-     //calcularTotal();
      return listaFiltrada
   }
   const sumarCantidadProducto=(id)=>{
       const productoEditar=listaCompras.find(producto=>producto.id===id)        
-         productoEditar.cantidad+=1    
-         productoEditar.subtotal=productoEditar.precioUnidad * productoEditar.cantidad         
-      setCambio(!cambio)  
-       
+      productoEditar.cantidad+=1    
+      productoEditar.subtotal=productoEditar.precioUnidad * productoEditar.cantidad                 
+      setCambio(!cambio)        
   }
   const restarCantidadProducto=(id)=>{
     const productoEditar=listaCompras.find(producto=>producto.id===id)
@@ -49,12 +59,15 @@ const TablaProductosCarrito = () => {
   const handleSeguirComprando=()=>{
     setModal(false)
     window.scroll({
-      top:440
+      top:380
     })
-
   }
 
- 
+  const handlePagar=()=>{
+    setModal(false)
+    navigate('/pagos')
+  }
+
   return (
     <div className='contenedor-lista-carrito'>    
       <div  className='tabla-carrito'>
@@ -90,11 +103,11 @@ const TablaProductosCarrito = () => {
                                 <img src={img_menos} alt="menos" onClick={()=>restarCantidadProducto(productoIndividual.id)}/>
                                 <span>{productoIndividual.cantidad}</span>
                                 {productoIndividual.cantidad<productoIndividual.cantidadExistente? 
-                                  <img src={img_mas} alt="mas" onClick={()=>sumarCantidadProducto(productoIndividual.id)}/>
+
+                                  <img src={img_mas} alt="mas" onClick={()=>sumarCantidadProducto(productoIndividual.id)} style={{background:"black"}}/>
                                   :
-                                  null
-                                }
-                                
+                                  <img src={img_mas} alt="mas"  style={{background:"red"}}/>
+                                }                                
                               </div>                             
                             </td>  
                             <td>{productoIndividual.subtotal}</td>
@@ -119,16 +132,17 @@ const TablaProductosCarrito = () => {
             <input
                 type="submit"
                 value="Pagar"
+                onClick={handlePagar}
               />
             </div>
             <div className='input-pagar_right'>
             <input 
                 type="submit"
                 value="Seguir comprando" 
+                onClick={handleSeguirComprando}
               />
             </div>
-          </div> 
-                 
+          </div>                  
       </div>
     </div>
   )
