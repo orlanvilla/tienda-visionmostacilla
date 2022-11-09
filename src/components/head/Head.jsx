@@ -20,8 +20,11 @@ const Head = () => {
         
     }
   return (
+    <div className='contenedor-head-false'>
     <div className="contenedor-head">
+    
     {modal&& <ModalCarrito/>}
+
         <div className="contenido-head">
             <section className="datos-head">
                 <img
@@ -54,6 +57,7 @@ const Head = () => {
                             setModalSesion={setModalSesion}
                                                        
         />}    
+    </div>
     </div>
   )
 }
