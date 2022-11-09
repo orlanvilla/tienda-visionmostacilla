@@ -1,4 +1,5 @@
 import './Head.css'
+import { useEffect } from 'react';
 import icono_comprar from '../../img/buy.png'
 import icono_whatsap from '../../img/whatsap.png'
 import { FaUserAlt } from "react-icons/fa";
@@ -9,8 +10,11 @@ import ModalCarrito from '../modales/ModalCarrito';
 
 const Head = () => {
     const [modalSesion, setModalSesion] = useState(false);
-    const {modal, setModal, listaCompras}=useContext(AppContext)
+    const {modal, setModal, listaCompras, cantidadProductos}=useContext(AppContext)
     
+    useEffect(() => {
+       console.log("HEADER")
+    }, [listaCompras]);
     const handleAbrirAdmin=(e)=>{
         e.preventDefault();
         setModalSesion(true)    
@@ -46,7 +50,7 @@ const Head = () => {
                     alt="icono-comprar"
                     onClick={handleCarritoComprar}
                 />
-                {listaCompras.length>0 ? <p className='cantidad'>{listaCompras.length}</p>: null}                
+                {cantidadProductos>0 ? <p className='cantidad'>{cantidadProductos}</p>: null}                
                 <FaUserAlt 
                 className='admin'
                 onClick={handleAbrirAdmin}
