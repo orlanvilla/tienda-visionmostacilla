@@ -9,6 +9,14 @@ import TablaProductosCarrito from '../tablasCliente/TablaProductosCarrito'
 const ModalCarrito = () => {
   const {setModal}=useContext(AppContext);
 
+  const handleCerrar=()=>{
+    setModal(false)
+    window.scroll({
+      top:0
+    })
+
+  }
+
  
   return (
     <div className='contenedor-modal'>
@@ -17,7 +25,7 @@ const ModalCarrito = () => {
             className='icono-cerrar'
             alt='icono-cerrar'
             src={icono_cerrar}
-            onClick={()=>setModal(false)}
+            onClick={handleCerrar}
           />
           <TablaProductosCarrito/>       
       </div>      

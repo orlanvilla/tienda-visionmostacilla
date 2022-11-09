@@ -1,15 +1,15 @@
 import './TablaProductosCarrito.css'
 import { useContext, useState, useEffect } from 'react'
 import { AppContext } from '../../context/AppContext'
-import img_producto from '../../img/colibri-grande.jpeg'
 import img_eliminar from '../../img/trash.svg'
 import img_menos from '../../img/dash-circle.svg'
 import img_mas from '../../img/plus-circle.svg'
 
 const TablaProductosCarrito = () => {   
-  const{listaCompras, setListaCompras}=useContext(AppContext)
+  const{listaCompras, setListaCompras, setModal}=useContext(AppContext)
   const [totalCompra, setTotalCompra] = useState(0);  
   const [cambio, setCambio] = useState(false);
+ 
 
   const calcularTotal=()=>{
     let valor=0
@@ -18,7 +18,6 @@ const TablaProductosCarrito = () => {
     })
     setTotalCompra(valor)
   }
-
   useEffect(() => {
     calcularTotal();
   }, [listaCompras, cambio]);
@@ -29,17 +28,14 @@ const TablaProductosCarrito = () => {
      //calcularTotal();
      return listaFiltrada
   }
-
   const sumarCantidadProducto=(id)=>{
-      const productoEditar=listaCompras.find(producto=>producto.id===id)
-     productoEditar.cantidad+=1    
-     productoEditar.subtotal=productoEditar.precioUnidad * productoEditar.cantidad  
-     setCambio(!cambio)
+      const productoEditar=listaCompras.find(producto=>producto.id===id)        
+         productoEditar.cantidad+=1    
+         productoEditar.subtotal=productoEditar.precioUnidad * productoEditar.cantidad         
+      setCambio(!cambio)  
+       
   }
-
-
   const restarCantidadProducto=(id)=>{
-
     const productoEditar=listaCompras.find(producto=>producto.id===id)
     productoEditar.cantidad-=1 
     if(productoEditar.cantidad===0){
@@ -48,6 +44,14 @@ const TablaProductosCarrito = () => {
     }       
     productoEditar.subtotal=productoEditar.precioUnidad * productoEditar.cantidad  
     setCambio(!cambio) 
+  }
+
+  const handleSeguirComprando=()=>{
+    setModal(false)
+    window.scroll({
+      top:440
+    })
+
   }
 
  
@@ -83,9 +87,14 @@ const TablaProductosCarrito = () => {
                             <td>{productoIndividual.precioUnidad}</td>
                             <td >
                               <div className='cantidad-car'>
-                                <img src={img_menos} alt="menos" />
+                                <img src={img_menos} alt="menos" onClick={()=>restarCantidadProducto(productoIndividual.id)}/>
                                 <span>{productoIndividual.cantidad}</span>
-                                <img src={img_mas} alt="mas" />
+                                {productoIndividual.cantidad<productoIndividual.cantidadExistente? 
+                                  <img src={img_mas} alt="mas" onClick={()=>sumarCantidadProducto(productoIndividual.id)}/>
+                                  :
+                                  null
+                                }
+                                
                               </div>                             
                             </td>  
                             <td>{productoIndividual.subtotal}</td>
@@ -108,6 +117,7 @@ const TablaProductosCarrito = () => {
               <input 
                 type="submit"
                 value="Seguir comprando" 
+                onClick={handleSeguirComprando}
               />
               <input
                 type="submit"

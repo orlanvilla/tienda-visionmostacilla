@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { AppContext } from '../../context/AppContext'
 import './ModalDescripcion.css'
 import btn_close from '../../img/close.svg'
@@ -8,14 +8,15 @@ import icon_dash from '../../img/dash-circle.svg'
 const ModalDescripcion = () => {
   const {setModal2, producto, setListaCompras, listaCompras, setModal}=useContext(AppContext);
   const [cantidad, setCantidad] = useState(1);
+  const [totalProductoUnitario, setTotalProductoUnitario] = useState(producto.precio);
   const [informacionIndividualProducto, setInformacionIndividualProducto] = useState({
     id:producto._id,
     imagen:producto.imagen,
     nombre:producto.nombre,
     precioUnidad:producto.precio,
     cantidad:0,
-    subtotal:0
-    
+    subtotal:0,
+    cantidadExistente:producto.cantidad    
   });
   
   const handleCerrar=(e)=>{
@@ -33,25 +34,26 @@ const ModalDescripcion = () => {
       setModal2(false)
       setModal(true)
     }else{
-      productoAux.cantidad+=cantidad
-      productoAux.subtotal+=productoAux.precioUnidad * cantidad
+      productoAux.cantidad=cantidad
+      productoAux.subtotal=informacionIndividualProducto.precioUnidad*cantidad
       setModal2(false)
       setModal(true)
-    }
-
-   
+    }   
   }
-  const sumarCantidadProducto=()=>{
+  const sumarCantidadProducto=()=>{    
+    const totalCalculado=producto.precio*(cantidad +1)
+    setTotalProductoUnitario(totalCalculado)
     setCantidad(cantidad+1)
-  }
+    }
   const restarCantidadProducto=()=>{
     if(cantidad>1){
+      const totalCalculado=producto.precio*(cantidad -1)
+      setTotalProductoUnitario(totalCalculado)
       setCantidad(cantidad-1)
     }else{
       alert("La cantidad minima debe ser una unidad")
     }    
   }
-
   
   return (
     <div className="contenedor-descripcion">
@@ -93,12 +95,20 @@ const ModalDescripcion = () => {
                       />
                   </button>
                   <input type="text" value={cantidad} disabled/>
-                  <button
-                   onClick={sumarCantidadProducto}
-                  >
+
+                  {
+                    cantidad<producto.cantidad ? 
+                    <button
+                   onClick={sumarCantidadProducto}                  >
                       <img src={icon_plus} alt="logo sumar" />
                   </button>
-                </div>            
+                  :
+                  null
+                  }
+                 
+                  <p>Total calculado: <span>{totalProductoUnitario}</span></p>
+                </div>
+                {cantidad>=producto.cantidad && <p style={{color:'red', fontSize:"12px"}}>Alcanzó el tope máximo de unidades existentes</p>}            
                 <input
                   className='input-car'
                   type="submit"
