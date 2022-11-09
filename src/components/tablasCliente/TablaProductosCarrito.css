@@ -32,14 +32,9 @@ tbody td:nth-child(1){
     margin-left: 2rem;
     gap: 2rem;
 }
-.tabla h3{
-    display: flex;
-    justify-content: end;
-    margin-right: 2rem;    
-}
 .tabla span{
     font-weight: 900;
-    
+    padding:0rem 0.8rem;
 }
 .tabla tbody td:nth-child(5) img{
    width: 2.3rem;
@@ -47,11 +42,32 @@ tbody td:nth-child(1){
 }
 .input-pagar{    
     width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    justify-content: space-between;
+}
+.input-pagar_left{
     display: flex;
-    justify-content: end;
-}   
+    margin: 0 0rem 0rem 2rem;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.input-pagar .input-pagar_left > h3{
+       font-size: 2.5rem;
+}
+.input-pagar_left > h3 > span{
+    font-weight: 500;
+    margin-left: 0.8rem;
+    font-size: 2rem;
+}
+
+.input-pagar_right{
+    grid-column: 3 / span 1;
+    align-self: center;
+}
 .input-pagar input{ 
-    margin: 0 2rem 0.5rem;
+    margin: 0 2rem 0rem 0rem;
     padding: 1rem 2rem;
     text-transform: uppercase;
     font-weight: 700;
@@ -66,11 +82,23 @@ tbody td:nth-child(1){
     border: 1px solid  #000000;
     background-color: #CAD2C5;
 }
-
 .cantidad-car{
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.8rem;
+}
+.cantidad-car > span{
+    background-color: #E0DEDF;
+    min-width: 3.8rem;
+    border-radius: 0.5rem;
+}
+.cantidad-car > img:nth-child(1){
+    background-color: #C3C3C1;
+    border-radius: 50%;
+}
+.cantidad-car > img:nth-child(3){
+    background-color: #211836;
+    border-radius: 50%;
 }
 .titulo-car{
     display: flex;

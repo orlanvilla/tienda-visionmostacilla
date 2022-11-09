@@ -3,8 +3,8 @@ import { useContext, useState, useEffect } from 'react'
 import { AppContext } from '../../context/AppContext'
 import img_producto from '../../img/colibri-grande.jpeg'
 import img_eliminar from '../../img/trash.svg'
-import img_menos from '../../img/dash-circle.svg'
-import img_mas from '../../img/plus-circle.svg'
+import img_menos from '../../img/dash-white.svg'
+import img_mas from '../../img/plus-lg-white.svg'
 
 const TablaProductosCarrito = () => {   
   const{listaCompras, setListaCompras}=useContext(AppContext)
@@ -102,17 +102,22 @@ const TablaProductosCarrito = () => {
                   </tbody>
                  
             </table> 
-                <h3>total:<span> {totalCompra} </span></h3>
+
         </div> 
           <div className='input-pagar'>
-              <input 
-                type="submit"
-                value="Seguir comprando" 
-              />
-              <input
+            <div className='input-pagar_left'>
+            <h3>TOTAL:<span>${totalCompra} </span></h3>
+            <input
                 type="submit"
                 value="Pagar"
               />
+            </div>
+            <div className='input-pagar_right'>
+            <input 
+                type="submit"
+                value="Seguir comprando" 
+              />
+            </div>
           </div> 
                  
       </div>
