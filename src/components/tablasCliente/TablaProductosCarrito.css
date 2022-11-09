@@ -59,7 +59,7 @@ tbody td:nth-child(1){
 .input-pagar_left > h3 > span{
     font-weight: 500;
     margin-left: 0.8rem;
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 
 .input-pagar_right{
@@ -85,20 +85,25 @@ tbody td:nth-child(1){
 .cantidad-car{
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 0.8rem;
 }
 .cantidad-car > span{
     background-color: #E0DEDF;
     min-width: 3.8rem;
     border-radius: 0.5rem;
+    padding: 0.4rem 0;
 }
 .cantidad-car > img:nth-child(1){
     background-color: #C3C3C1;
     border-radius: 50%;
+    cursor: pointer;
+    
 }
 .cantidad-car > img:nth-child(3){
     background-color: #211836;
     border-radius: 50%;
+    cursor: pointer;
 }
 .titulo-car{
     display: flex;
