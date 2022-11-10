@@ -1,0 +1,58 @@
+.datos-entrega{
+    grid-area: 2 / 2 / span 1 / span 1;
+    background-color: #FAFAFA;
+    border-end-start-radius: 1rem;
+    border-end-end-radius: 1rem;
+}
+.datos-entrega_formulario{
+    height:100%;
+    width: 100%;
+    padding: 1rem 2rem 0;
+    border-radius: 0 0 0.7rem;
+}
+.datos-entrega_title{
+    margin-bottom: 1.6rem;   
+}
+.datos-entrega_tabla{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: auto auto auto auto auto auto;
+    padding: 1rem 1rem 0;
+}
+.datos-entrega_tabla_calle{
+    grid-area: 2 / 1 / span 1 / span 2;
+}
+.datos-entrega_tabla_piso{
+    grid-area: 3 / 1 / span 1 / span 2;
+}
+.datos-entrega_tabla_barrio{
+    grid-area: 4 / 1 / span 1 / span 2;
+}
+.datos-entrega_tabla_nombre-recibir{
+    grid-area: 5 / 1 / span 1 / span 2;
+}
+
+.contenedor-pago_contenido .datos-personales_tabla_boton{
+    grid-area: 6 / 1 / span 1 /span 2;
+    height: 4.6rem;
+    width: 28.8rem;
+    align-self: flex-end;
+    margin: 2rem auto 2rem;
+    border: 0.1rem solid transparent;
+    background-color: #588157;
+    color: #fff;
+    border-radius: 1rem;
+}
+.contenedor-pago_contenido .datos-personales_tabla_boton:active{
+    border: 0.1rem solid #000;
+    background-color: transparent;
+    color: #000;
+}
+footer{
+    grid-area: 5 / 1 / span 1 / span 1;
+}
+
+.contenedor-pago_resumen{
+    grid-area: 1 / 2 / span 1 / span 1;
+}

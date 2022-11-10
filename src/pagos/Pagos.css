@@ -1,0 +1,87 @@
+
+.contenedor-pago_contenido
+{
+    grid-area: 2 / 1 / span 3 / span 1;
+    display: grid;
+    grid-template-columns: 1fr minmax(auto,70.869rem) 1fr;
+    grid-template-rows: repeat(2, auto);
+    
+}
+.datos-personales{
+    grid-area: 1 / 2 / span 1 / span 1;
+    background-color: #FAFAFA;
+    border-start-start-radius: 1rem;
+    border-start-end-radius: 1rem;
+}
+
+.datos-personales_formulario{
+    height:100%;
+    width: 100%;
+    padding: 1rem 2rem 0;
+}
+.datos-personales_title,
+.datos-entrega_title{
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 900;
+    padding: 0.4rem 0.8rem 0;
+  }
+.datos-personales_tabla{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(5,auto);
+    padding: 1rem 1rem 0;
+}
+.datos-personales_tabla_parrafo{
+    font-size: 1.4rem;
+    margin: 0 0 1.3rem;
+    grid-area: 1 / 1 / span 1 / span 2;
+}
+
+.direccion
+{  /*propiedad para todos los secciones*/
+    display: flex;
+    flex-direction: column;
+}
+
+.datos-personales_tabla_email{
+    grid-area: 2 / 1 / span 1 / span 2;
+}
+
+.datos-personales_tabla label,
+.datos-entrega_tabla label
+{  /*propiedad para todos lo label*/
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+.contenedor-pago_contenido input
+{ /*propiedad para todos los input*/
+    border-radius: 0.8rem;
+    height: 4.5rem;
+    padding: 0.4rem 2rem;
+    margin-bottom: 1.6rem;
+    border: 1px solid #1a4ea2;
+    background-color: #fff;
+}
+
+.datos-personales_tabla_Nombre,
+.datos-personales_tabla_cc,
+.datos-entrega_tabla_departamento{
+    padding-right: 0.8rem;
+}
+.datos-personales_tabla_Apellidos,
+.datos-personales_tabla_movil,
+.datos-entrega_tabla_municipio{
+    padding-left: 0.8rem;
+}
+
+
+
+
+
+
+
+
+
