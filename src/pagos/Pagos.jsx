@@ -4,8 +4,10 @@ import './Pagos-entrega.css'
 const Pagos = () => {
   return (
     <div className='contenedor-pago'>
+      <div className='head-pago'>
+        
+      </div>
       <div className='contenedor-pago_contenido'>
-
         <section className='datos-personales'>  
           <div className='datos-personales_formulario'>
             <h5 className='datos-personales_title'>Datos personales</h5>
@@ -81,13 +83,26 @@ const Pagos = () => {
             </div>
           </div>
         </section>
-
       </div>
-      <div className='contenedor-pago_resumen'>
-
+      <div className='contenedor-pago_contenido-right'>
+        <section className='datos-resumen'>
+            <h5 className='datos-resumen_title'>Resumen de compra</h5>
+            <div className="datos-resumen_productos">
+               {/* añadir los productos */}
+            </div>
+            <input 
+              type="submit"
+              className='datos-resumen_input'
+              value="volver a carrito"
+            />
+            <div className='datos-resumen_total' >
+                <p>Toltal</p>
+                <span>$ 3.145.004</span>
+            </div>
+        </section>
       </div>
-      <footer>
-  
+       <footer className='footer-pago'>
+
       </footer>
     </div>
   )

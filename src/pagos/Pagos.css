@@ -1,11 +1,11 @@
 
 .contenedor-pago_contenido
 {
-    grid-area: 2 / 1 / span 3 / span 1;
+    grid-area: 2 / 2 / span 3 / span 1;
     display: grid;
-    grid-template-columns: 1fr minmax(auto,70.869rem) 1fr;
+    grid-template-columns: 1fr minmax(auto,70.869rem) auto;
     grid-template-rows: repeat(2, auto);
-    
+    column-gap: 1rem;
 }
 .datos-personales{
     grid-area: 1 / 2 / span 1 / span 1;
@@ -20,7 +20,8 @@
     padding: 1rem 2rem 0;
 }
 .datos-personales_title,
-.datos-entrega_title{
+.datos-entrega_title,
+.datos-resumen_title{
     margin: 0;
     font-size: 2rem;
     font-weight: 900;
