@@ -2,8 +2,8 @@ import { useContext, useState, useEffect } from 'react'
 import { AppContext } from '../../context/AppContext'
 import './ModalDescripcion.css'
 import btn_close from '../../img/close.svg'
-import icon_plus from '../../img/plus-lg-white.svg'
-import icon_dash from '../../img/dash-white.svg'
+import icon_plus from '../../img/plus-circle.svg'
+import icon_dash from '../../img/dash-circle.svg'
 
 const ModalDescripcion = () => {
   const {setModal2, producto, setListaCompras, listaCompras, setModal}=useContext(AppContext);
@@ -99,7 +99,7 @@ const ModalDescripcion = () => {
                   {
                     cantidad<producto.cantidad ? 
                     <button
-                      onClick={sumarCantidadProducto}                  >
+                   onClick={sumarCantidadProducto}                  >
                       <img src={icon_plus} alt="logo sumar" />
                   </button>
                   :
@@ -118,9 +118,7 @@ const ModalDescripcion = () => {
                   value="Agregar al carrito"
                   onClick={handleAgregarProducto}
                 />
-
               </section>
-
             </div>
         </div>
 
