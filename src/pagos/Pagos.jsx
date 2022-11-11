@@ -26,8 +26,7 @@ const Pagos = () => {
       alert("Todos los campos son obligatorios")  
       setHabilitarDatosEntrega(false)    
     }else{
-      setHabilitarDatosEntrega(true)
-     
+      setHabilitarDatosEntrega(true)     
     }    
   }
   const editarDatosPersonales=()=>{
