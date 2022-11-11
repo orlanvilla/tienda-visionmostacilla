@@ -30,7 +30,7 @@ const Footer = () => {
                 </div>
 
             </div>
-             <p>Visión en Mostacilla 2022 @ Todos los derechos reservados</p>
+             <p>Visión en Mostacilla 2022 @Todos los derechos reservados</p>
         </div>
       
     </div>
