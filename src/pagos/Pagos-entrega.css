@@ -1,8 +1,8 @@
 .datos-entrega{
     grid-area: 2 / 2 / span 1 / span 1;
-    background-color: #FAFAFA;
     border-end-start-radius: 1rem;
     border-end-end-radius: 1rem;
+    
 }
 .datos-entrega_formulario{
     height:100%;
@@ -43,6 +43,7 @@
     background-color: #588157;
     color: #fff;
     border-radius: 1rem;
+    cursor: pointer;
 }
 .contenedor-pago_contenido .datos-personales_tabla_boton:active{
     border: 0.1rem solid #000;
@@ -55,6 +56,7 @@
     grid-area: 2 / 3 / span 3 / span 1;
     display: grid;
     grid-template-columns: minmax(auto,50.3rem);
+    margin: 4rem 0;
 }
 
 .datos-resumen{
@@ -82,6 +84,7 @@
     border-radius: 0.8rem;
     background-color: #FFFFFF;
     border: 1px solid #588157;
+    cursor: pointer;
 }
 .datos-resumen_input:hover{
     background-color: #588157;
@@ -104,9 +107,29 @@
 .head-pago{
     grid-area: 1 / 1 / span 1 / span 3;
     width: 100%;
-    
+    background-color: #354f52;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
+.head-pago_seg-telf{
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+    gap: 1rem;
+}
+.head-pago_logo{
+    width: 6.5rem;
+    height: 6.5rem;
+}
+.head-pago_logo img{
+    width: 100%;
+}
+
 .footer-pago{
+    align-self: flex-end;
     grid-area: 5 / 1 / span 1 / span 3;
     width: 100%;
+    height: 50%;
+    background-color: #354f52;
 }

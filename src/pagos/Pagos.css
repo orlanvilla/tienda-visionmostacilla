@@ -3,15 +3,23 @@
 {
     grid-area: 2 / 2 / span 3 / span 1;
     display: grid;
-    grid-template-columns: 1fr minmax(auto,70.869rem) auto;
+    grid-template-columns: auto minmax(auto,70.869rem) auto;
     grid-template-rows: repeat(2, auto);
     column-gap: 1rem;
+    margin: 4rem 0 0;
+}
+.contenedor-pago_contenido-2{
+    grid-area: 1 / 2 / span 2 / span 1;
+    background-color: #FAFAFA;
+    border-radius: 1rem;
+    height: min-content;
 }
 .datos-personales{
     grid-area: 1 / 2 / span 1 / span 1;
-    background-color: #FAFAFA;
+    
     border-start-start-radius: 1rem;
     border-start-end-radius: 1rem;
+    
 }
 
 .datos-personales_formulario{
