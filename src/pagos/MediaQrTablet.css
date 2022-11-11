@@ -1,0 +1,13 @@
+ /* @media (max-width: 1000px){
+.contenedor-pago_contenido
+ {
+    grid-area: 2 / 2 / span 2 / span 1;
+    margin: 4rem 0 0;
+}
+.contenedor-pago_contenido-right{
+    grid-area: 4 / 2 / span 1 / span 1;
+    margin: 0 0 4rem;
+    justify-self: center;
+} 
+
+} */

@@ -2,8 +2,8 @@ import { useContext, useState, useEffect } from 'react'
 import { AppContext } from '../../context/AppContext'
 import './ModalDescripcion.css'
 import btn_close from '../../img/close.svg'
-import icon_plus from '../../img/plus-circle.svg'
-import icon_dash from '../../img/dash-circle.svg'
+import icon_plus from '../../img/plus-lg-white.svg'
+import icon_dash from '../../img/dash-white.svg'
 
 const ModalDescripcion = () => {
   const {setModal2, producto, setListaCompras, listaCompras, setModal}=useContext(AppContext);

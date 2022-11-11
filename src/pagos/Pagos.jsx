@@ -5,6 +5,12 @@ import candado from '../img/lock.svg'
 import logo from '../img/logo.png'
 import telefono from '../img/telephone.svg'
 import Departamentos from '../utils/Departamentos.json'
+import './MediaQrTablet.css'
+import youtubee from '../../src/img/youtube.png'
+import facebookk from '../../src/img/facebook.png'
+import instagramm from '../../src/img/instagram.png'
+
+import { useNavigate } from 'react-router-dom';
 
 const Pagos = () => {
 
@@ -77,21 +83,26 @@ const Pagos = () => {
     setHabilitarPago(false)
   }
   const cargarMunicipios=()=>{
-    setMunicipios(Departamentos.find(d=>d.departamento===departamentoAux.current.value).municipios)   
+    setMunicipios(Departamentos.find(d=>d.departamento===departamentoAux.current.value).municipios) 
+  }  
+  const navigate=useNavigate();
+
+  const returnHome = () =>{
+    navigate("/home")
   }
 
   return (
     <div className='contenedor-pago'>
       <div className='head-pago'>
           <div className='head-pago_seg-telf'>
-            <img src={candado} alt="icono de candado" />
-            <span>Pagos 100% seguro</span>
+            <img src={candado} alt="icono de candado" className='select-off'/>
+            <span className='select-off'>Pagos 100% seguro</span>
           </div>
-          <div className='head-pago_logo'>
+          <div className='head-pago_logo' onClick={returnHome}>
           <img src={logo} alt="logo de la pagina" />
           </div>
           <div className='head-pago_seg-telf'>
-            <img src={telefono} alt="icono de telefono" />
+            <img src={telefono} alt="icono de telefono" className='select-off'/>
             <span>(+57) 310 360 2787</span>
           </div>
       </div>
@@ -99,7 +110,7 @@ const Pagos = () => {
         <div className='contenedor-pago_contenido-2'>
           <section className='datos-personales'>  
             <div className='datos-personales_formulario'>
-              <h5 className='datos-personales_title'>Datos personales</h5>
+              <h5 className='datos-personales_title select-off'>Datos personales</h5>
               {habilitarDatosEntrega? 
                 <div>
                 <p>Nombres y apellidos: <span>{datosPersonales.nombres} {datosPersonales.apellidos}</span></p>
@@ -185,7 +196,7 @@ const Pagos = () => {
           {habilitarDatosEntrega? 
             <section className='datos-entrega'>
             <div className='datos-entrega_formulario'>
-              <h5 className='datos-entrega_title'>Datos de Entrega</h5>
+              <h5 className='datos-entrega_title select-off'>Datos de Entrega</h5>
               {habilitarPago?
                 <div>
                   <p>Departamento: <span>{datosEntrega.departamento}</span></p>
@@ -293,11 +304,10 @@ const Pagos = () => {
           :
           null       
           }
-          </div>
         </div>
         <div className='contenedor-pago_contenido-right'>
         <section className='datos-resumen'>
-            <h5 className='datos-resumen_title'>Resumen de compra</h5>
+            <h5 className='datos-resumen_title select-off'>Resumen de compra</h5>
             <div className="datos-resumen_productos">
                {/* añadir los productos */}
             </div>
@@ -307,15 +317,40 @@ const Pagos = () => {
               value="volver a carrito"
             />
             <div className='datos-resumen_total' >
-                <p>Toltal</p>
+                <p className='select-off'>Toltal</p>
                 <span>$ 3.145.004</span>
             </div>
         </section>
+      </div>  
       </div>
 
-      <footer className='footer-pago' >
-  
-      </footer>
+
+      <div className='footer-pago' >
+        <div className='redes-footer'>
+            <p className='redes-footer_p select-off'>Síguenos en</p>
+              <div className='redes'>
+                <a href="https://www.youtube.com/channel/UCgZYqmTtiVn9zyv1kojcNFw">
+                  <img 
+                  src={youtubee}
+                  alt="https://www.youtube.com/channel/UCgZYqmTtiVn9zyv1kojcNFw"
+                  /> 
+                </a>
+                <a href="#">
+                  <img 
+                    src={facebookk}
+                    alt=""
+                    /> 
+                </a>
+                <a href="#">
+                  <img 
+                  src={instagramm}
+                  alt=""
+                  /> 
+                </a>
+              </div>
+          </div>
+          <p className='redes-footer_p2 select-off'>Visión en Mostacilla 2022 @Todos los derechos reservados</p>
+      </div>
     </div>
   )
 }
