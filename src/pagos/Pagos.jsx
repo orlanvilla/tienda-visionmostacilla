@@ -1,11 +1,16 @@
 import './Pagos.css'
 import './Pagos-entrega.css'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import candado from '../img/lock.svg'
 import logo from '../img/logo.png'
 import telefono from '../img/telephone.svg'
+import Departamentos from '../utils/Departamentos.json'
 
 const Pagos = () => {
+
+  const departamentoAux=useRef(null)
+  const municipioAux=useRef(null)
+
 
   //Datos personales
   const [datosPersonales, setDatosPersonales] = useState({
@@ -47,6 +52,7 @@ const Pagos = () => {
     nombreRecibir:""
   });
   const [habilitarPago, setHabilitarPago] = useState(false);
+  const [municipios, setMunicipios] = useState([]);
 
   const onchangeDatosEntrega=(e)=>{
     setDatosEntrega({
@@ -54,17 +60,24 @@ const Pagos = () => {
       [e.target.name]:e.target.value
     })
   }
-  const validarDatosEntrega=()=>{
+  const validarDatosEntrega=()=>{   
+    datosEntrega.departamento=departamentoAux.current.value;
+    datosEntrega.municipio=municipioAux.current.value;
+    console.log(datosEntrega) 
     const {departamento, municipio, calle, apartamento, barrio, nombreRecibir}=datosEntrega
     if(departamento==="" || municipio ==="" || nombreRecibir === ""){
       alert("Estos campos son obligatorios")  
       setHabilitarPago(false)    
     }else{
       setHabilitarPago(true)
-    }    
+    }
+
   }
   const editarDatosEntrega=()=>{
     setHabilitarPago(false)
+  }
+  const cargarMunicipios=()=>{
+    setMunicipios(Departamentos.find(d=>d.departamento===departamentoAux.current.value).municipios)   
   }
 
   return (
@@ -195,24 +208,32 @@ const Pagos = () => {
 
   <div className="datos-entrega_tabla_departamento direccion">
     <label htmlFor="departamento">Departamento</label>
-    <input 
-    type="text" 
-    id='departamento'
-    name='departamento'
-    onChange={onchangeDatosEntrega}
-    value={datosEntrega.departamento}
-    />
     
+    <select
+      ref={departamentoAux}
+      onClick={cargarMunicipios}
+      >
+        <option>--Seleccionar Departamento--</option>
+          {Departamentos.map(d=>(
+            <option
+            value={d.departamento}
+            >{d.departamento}</option>
+          ))}      
+    </select>
+      
   </div>
   <div className="datos-entrega_tabla_municipio direccion">
     <label htmlFor="municipio">Municipio</label>
-    <input 
-    type="text" 
-    id='municipio'
-    name='municipio'
-    onChange={onchangeDatosEntrega}
-    value={datosEntrega.municipio}
-    />
+    <select
+    ref={municipioAux}
+    >
+      <option>--Seleccione Municipio</option>
+      {municipios.map(m=>(
+        <option
+        value={m}
+        >{m}</option>
+      ))}      
+    </select>
   </div>
   <div className="datos-entrega_tabla_calle direccion">
     <label htmlFor="calle">Calle</label>
