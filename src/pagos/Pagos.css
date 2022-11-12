@@ -31,9 +31,10 @@
 .datos-entrega_title,
 .datos-resumen_title{
     margin: 0;
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 900;
     padding: 0.4rem 0.8rem 0;
+    color: #588157;
   }
 .datos-personales_tabla{
     width: 100%;
@@ -85,6 +86,10 @@
 .datos-personales_tabla_movil,
 .datos-entrega_tabla_municipio{
     padding-left: 0.8rem;
+}
+
+.datos-resumen{
+    height: 700px;
 }
 
 

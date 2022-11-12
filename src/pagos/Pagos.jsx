@@ -2,7 +2,7 @@ import './Pagos.css'
 import './Pagos-entrega.css'
 import './MediaQrTablet.css'
 import './MediaQrCell.css'
-import { useState, useRef } from 'react'
+import { useState, useRef,useContext } from 'react'
 import candado from '../img/lock.svg'
 import logo from '../img/logo.png'
 import telefono from '../img/telephone.svg'
@@ -10,14 +10,17 @@ import Departamentos from '../utils/Departamentos.json'
 import youtubee from '../../src/img/youtube.png'
 import facebookk from '../../src/img/facebook.png'
 import instagramm from '../../src/img/instagram.png'
-
+import { AppContext } from '../context/AppContext'
 import { useNavigate } from 'react-router-dom';
+import { PeticionesApi } from '../PeticionesApi/PeticionesApi'
 
 const Pagos = () => {
 
+  const {listaCompras,totalCompra,setModal} = useContext(AppContext)
+  const {pagarCompra} = PeticionesApi()
   const departamentoAux=useRef(null)
   const municipioAux=useRef(null)
-
+  const [modalCarrito, setmodalCarrito] = useState(false)
 
   //Datos personales
   const [datosPersonales, setDatosPersonales] = useState({
@@ -48,7 +51,6 @@ const Pagos = () => {
     setHabilitarDatosEntrega(false)
   }
 
-
   // Entrega -----------------------------------------------------------------------
   const [datosEntrega, setDatosEntrega] = useState({
     departamento:"",
@@ -60,7 +62,6 @@ const Pagos = () => {
   });
   const [habilitarPago, setHabilitarPago] = useState(false);
   const [municipios, setMunicipios] = useState([]);
-
   const onchangeDatosEntrega=(e)=>{
     setDatosEntrega({
       ...datosEntrega, 
@@ -92,8 +93,23 @@ const Pagos = () => {
     navigate("/home")
   }
 
+  const volverAlCarrito=()=>{
+    navigate("/home")
+    setModal(true)
+  }
+
+  
+  const handlePagarCompra = async()=>{ 
+    let data = {
+      productos:listaCompras,
+      valor:totalCompra
+    }
+    await pagarCompra(data)
+  }
+
   return (
     <div className='contenedor-pago'>
+  
       <div className='head-pago'>
           <div className='head-pago_seg-telf'>
             <img src={candado} alt="icono de candado" className='select-off'/>
@@ -108,7 +124,14 @@ const Pagos = () => {
           </div>
       </div>
       <div className='contenedor-pago_contenido'>
+     
         <div className='contenedor-pago_contenido-2'>
+
+        {
+          !habilitarPago && !habilitarDatosEntrega ? 
+          <button style={{background:"green", color:"white", width:"150px", border:"none",padding:"1rem 2rem", cursor:"pointer",borderRadius:"0.5rem" , right:"0"}} onClick={handlePagarCompra}>Pagar</button>
+          : null
+        }
           <section className='datos-personales'>  
             <div className='datos-personales_formulario'>
               <h5 className='datos-personales_title select-off'>Datos personales</h5>
@@ -308,23 +331,64 @@ const Pagos = () => {
           }
         </div>
         <div className='contenedor-pago_contenido-right'>
-        <section className='datos-resumen'>
-            <h5 className='datos-resumen_title select-off'>Resumen de compra</h5>
-            <div className="datos-resumen_productos">
-               {/* añadir los productos */}
-            </div>
-            <input 
-              type="submit"
-              className='datos-resumen_input'
-              value="volver a carrito"
-            />
-            <div className='datos-resumen_total' >
-                <p className='select-off'>Toltal</p>
-                <span>$ 3.145.004</span>
-            </div>
-        </section>
-      </div>  
+          <section className='datos-resumen'>
+              <h5 className='datos-resumen_title select-off'>Resumen de compra</h5>
+              <div className="datos-resumen_productos">
+                {/*Esto lo importe del componente tablacarritocompras*/}
+                <div  className='tabla-carrito'>
+                  <div className='tabla-carrito_resumen'>
+                    <table>
+                          <thead>
+                              <tr>           
+                                  <th width="30%">Producto</th>
+                                  <th>Precio Unidad</th>  
+                                  <th>Cantidad</th>                                    
+                                  <th>Subtotal</th>
+                                  
+                              </tr>
+                          </thead>
+                          <tbody>  
+
+                          {listaCompras.map(productoIndividual=>(
+                            <tr>                
+                                    <td>
+                                      <img
+                                        alt='img-producto'
+                                        src={productoIndividual.imagen}
+                                        style={{width:'7rem'}}
+                                      />
+                                      <p>{productoIndividual.nombre}</p>
+                                    </td>
+                                    <td>{productoIndividual.precioUnidad}</td>
+                                    <td>{productoIndividual.cantidad}</td>
+                                    <td>{productoIndividual.subtotal}</td>
+                                    
+                                </tr>
+                          ))}                 
+                              
+                          </tbody>
+                        
+                    </table> 
+                  </div>
+                </div>
+                {/**-------------------------------------------------- */}
+
+              </div>
+              <input 
+                type="submit"
+                className='datos-resumen_input'
+                value="volver a carrito"
+                onClick={volverAlCarrito}
+              />
+           
+              <div className='datos-resumen_total' >
+                  <p className='select-off'>Total</p>
+                  <span>${totalCompra}</span>
+              </div>
+          </section>
+        </div>  
       </div>
+       
 
 
       <div className='footer-pago' >

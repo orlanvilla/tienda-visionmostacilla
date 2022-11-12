@@ -11,8 +11,8 @@ const TablaProductosCarrito = () => {
 
   const navigate=useNavigate();
 
-  const{listaCompras, setListaCompras, setModal, setCantidadProductos}=useContext(AppContext)
-  const [totalCompra, setTotalCompra] = useState(0);  
+  const{listaCompras, setListaCompras, setModal, setCantidadProductos,totalCompra, setTotalCompra}=useContext(AppContext)
+  
   const [cambio, setCambio] = useState(false);
   const iterarProductosCantidad=()=>{
     let suma = 0
