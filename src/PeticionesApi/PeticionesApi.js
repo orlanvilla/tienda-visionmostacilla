@@ -4,7 +4,7 @@ import { AppContext } from "../context/AppContext";
 export const PeticionesApi = () => {
 
     let production = 'https://api-vision-mostacilla.herokuapp.com/api/';
-   // let development = 'http://192.168.1.14:9000/api/'
+    let development = 'http://192.168.1.11:9000/api'
 
     const { setProducto,setProductos,productos,setProductosDestacados,setCategorias,setCategoria,categorias,categoria,setProductosFiltrados, cantidadProductos, setCantidadProductos} = useContext(AppContext);
 
@@ -62,6 +62,10 @@ export const PeticionesApi = () => {
             console.log("Algo salio mal con cargar el producto")
         }
     }
+    const buscarProductoLocal = (id)=>{
+        return productos.find(p => p._id === id)
+    }
+
     //Funcion para cargar todos los productos y productos destacados
     const cargarProductos = async()=>{
         try {
@@ -111,6 +115,21 @@ export const PeticionesApi = () => {
             if (respuesta.status === 200) {
                 alert('Producto editado con exito...');
             }
+        }catch(e){
+            console.log('No se pudo editProducto',e)
+        }
+            
+    }
+    const editarProductoCantidad = async(id,data)=>{
+       
+        try {
+            const respuesta = await fetch(production + '/productos/' + id, {
+                method: 'PUT', 
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
         }catch(e){
             console.log('No se pudo editProducto',e)
         }
@@ -301,7 +320,34 @@ export const PeticionesApi = () => {
             setProductosFiltrados(productos)
         }
     }
-       
+
+    //*******   TODO PAGOS ************ */
+    const pagarCompra = async(data)=>{
+        try{
+            const res = await fetch(production + '/ventas', {
+                method:"POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify(data)
+            })
+            if(res.status === 200){
+                alert('Pago realizado con exito')
+                data.productos.forEach(producto => {
+                    //Aqui sacamos la informacion completa del producto
+                    let prodOriginal = buscarProductoLocal(producto.id)
+                    //Ahora obtenemos el nuevo valor de la cantidad del producto
+                    let nuevoValorCantidad = prodOriginal.cantidad - producto.cantidad
+                    //Ahira modificamos el producto original con la nueva cantidad del producto
+                    prodOriginal.cantidad = nuevoValorCantidad
+                    editarProductoCantidad(producto.id,prodOriginal)
+                });
+            }
+        }catch(e){
+            console.log('Error al realizar el proceso de pago')
+        }
+    }
+    
     return {
         registrarProducto,
         buscarProducto,
@@ -318,7 +364,8 @@ export const PeticionesApi = () => {
         editarCategoria,
         filtrarProductos,
         filtrarProductosNombre,
-        filtrarProductosCategoria
+        filtrarProductosCategoria,
+        pagarCompra
       
     }
 
