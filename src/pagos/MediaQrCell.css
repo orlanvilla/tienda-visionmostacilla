@@ -1,0 +1,54 @@
+@media (max-width: 600px){
+    .datos-personales_tabla{
+        grid-template-columns: auto;
+    }
+    .datos-personales_tabla_parrafo{
+        grid-area: 1 / 1 / span 1 / span 1;
+    }
+    .datos-personales_tabla_email,
+    .datos-entrega_tabla_municipio{
+        grid-area: 2 / 1 / span 1 / span 1;
+    }
+    .datos-personales_tabla_Nombre,
+    .datos-entrega_tabla_calle{
+        grid-area: 3 / 1 / span 1 / span 1;
+    }
+    .datos-personales_tabla_Apellidos,
+    .datos-entrega_tabla_piso{
+        grid-area: 4 / 1 / span 1 / span 1;
+    }
+    .datos-personales_tabla_cc,
+    .datos-entrega_tabla_barrio{
+        grid-area: 5 / 1 / span 1 / span 1;
+    }
+    .datos-personales_tabla_movil,
+    .datos-entrega_tabla_nombre-recibir{
+        grid-area: 6 / 1 / span 1 / span 1;
+    }
+    .datos-personales_tabla .boton_primary,
+    .datos-entrega_formulario .boton-entrega{
+        grid-area: 7 / 1 / span 1 / span 1;
+    }
+    .datos-personales_tabla_Nombre,
+    .datos-personales_tabla_cc,
+    .datos-entrega_tabla_departamento,
+    .datos-personales_tabla_Apellidos,
+    .datos-personales_tabla_movil,
+    .datos-entrega_tabla_municipio{
+        padding: 0;
+    }
+    .datos-entrega_tabla{
+        grid-template-columns: auto;
+    }
+    .head-pago_seg-telf-2{
+        display: none;
+    }
+    .head-pago{
+        flex-direction: row-reverse;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+    .redes-footer_p2{
+        text-align: center;
+    }
+}
