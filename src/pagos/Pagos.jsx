@@ -100,9 +100,19 @@ const Pagos = () => {
 
   
   const handlePagarCompra = async()=>{ 
+
+    const date = new Date();
+    let fecha = date.toLocaleDateString();
+    let hora = date.toLocaleTimeString();
+
     let data = {
       productos:listaCompras,
-      valor:totalCompra
+      valor:totalCompra,
+      fecha:fecha,
+      hora:hora,
+      informacionCliente:datosPersonales,
+      informacionEntrega:datosEntrega,
+      estado:'No entregado'
     }
     await pagarCompra(data)
   }

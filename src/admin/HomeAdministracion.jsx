@@ -7,10 +7,12 @@ import Productos from './Productos';
 import Ventas from './Ventas';
 import Empleados from './Empleados';
 import Categorias from './Categorias';
+import { PeticionesApi } from '../PeticionesApi/PeticionesApi';
 
  
 const HomeAdministracion = () => {
     const [vista, setVista] = useState(<Productos/>);
+    const {cargarVentas} = PeticionesApi()
     const {setLogueado}=useContext(AppContext)
     const navigate=useNavigate();
     const botonp = document.querySelector('.btn-p');
@@ -23,11 +25,13 @@ const HomeAdministracion = () => {
         botonv.classList.toggle("botonp-activo",false)
         botonesBloqueUno()
     }  
-    const mostrarVistaVentas=()=>{
+    const mostrarVistaVentas= async ()=>{
         setVista(<Ventas/>)
         botonp.classList.toggle("botonp-activo",false)
         botonv.classList.toggle("botonp-activo",true)
         botonesBloqueUno()
+        //Cargamos la informacion de ventas
+        await cargarVentas()
     }
     const mostrarVistaEmpleados=()=>{
         setVista(<Empleados/>)

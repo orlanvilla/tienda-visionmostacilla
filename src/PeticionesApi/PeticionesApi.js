@@ -6,8 +6,11 @@ export const PeticionesApi = () => {
     let production = 'https://api-vision-mostacilla.herokuapp.com/api/';
     let development = 'http://192.168.1.11:9000/api'
 
-    const { setProducto,setProductos,productos,setProductosDestacados,setCategorias,setCategoria,categorias,categoria,setProductosFiltrados, cantidadProductos, setCantidadProductos} = useContext(AppContext);
+    const { setProducto,setProductos,productos,setProductosDestacados,setCategorias,setCategoria,categorias,setProductosFiltrados,setVentas} = useContext(AppContext);
 
+    const iniciarSesion =(sesion)=>{
+        
+    }
     // ***********   SECCION DE PRODUCTOS ****************
     //Funcion para registrar un nuevo producto
     const registrarProducto = async (dataproducto,data) => {
@@ -65,7 +68,6 @@ export const PeticionesApi = () => {
     const buscarProductoLocal = (id)=>{
         return productos.find(p => p._id === id)
     }
-
     //Funcion para cargar todos los productos y productos destacados
     const cargarProductos = async()=>{
         try {
@@ -321,10 +323,27 @@ export const PeticionesApi = () => {
         }
     }
 
+    //******** METODOS VENTAS ************* */
+    const cargarVentas = async()=>{
+        try {
+            const respuesta = await fetch(production + '/ventas');
+            
+            if (respuesta.status === 200) {
+                const resp = await respuesta.json();
+                await setVentas(resp);
+                
+            } else {
+                setVentas([]);
+            }
+        } catch (error) {
+            console.log("Algo salio mal con cargar las ventas")
+        }
+    }
+
     //*******   TODO PAGOS ************ */
     const pagarCompra = async(data)=>{
         try{
-            const res = await fetch(production + '/ventas', {
+            const res = await fetch('http://localhost:9000/api/ventas', {
                 method:"POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -365,7 +384,8 @@ export const PeticionesApi = () => {
         filtrarProductos,
         filtrarProductosNombre,
         filtrarProductosCategoria,
-        pagarCompra
+        pagarCompra,
+        cargarVentas
       
     }
 
