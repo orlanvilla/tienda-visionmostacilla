@@ -1,11 +1,12 @@
 import './Pagos.css'
 import './Pagos-entrega.css'
+import './MediaQrTablet.css'
+import './MediaQrCell.css'
 import { useState, useRef,useContext } from 'react'
 import candado from '../img/lock.svg'
 import logo from '../img/logo.png'
 import telefono from '../img/telephone.svg'
 import Departamentos from '../utils/Departamentos.json'
-import './MediaQrTablet.css'
 import youtubee from '../../src/img/youtube.png'
 import facebookk from '../../src/img/facebook.png'
 import instagramm from '../../src/img/instagram.png'
@@ -117,7 +118,7 @@ const Pagos = () => {
           <div className='head-pago_logo' onClick={returnHome}>
           <img src={logo} alt="logo de la pagina" />
           </div>
-          <div className='head-pago_seg-telf'>
+          <div className='head-pago_seg-telf head-pago_seg-telf-2'>
             <img src={telefono} alt="icono de telefono" className='select-off'/>
             <span>(+57) 310 360 2787</span>
           </div>
@@ -135,15 +136,15 @@ const Pagos = () => {
             <div className='datos-personales_formulario'>
               <h5 className='datos-personales_title select-off'>Datos personales</h5>
               {habilitarDatosEntrega? 
-                <div>
-                <p>Nombres y apellidos: <span>{datosPersonales.nombres} {datosPersonales.apellidos}</span></p>
-                <p>Email: <span>{datosPersonales.email}</span></p>
-                <p>Teléfono: <span>{datosPersonales.telefono}</span></p>
-                <input
-                  type="submit"
-                  value="editar"
-                  onClick={editarDatosPersonales}
-                />
+              <div className='datos-personales_form-editar'>
+                  <p>Nombres y apellidos: <span>{datosPersonales.nombres} {datosPersonales.apellidos}</span></p>
+                  <p>Email: <span>{datosPersonales.email}</span></p>
+                  <p>Teléfono: <span>{datosPersonales.telefono}</span></p>
+                  <input
+                    type="submit"
+                    value="editar"
+                     onClick={editarDatosPersonales}
+                  />
               </div>
               :
               null            
@@ -206,7 +207,7 @@ const Pagos = () => {
                 <input 
                   type="submit" 
                   value="Continuar"
-                  className='datos-personales_tabla_boton'
+                  className='datos-personales_tabla_boton boton_primary'
                   onClick={validarDatosPersonales}
                 />             
               </div>
@@ -229,6 +230,7 @@ const Pagos = () => {
                   <p>Barrio: <span>{datosEntrega.barrio}</span></p>
                   <p>Nombre quien Recibe: <span>{datosEntrega.nombreRecibir}</span></p>
                   <input
+                  className='datos-entrega_formulario_boton'
                   type="submit"
                   value="editar"
                   onClick={editarDatosEntrega}
@@ -314,7 +316,7 @@ const Pagos = () => {
   <input 
     type="submit" 
     value="Continuar"
-    className='datos-personales_tabla_boton'
+    className='datos-personales_tabla_boton boton-entrega'
     onClick={validarDatosEntrega}
   />
 
@@ -331,19 +333,18 @@ const Pagos = () => {
         <div className='contenedor-pago_contenido-right'>
           <section className='datos-resumen'>
               <h5 className='datos-resumen_title select-off'>Resumen de compra</h5>
-
               <div className="datos-resumen_productos">
-
                 {/*Esto lo importe del componente tablacarritocompras*/}
                 <div  className='tabla-carrito'>
-                  <div className='tabla'>
+                  <div className='tabla-carrito_resumen'>
                     <table>
                           <thead>
                               <tr>           
                                   <th width="30%">Producto</th>
-                                  <th>Precio Unidad</th>                                      
+                                  <th>Precio Unidad</th>  
+                                  <th>Cantidad</th>                                    
                                   <th>Subtotal</th>
-                                  <th width="4%"></th>
+                                  
                               </tr>
                           </thead>
                           <tbody>  
@@ -359,7 +360,7 @@ const Pagos = () => {
                                       <p>{productoIndividual.nombre}</p>
                                     </td>
                                     <td>{productoIndividual.precioUnidad}</td>
-                                    
+                                    <td>{productoIndividual.cantidad}</td>
                                     <td>{productoIndividual.subtotal}</td>
                                     
                                 </tr>
