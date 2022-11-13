@@ -127,7 +127,7 @@ const Pagos = () => {
         <div className='contenedor-pago_contenido-2'>
 
         {
-          !habilitarPago && !habilitarDatosEntrega ? 
+          habilitarPago && habilitarDatosEntrega ? 
           <button style={{background:"green", color:"white", width:"150px", border:"none",padding:"1rem 2rem", cursor:"pointer",borderRadius:"0.5rem" , right:"0"}} onClick={handlePagarCompra}>Pagar</button>
           : null
         }
