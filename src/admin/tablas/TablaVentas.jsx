@@ -7,7 +7,7 @@ import icon_pencil from '../../img/pencil-square.svg'
 import ModalRegistroVenta from '../modales/ModalRegistroVenta'
 
 const TablaVentas = () => {   
-  const {modal, setModal}=useContext(AppContext);
+  const {modal, setModal,ventas}=useContext(AppContext);
 
   const handleAbrirModal=()=>{
     setModal(true)
@@ -27,33 +27,33 @@ const TablaVentas = () => {
             <table>
                 <thead>
                     <tr>           
-                        <th width="37%">Nombre</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>                                      
-                        <th >Acción</th>
+                        
+                        <th>Fecha</th>
+                        <th>Hora</th>                                      
+                        <th>Valor</th>
+                        <th>Estado</th>
+                        <th>Áccion</th>
                     </tr>
                 </thead>
                 <tbody className='cuerpo'>   
-                   
-                        <tr>                
-                        <td>Colibrí mediano</td>
-                        <td>$ 20.000</td>
-                        <td>50</td>
-                        <td>
-                          <div className="accion">
-                          <button>
-                              <img src={icon_pencil} alt="logo" />
-                            </button>
-                            <button>
-                              <img src={icon_trash} alt="logo" />
-                            </button>
-                            <button>
-                              <img src={icon_eye} alt="logo" />
-                            </button>
-                          </div>                         
-                        </td>
-                    </tr>
-
+                   {
+                    ventas.map(venta => (
+                      <tr>                
+                          <td>{venta.fecha}</td>
+                          <td>{venta.hora}</td>
+                          <td>{venta.valor}</td>
+                          <td>{venta.estado}</td>
+                          <td>
+                          <div className='accion'>
+                                <button>
+                                  <img src={icon_eye} alt="logo visualizacion"/>
+                                </button>
+                                
+                            </div>
+                          </td>
+                      </tr>
+                    ))
+                   }
                 </tbody>
             </table> 
             </div>          

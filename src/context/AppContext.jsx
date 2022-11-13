@@ -17,6 +17,7 @@ export const AppContext=createContext();
   const [listaCompras, setListaCompras] = useState([]); 
   const [cantidadProductos, setCantidadProductos] = useState(0);
   const [totalCompra, setTotalCompra] = useState(0);  
+  const [ventas, setVentas] = useState([])
   
   
   
@@ -35,7 +36,8 @@ export const AppContext=createContext();
         productosFiltrados,setProductosFiltrados,
         listaCompras, setListaCompras,
         cantidadProductos, setCantidadProductos,
-        totalCompra, setTotalCompra
+        totalCompra, setTotalCompra,
+        ventas, setVentas
         
     }}    
     >{children}</AppContext.Provider>
