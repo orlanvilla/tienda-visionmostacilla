@@ -17,10 +17,11 @@ export const AppContext=createContext();
   const [listaCompras, setListaCompras] = useState([]); 
   const [cantidadProductos, setCantidadProductos] = useState(0);
   const [totalCompra, setTotalCompra] = useState(0);  
-  const [ventas, setVentas] = useState([])
-  
-  
-  
+  const [ventas, setVentas] = useState([]);
+  const [empleados, setEmpleados] = useState([]);
+  const [empleado, setEmpleado] = useState({});
+  const [usuarios, setUsuarios] = useState([]);
+  const [usuario, setUsuario] = useState({});  
   return (
     <AppContext.Provider value={{
         mensaje, setMensaje,
@@ -37,7 +38,11 @@ export const AppContext=createContext();
         listaCompras, setListaCompras,
         cantidadProductos, setCantidadProductos,
         totalCompra, setTotalCompra,
-        ventas, setVentas
+        ventas, setVentas,
+        empleados, setEmpleados,
+        usuarios, setUsuarios,
+        usuario, setUsuario,
+        empleado, setEmpleado
         
     }}    
     >{children}</AppContext.Provider>

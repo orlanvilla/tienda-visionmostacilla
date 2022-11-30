@@ -1,4 +1,4 @@
-import React, { useState, useContext, Component } from 'react'
+import React, { useState, useContext, Component, useEffect } from 'react'
 import { AppContext } from '../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import './HomeAdministracion.css' 
@@ -12,8 +12,8 @@ import { PeticionesApi } from '../PeticionesApi/PeticionesApi';
  
 const HomeAdministracion = () => {
     const [vista, setVista] = useState(<Productos/>);
-    const {cargarVentas} = PeticionesApi()
-    const {setLogueado}=useContext(AppContext)
+    const {cargarVentas, cargarEmpleados, buscarUsuario, cargarUsuarios} = PeticionesApi()
+    const {setLogueado, usuario, usuarios, setUsuario}=useContext(AppContext)
     const navigate=useNavigate();
     const botonp = document.querySelector('.btn-p');
     const botonv = document.querySelector('.btn-v');
@@ -33,13 +33,16 @@ const HomeAdministracion = () => {
         //Cargamos la informacion de ventas
         await cargarVentas()
     }
-    const mostrarVistaEmpleados=()=>{
+    const mostrarVistaEmpleados=async()=>{
+        await cargarEmpleados()
         setVista(<Empleados/>)
         botonesBloqueDos()
         botone.classList.toggle("botonp-activo",true)
         botonc.classList.toggle("botonp-activo",false)
+
     }
     const mostrarVistaCategorias=()=>{
+       
         setVista(<Categorias/>)
         botonesBloqueDos()
         botone.classList.toggle("botonp-activo",false)
@@ -58,7 +61,26 @@ const HomeAdministracion = () => {
     const cerrarSesion=()=>{
         setLogueado(false)
         navigate("/home")
+        localStorage.clear()
     }
+
+    useEffect(() => {
+        cargarUsuarios()
+        .then(resp=>{
+            const user=JSON.parse(localStorage.getItem('sesion'))
+            const usuBuscado=resp.find(u=>u.user === user.user && u.password===user.password)
+            setUsuario(usuBuscado)
+
+        })
+        // console.log("sin set :", usuarios)
+        // setTimeout(() => {
+        //     console.log("set :", usuarios)
+        //     const user=JSON.parse(localStorage.getItem('sesion')) 
+        //     buscarUsuario(user.user, user.password)
+        //     console.log(usuario)
+        // }, 2000);
+    
+   }, []);
 
   return (
     <div className="contenedor-administracion">   
@@ -69,12 +91,17 @@ const HomeAdministracion = () => {
                     alt='logo'
                     src={logo_tienda}
                 />
-            </section>
+            </section>            
             <section className='btn-menu'>
                 <button className='btn-p btn-p2' onClick={mostrarVistaProductos}>Productos</button>
                 <button className='btn-v' onClick={mostrarVistaVentas}>Ventas</button>
+
+                {usuario.tipo==="administracion" &&
+                <>
                 <button className='btn-e' onClick={mostrarVistaEmpleados}>Empleados</button>
                 <button className='btn-c' onClick={mostrarVistaCategorias}>Categorias</button>
+                </>
+                }
                 <button 
                 className='btn-saliradmin'
                 onClick={cerrarSesion}

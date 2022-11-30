@@ -1,12 +1,14 @@
 import { useContext } from "react";
+import Empleados from "../admin/Empleados";
 import { AppContext } from "../context/AppContext";
+import Swal from "sweetalert2";
 
 export const PeticionesApi = () => {
 
     let production = 'https://api-vision-mostacilla.herokuapp.com/api/';
     let development = 'http://192.168.1.11:9000/api'
 
-    const { setProducto,setProductos,productos,setProductosDestacados,setCategorias,setCategoria,categorias,setProductosFiltrados,setVentas} = useContext(AppContext);
+    const { setProducto,setProductos,productos,setProductosDestacados,setCategorias,setCategoria,categorias,setProductosFiltrados,setVentas, setEmpleados, usuarios, setUsuarios, setUsuario, setEmpleado, empleados} = useContext(AppContext);
 
     const iniciarSesion =(sesion)=>{
         
@@ -38,7 +40,12 @@ export const PeticionesApi = () => {
                 });
 
                 if (respuesta.status === 200) {
-                    alert('Producto creado con exito...');
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Producto registrado con exito',
+                        timer: 1500
+                      })
                 } 
                 //-----------------------------------------------------------------------
              
@@ -97,7 +104,12 @@ export const PeticionesApi = () => {
                 }
             })
             if (respuesta.status === 200) {
-                alert('Producto eliminado con exito...');
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Producto eliminado con exito',
+                    timer: 1500
+                  })
             }
         }catch(e){
             console.log('No se pudo eliminar el product')
@@ -115,7 +127,12 @@ export const PeticionesApi = () => {
                 body: JSON.stringify(data)
             })
             if (respuesta.status === 200) {
-                alert('Producto editado con exito...');
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Producto editado con exito',
+                    timer: 1500
+                  })
             }
         }catch(e){
             console.log('No se pudo editProducto',e)
@@ -212,7 +229,12 @@ export const PeticionesApi = () => {
                 body: JSON.stringify(dataCategoria)
                 })
                 if (respuesta.status === 200) {
-                    alert('Categoria creado con exito...');
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Categoría creada con exito',
+                        timer: 1500
+                      })
                 } 
 
             }
@@ -246,7 +268,12 @@ export const PeticionesApi = () => {
                 }
             })
             if (respuesta.status === 200) {
-                alert('Categoria eliminado con exito...');
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Categoría eliminada con exito',
+                    timer: 1500
+                  })
             }
         }catch(e){
             console.log('No se pudo eliminar la categoria')
@@ -279,7 +306,12 @@ export const PeticionesApi = () => {
                 body: JSON.stringify(data)
             })
             if (respuesta.status === 200) {
-                alert('Categoria editado con exito...');
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Categoría editada con exito',
+                    timer: 1500
+                  })
             }
         }catch(e){
             console.log('No se pudo editar categoria')
@@ -343,7 +375,7 @@ export const PeticionesApi = () => {
     //*******   TODO PAGOS ************ */
     const pagarCompra = async(data)=>{
         try{
-            const res = await fetch('http://localhost:9000/api/ventas', {
+            const res = await fetch(production + '/ventas', {
                 method:"POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -351,7 +383,12 @@ export const PeticionesApi = () => {
                 body:JSON.stringify(data)
             })
             if(res.status === 200){
-                alert('Pago realizado con exito')
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Pago realizado con exito',
+                    timer: 1500
+                  })
                 data.productos.forEach(producto => {
                     //Aqui sacamos la informacion completa del producto
                     let prodOriginal = buscarProductoLocal(producto.id)
@@ -366,7 +403,155 @@ export const PeticionesApi = () => {
             console.log('Error al realizar el proceso de pago')
         }
     }
-    
+
+    // Metodo para crear un empleado----------------------------------------------------------
+
+    const registrarEmpleado=async(data)=>{
+        try {
+            const response = await fetch(production + '/empleados', {
+                method:'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify(data)
+            })
+            if(response.status===200){
+                    const dataUsuario={
+                        idEmpleado:data.cedula,
+                        user:data.email,
+                        password:data.cedula,
+                        tipo:"empleado"
+                    }
+                    console.log(dataUsuario)
+                     const resp=await fetch(production + '/users', {
+                    method:'POST',
+                    headers:{
+                        'Content-Type': 'application/json'
+                    },
+                    body:JSON.stringify(dataUsuario)
+                })
+                console.log("respuesta: ", resp)
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Empleado creado correctamente',
+                    timer: 1500
+                  })
+            }else{
+               
+            }       
+            
+        } catch (error) {
+            console.log("No se puedo registrar empleado")
+        }
+    }
+
+    //Metodo para cargar empleados -----------------------------
+    const cargarEmpleados=async()=>{
+        try {
+            const respuesta = await fetch(production + '/empleados');
+            
+            if (respuesta.status === 200) {
+                const resp = await respuesta.json();
+                await setEmpleados(resp);
+                
+            } else {
+                setEmpleados([]);
+            }
+        } catch (error) {
+            console.log("Algo salio mal con cargar los empleados")
+        }
+    }
+
+     // Metodo buscar empleados
+
+     const buscarEmpleado=(id)=>{
+       const empleado=empleados.find(e=>e._id===id)
+       setEmpleado(empleado)
+    }
+
+    //Metodo para editar empleado
+
+    const editarEmpleado = async(id,data)=>{
+        try {
+            const respuesta = await fetch(production + '/empleados/' + id, {
+                method: 'PUT', 
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            if (respuesta.status === 200) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Empleado editado correctamente',
+                    timer: 1500
+                  })
+            }
+        }catch(e){
+            console.log('No se pudo editar empleado')
+        }            
+    }
+
+        //Metodo Cargar usuarios -----------------------------
+        const cargarUsuarios=async()=>{
+            try {
+                const respuesta = await fetch(production + '/users');
+                if (respuesta.status === 200) {
+                    const resp = await respuesta.json();
+
+                    setUsuarios(resp);
+                    return resp
+                    
+                } else {
+                    setUsuarios([]);
+                }
+            } catch (error) {
+                console.log("Algo salio mal con cargar los usuarios")
+            }    
+        }
+        //Metodo Buscar usuarios -----------------------------
+            const buscarUsuario=(user, password)=>{
+                const usuario= usuarios.find(u=>u.user === user && u.password === password)
+             
+                 if(usuario !== undefined){
+                     setUsuario(usuario);
+                     const sesion={
+                         user:user,
+                         password:password                    
+                     }
+                     localStorage.setItem('sesion', 
+                     JSON.stringify(sesion)
+                     )
+                     return true
+                 }else{
+                     return false
+                 }
+        }
+        //Metodo para eliminar empleado
+
+        const eliminarEmpleado = async(id)=>{
+            try{
+                const respuesta = await fetch(production + '/empleados/' + id, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                if (respuesta.status === 200) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Empleado eliminado correctamente',
+                        timer: 1500
+                      })
+                }
+            }catch(e){
+                console.log('No se pudo eliminar el empleado')
+            }
+        }
+
     return {
         registrarProducto,
         buscarProducto,
@@ -385,8 +570,14 @@ export const PeticionesApi = () => {
         filtrarProductosNombre,
         filtrarProductosCategoria,
         pagarCompra,
-        cargarVentas
+        cargarVentas,
+        registrarEmpleado,
+        cargarEmpleados,
+        cargarUsuarios,
+        buscarUsuario,
+        buscarEmpleado,
+        editarEmpleado,
+        eliminarEmpleado
       
     }
-
 }

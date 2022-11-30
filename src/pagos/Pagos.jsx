@@ -16,7 +16,7 @@ import { PeticionesApi } from '../PeticionesApi/PeticionesApi'
 
 const Pagos = () => {
 
-  const {listaCompras,totalCompra,setModal} = useContext(AppContext)
+  const {listaCompras,totalCompra,setModal, setListaCompras, setCantidadProductos} = useContext(AppContext)
   const {pagarCompra} = PeticionesApi()
   const departamentoAux=useRef(null)
   const municipioAux=useRef(null)
@@ -91,6 +91,8 @@ const Pagos = () => {
 
   const returnHome = () =>{
     navigate("/home")
+    setListaCompras([])
+    setCantidadProductos(0)
   }
 
   const volverAlCarrito=()=>{
@@ -115,6 +117,7 @@ const Pagos = () => {
       estado:'No entregado'
     }
     await pagarCompra(data)
+    
   }
 
   return (

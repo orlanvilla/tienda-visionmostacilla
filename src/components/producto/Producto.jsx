@@ -4,17 +4,21 @@ import collar_colibri from '../../img/collar-colibri.jpeg'
 import ModalDescripcion from '../modales/ModalDescripcion'
 import { AppContext } from '../../context/AppContext'
 import { PeticionesApi } from '../../PeticionesApi/PeticionesApi'
+import agotado from "../../img/agotado.png"
 
 const Producto = (props) => {
 
     const {buscarProducto} = PeticionesApi();
-    const {id,nombre,descripcion,precio,imagen} = props
+    const {id,nombre,descripcion,precio,imagen, cantidad} = props
    
    const {modal2, setModal2}=useContext(AppContext)
 
     const handleAbrir=async()=>{
         await buscarProducto(id)
-        setModal2(true)
+        if(cantidad>0){
+            setModal2(true)
+        }
+        
         return 
     }
     return (
@@ -22,6 +26,11 @@ const Producto = (props) => {
         {modal2 && <ModalDescripcion/>}      
         <div className='contenedor-producto'>
             <div className='contenido-producto' onClick={handleAbrir}>  
+                <img
+                className={cantidad > 0? "imagen-false": 'imagen-true' }
+                src={agotado}
+                alt= 'img-agotado'
+                ></img>
                 
                 <div className='imagen-producto'>
                     <img                   

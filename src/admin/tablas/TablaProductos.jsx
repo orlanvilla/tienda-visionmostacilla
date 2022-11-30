@@ -18,7 +18,7 @@ import iconEstrellaTrue from '../../img/star-solid.svg'
 
 const TablaProductos = () => {   
 
-  const {modal, setModal,modal1, setModal1,setProductos, productos,producto, productosFiltrados, categorias}=useContext(AppContext);
+  const {modal, setModal,modal1, setModal1,setProductos, productos,producto, productosFiltrados, categorias, usuario}=useContext(AppContext);
   const {cargarProductos,buscarProducto,eliminarProducto,destacarProducto,sumarCantidadProducto,restarCantidadProducto,cargarCategorias, filtrarProductosNombre,  filtrarProductosCategoria} = PeticionesApi();
  
   const busqueda=useRef(null);
@@ -144,7 +144,9 @@ const TablaProductos = () => {
                                 <button>
                                   <img src={icon_eye} alt="logo visualizacion" onClick={()=>handleAbrirProducto(producto._id)}/>
                                 </button>
-                                {
+                                 {usuario.tipo==="administracion" && 
+                                 <>
+                                 {
                                   !producto.destacado &&
                                   <img src={iconEstrellaFalse} alt="" onClick={()=>handleDestacar(producto._id)}/>
                                 }
@@ -152,6 +154,10 @@ const TablaProductos = () => {
                                   producto.destacado &&
                                   <img src={iconEstrellaTrue} alt="" onClick={()=>handleDestacar(producto._id)}/>
                                 }
+                                 </>
+                                 
+                                 }                             
+                               
                             </div>
                           </td>
                         </tr>

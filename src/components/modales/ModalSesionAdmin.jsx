@@ -3,26 +3,34 @@ import { AppContext } from '../../context/AppContext';
 import './ModalSesionAdmin.css'
 import { useNavigate } from 'react-router-dom';
 import { PeticionesApi } from '../../PeticionesApi/PeticionesApi';
+import Swal from 'sweetalert2';
 
 
 const ModalSesionAdmin = ({setModalSesion}) => {
 
   const navigate=useNavigate();
   const {setLogueado}=useContext(AppContext)
-  const {cargarVentas} = PeticionesApi();
+  const {cargarVentas, cargarEmpleados, buscarUsuario} = PeticionesApi();
 
   const user=useRef(null);
   const pass=useRef(null);
 
   const iniciarSesion=async()=>{
-    if(user.current.value==="admin" && pass.current.value==="123"){
-      setLogueado(true)
-      navigate("/admin")
-      //Una vez se inicie sesion cargamos la informacion en el panel de administracion
-      await cargarVentas()
-    }else{
-      alert("Paila")
-    }
+     if(buscarUsuario(user.current.value, pass.current.value)){
+       setLogueado(true)
+       navigate("/admin")
+       //Una vez se inicie sesion cargamos la informacion en el panel de administracion
+       await cargarVentas()
+       await cargarEmpleados()
+     }else{
+      Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: 'Usuario o contraseña incorrecta',
+        timer: 1500,
+        showConfirmButton:false
+      })
+     }
   }
 
   return (

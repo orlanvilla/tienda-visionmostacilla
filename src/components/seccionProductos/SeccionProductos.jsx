@@ -24,13 +24,31 @@ const SeccionProductos = () => {
      <button onClick={handleMostrarTodos}>Mostrar Todos</button>
       <div className='contenido-productos'>
           {
-            productosFiltrados.map(producto => (
-              <Producto nombre={producto.nombre} 
-                        descripcion={producto.descripcion} 
-                        precio={producto.precio} 
-                        imagen={producto.imagen}
-                        id={producto._id}/>
-            ))
+            productosFiltrados.map(producto => {
+              if(producto.cantidad>0){
+                  return (
+                          <Producto nombre={producto.nombre} 
+                                    descripcion={producto.descripcion} 
+                                    precio={producto.precio} 
+                                    imagen={producto.imagen}
+                                    id={producto._id}
+                                    cantidad={producto.cantidad}
+                                    />
+                          )
+
+              }else{
+                return (
+                          <Producto nombre={producto.nombre} 
+                                    descripcion={producto.descripcion} 
+                                    precio={producto.precio} 
+                                    imagen={producto.imagen}
+                                    id={producto._id}
+                                    cantidad={producto.cantidad}
+                                    />
+                          )
+              }
+               
+            } )
           }
           
       </div>

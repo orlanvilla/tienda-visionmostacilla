@@ -34,7 +34,7 @@
 }
 .formulario-registro-empleado label{
     font-size: 1.8rem;    
-}.formulario-registro-empleado input{   
+}.formulario-registro-empleado input, button{   
     font-size: 2rem;
     padding: 0.7rem 2rem;
     border-radius: 1rem;
@@ -63,4 +63,18 @@
     border: none;
     resize: none;
     height: 8rem;   
+}
+.formulario-registro-empleado button{
+    background-color: #354f52;
+    color: white;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: 300ms ease-in-out all;
+}
+.formulario-registro-empleado button:hover{
+    background-color: white;
+    color: black;   
+    border: 2px solid #354f52 ;
+    transform: scale(1.01,1.01);
 }

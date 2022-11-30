@@ -1,17 +1,32 @@
 import { useContext } from 'react'
 import { AppContext } from '../../context/AppContext'
+import { PeticionesApi } from '../../PeticionesApi/PeticionesApi'
 import './TablaEmpleados.css'
 import icon_eye from '../../img/eye.svg'
 import icon_trash from '../../img/trash.svg'
 import icon_pencil from '../../img/pencil-square.svg'
 import ModalRegistroEmpleado from '../modales/ModalRegistroEmpleado'
 
+
 const TablaEmpleados = () => {   
-  const {modal, setModal}=useContext(AppContext);
+  const {modal, setModal, empleados, empleado, setEmpleado}=useContext(AppContext);
+  const {buscarEmpleado, eliminarEmpleado, cargarEmpleados}=PeticionesApi()
 
   const handleAbrirModal=()=>{
+    setEmpleado({})
     setModal(true)
   }
+
+const handleEditarEmpleado=(id)=>{
+  
+  buscarEmpleado(id)
+  setModal(true)
+}
+const handleEliminarEmpleado=async(id)=>{
+  await eliminarEmpleado(id)
+  await cargarEmpleados();
+  console.log(id)
+}
   return (
     <div className='contenido-tablaingresos-empleados'>
       {modal&& <ModalRegistroEmpleado/>}
@@ -27,32 +42,45 @@ const TablaEmpleados = () => {
             <table>
                 <thead>
                     <tr>           
-                        <th width="37%">Nombre</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>                                      
-                        <th >Acción</th>
+                        <th width="37%">Cédula</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>                                      
+                        <th>Dirección</th>
+                        <th>Acción</th>
                     </tr>
                 </thead>
                 <tbody className='cuerpo'>   
-                   
-                        <tr>                
-                        <td>Colibrí mediano</td>
-                        <td>$ 20.000</td>
-                        <td>50</td>
+                   {empleados.map(e=>(
+                    <tr>                
+                        <td>{e.cedula}</td>
+                        <td>{e.nombre}</td>
+                        <td>{e.email}</td>
+                        <td>{e.telefono}</td>
+                        <td>{e.direccion}</td>
                         <td>
                           <div className="accion">
                           <button>
-                              <img src={icon_pencil} alt="logo" />
+                              <img 
+                              src={icon_pencil} 
+                              alt="logo"
+                              onClick={()=>handleEditarEmpleado(e._id)}
+                               />
                             </button>
                             <button>
-                              <img src={icon_trash} alt="logo" />
+                              <img 
+                                src={icon_trash} 
+                                alt="logo"
+                                onClick={()=>handleEliminarEmpleado(e._id)}
+                                 />
+                                
                             </button>
-                            <button>
-                              <img src={icon_eye} alt="logo" />
-                            </button>
-                          </div>                         
+                            </div>                         
                         </td>
                     </tr>
+
+                   ))}
+                        
 
                 </tbody>
             </table>

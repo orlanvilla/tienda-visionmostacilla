@@ -5,17 +5,18 @@ import icono_whatsap from '../../img/whatsap.png'
 import { FaUserAlt } from "react-icons/fa";
 import { useState, useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
+import { PeticionesApi } from '../../PeticionesApi/PeticionesApi';
 import ModalSesionAdmin from '../modales/ModalSesionAdmin';
 import ModalCarrito from '../modales/ModalCarrito';
 
 const Head = () => {
     const [modalSesion, setModalSesion] = useState(false);
     const {modal, setModal, listaCompras, cantidadProductos}=useContext(AppContext)
+    const {cargarUsuarios}=PeticionesApi()
     
-    useEffect(() => {
-       console.log("HEADER")
-    }, [listaCompras]);
-    const handleAbrirAdmin=(e)=>{
+    
+    const handleAbrirAdmin=async(e)=>{
+        await cargarUsuarios()
         e.preventDefault();
         setModalSesion(true)    
     }
@@ -50,7 +51,8 @@ const Head = () => {
                     alt="icono-comprar"
                     onClick={handleCarritoComprar}
                 />
-                {cantidadProductos>0 ? <p className='cantidad'>{cantidadProductos}</p>: null}                
+                {cantidadProductos>0 ? <p className='cantidad'>{cantidadProductos}</p>: null} 
+
                 <FaUserAlt 
                 className='admin'
                 onClick={handleAbrirAdmin}

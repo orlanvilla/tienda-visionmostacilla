@@ -1,5 +1,6 @@
 .contenedor-producto{ 
     position: relative; 
+    
 }
 .contenido-producto{
     margin: 1rem 2rem;
@@ -13,7 +14,19 @@
     cursor: pointer;
     transition: 300ms ease-in-out all;
     gap: 1rem;
-}
+    position: relative;
+    }
+
+    .imagen-true{
+        position: absolute;
+        top: 0;
+        left: 0;
+
+    }
+    .imagen-false{
+        display: none;
+    }
+
 .contenido-producto:hover{
     transform: scale(1.05,1.05);
      
